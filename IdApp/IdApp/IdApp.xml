@@ -13608,7 +13608,7 @@
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagHeading">
             <summary>
-              Looks up a localized string similar to Welcome to Neuro-Access App!.
+              Looks up a localized string similar to Welcome to Neuro-Access!.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagPhoneNrCodeSent">

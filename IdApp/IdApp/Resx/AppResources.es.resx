@@ -1036,7 +1036,7 @@
     <value>Billetera</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>¡Bienvenido a la aplicación Neuro-Access!</value>
+    <value>¡Bienvenido a Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
     <value>Antes de conectarnos a la red Neuro-Access, necesitamos seleccionar un proveedor de servicios para usted. Para hacer esto, necesitamos saber el propósito de usar la aplicación. Seleccione la opción más apropiada a continuación.</value>

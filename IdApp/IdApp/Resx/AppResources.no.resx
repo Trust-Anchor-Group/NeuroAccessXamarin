@@ -1036,7 +1036,7 @@
     <value>Lommebok</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Velkommen til Neuro-Access App!</value>
+    <value>Velkommen til Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
     <value>Før vi kobler til Neuro-Access-nettverket, må vi velge en tjenesteleverandør for deg. For å gjøre dette må vi vite formålet med å bruke appen. Velg det mest passende alternativet nedenfor.</value>

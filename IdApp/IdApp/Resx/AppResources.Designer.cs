@@ -6046,7 +6046,7 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Neuro-Access App!.
+        ///   Looks up a localized string similar to Welcome to Neuro-Access!.
         /// </summary>
         internal static string WelcomeToTagHeading {
             get {

@@ -14,7 +14,7 @@ using System.Resources;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyTitle("Neuro-Access")]
-[assembly: AssemblyDescription("Neuro-Access App")]
+[assembly: AssemblyDescription("Neuro-Access")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: System.Reflection.AssemblyVersion("1.6.59.0")]
 [assembly: System.Reflection.AssemblyFileVersion("1.6.59.0")]
