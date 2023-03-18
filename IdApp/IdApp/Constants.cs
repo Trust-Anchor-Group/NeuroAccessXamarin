@@ -484,7 +484,7 @@ namespace IdApp
 			/// <summary>
 			/// ResolutionGroupName used for resolving Effects.
 			/// </summary>
-			public const string ResolutionGroupName = "com.tag.IdApp";
+			public const string ResolutionGroupName = "com.tag.NeuroAccess";
 
 			/// <summary>
 			/// PasswordMaskTogglerEffect.
@@ -552,12 +552,12 @@ namespace IdApp
 			/// <summary>
 			/// Resource where Android App can be downloaded.
 			/// </summary>
-			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.IdApp";
+			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.NeuroAccess";
 
 			/// <summary>
 			/// Resource where iPhone App can be downloaded.
 			/// </summary>
-			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-id/id1580610247";
+			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-access/id1580610247";
 		}
 
 	}

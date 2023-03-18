@@ -1,33 +1,17 @@
-# ID App
+# Neuro-Access Xamarin App
 
-The **ID App** (or *TAG ID App*) is a *white-label* Xamarin app written in C# provided by [Trust Anchor Group](https://trustanchorgroup.com/) 
-(**TAG** for short). It can be used to create custom apps based on [IEEE P1451.99](https://gitlab.com/IEEE-SA/XMPPI/IoT). This includes:
+The **Neuro-Access Xamarin App** is a scaled down version of the [TAG ID App](https://github.com/Trust-Anchor-Group/IdApp) focusing
+on helping the user get safe access to online (or physical) resources. The app is provided by
+[Trust Anchor Group](https://trustanchorgroup.com/) (**TAG** for short), and is written in C#, on the Xamarin platform. The
+solution contains both an Android and an iOS version of the App.
 
-* Federated & distributed Digital IDs. (Globally scalable, interoperable.)
-* Smart Contracts
-* Interfaces for communication with devices.
-* Ownership, claims & Provisioning.
-* End-to-end encrypted communication.
-* Peer-to-peer communication.
-
-It is built with .NET Standard 2.0 and Xamarin.Forms 5.0 (Shell), and relies on nugets from the [IoTGateway](https://github.com/PeterWaher/IoTGateway) 
-framework to perform tasks related to communication and functionality defined in IEEE P1451.99.
+The app is built with .NET Standard 2.0 and Xamarin.Forms 5.0 (Shell), and relies on nugets from the [IoTGateway](https://github.com/PeterWaher/IoTGateway) 
+framework to perform tasks related to communication and persistence.
 
 The ID App is also published to [Google Play Store][] (for Android devices) and [Apple App Store][] (for iOS devices).
 
-[Google Play Store]: https://play.google.com/store/apps/details?id=com.tag.IdApp
-[Apple App Store]: https://apps.apple.com/se/app/trust-anchor-id/id1580610247
-
-## Documentation ##
-
-The following sections presend an overview of the architecture, as well as technical guides for implementing and using the TAG Neuron SDK 
-in a Xamarin app:
-
-- [Getting Started](Content/GettingStarted.md)
-- [Creating a TAG Profile](Content/CreatingATAGProfile.md)
-- [Neuron SDK](Content/NeuronSDK.md)
-- [Neuron SDK UI](Content/NeuronSDKUI.md)
-- [Branch Strategy](Content/BranchStrategy.md)
+[Google Play Store]: https://play.google.com/store/apps/details?id=com.tag.NeuroAccess
+[Apple App Store]: https://apps.apple.com/se/app/trust-anchor-access/id1580610247
 
 ## License
 

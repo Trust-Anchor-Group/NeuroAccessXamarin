@@ -15,10 +15,10 @@
 			<Label Text="{x:Static resx:AppResources.LinksText}" Style="{StaticResource InfoText}" Margin="{StaticResource DefaultBottomOnlyMargin}" />
 
 			<Button Text="{x:Static resx:AppResources.AndroidApp}" Margin="{StaticResource DefaultBottomOnlyMargin}"
-					Command="{Binding Path=OpenLinkCommand}" CommandParameter="Play Store;https://play.google.com/store/apps/details?id=com.tag.IdApp"/>
+					Command="{Binding Path=OpenLinkCommand}" CommandParameter="Play Store;https://play.google.com/store/apps/details?id=com.tag.NeuroAccess"/>
 
 			<Button Text="{x:Static resx:AppResources.IosApp}" Margin="{StaticResource DefaultBottomOnlyMargin}"
-					Command="{Binding Path=OpenLinkCommand}" CommandParameter="App Store;https://apps.apple.com/tr/app/trust-anchor-id/id1580610247"/>
+					Command="{Binding Path=OpenLinkCommand}" CommandParameter="App Store;https://apps.apple.com/tr/app/trust-anchor-access/id1580610247"/>
 
 			<Button Text="{x:Static resx:AppResources.TrustAnchorGroup}" Margin="{StaticResource DefaultBottomOnlyMargin}"
 					Command="{Binding Path=OpenLinkCommand}" CommandParameter="TAG;https://www.trustanchorgroup.com/"/>
