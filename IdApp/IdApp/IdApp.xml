@@ -157,22 +157,6 @@
             Controls of screen-capture is prohibited.
             </summary>
         </member>
-        <member name="T:IdApp.Behaviors.ReRenderOnClickedBehavior">
-            <summary>
-            Used for Re-rendering a layout, when a button has been clicked.
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.ReRenderOnClickedBehavior.Layout">
-            <summary>
-            The layout to re-render.
-            </summary>
-        </member>
-        <member name="M:IdApp.Behaviors.ReRenderOnClickedBehavior.OnAttachedTo(Xamarin.Forms.Button)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.ReRenderOnClickedBehavior.OnDetachingFrom(Xamarin.Forms.Button)">
-            <inheritdoc/>
-        </member>
         <member name="T:IdApp.Behaviors.ScrollToClickedBehavior">
             <summary>
             Used for moving focus to the next UI component when a button has been clicked.
@@ -204,22 +188,6 @@
             Scrolls to make an element visible.
             </summary>
             <param name="Element">Element to make visible.</param>
-        </member>
-        <member name="T:IdApp.Behaviors.ScrollToCompletedBehavior">
-            <summary>
-            Used for moving focus to the next UI component when the Enter/Return key has been hit.
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.ScrollToCompletedBehavior.ScrollTo">
-            <summary>
-            The view to move focus to.
-            </summary>
-        </member>
-        <member name="M:IdApp.Behaviors.ScrollToCompletedBehavior.OnAttachedTo(Xamarin.Forms.Entry)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.ScrollToCompletedBehavior.OnDetachingFrom(Xamarin.Forms.Entry)">
-            <inheritdoc/>
         </member>
         <member name="T:IdApp.Behaviors.ScrollToSelectedBehavior">
             <summary>
@@ -291,28 +259,6 @@
         <member name="M:IdApp.Behaviors.SetFocusOnSelectedBehavior.OnDetachingFrom(Xamarin.Forms.Picker)">
             <inheritdoc/>
         </member>
-        <member name="T:IdApp.Behaviors.SetFocusOnTappedBehavior">
-            <summary>
-            Used for moving focus to the next UI component when a view has been tapped.
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.SetFocusOnTappedBehavior.SetFocusTo">
-            <summary>
-            The view to move focus to.
-            </summary>
-        </member>
-        <member name="M:IdApp.Behaviors.SetFocusOnTappedBehavior.OnAttachedTo(Xamarin.Forms.View)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.SetFocusOnTappedBehavior.OnDetachingFrom(Xamarin.Forms.View)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.SetFocusOnTappedBehavior.FocusOn(Xamarin.Forms.View)">
-            <summary>
-            Sets focus on an element.
-            </summary>
-            <param name="Element">Element to focus on.</param>
-        </member>
         <member name="T:IdApp.Behaviors.SettableIsFocusedBehavior">
             <summary>
             SettableIsFocusedBehavior synchronizes the value of <see cref="F:IdApp.Behaviors.SettableIsFocusedBehavior.IsFocusedProperty"/> with the value of <see cref="F:Xamarin.Forms.VisualElement.IsFocusedProperty"/>
@@ -345,59 +291,6 @@
         </member>
         <member name="M:IdApp.Behaviors.SettableIsFocusedBehavior.OnDetachingFrom(Xamarin.Forms.VisualElement)">
             <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Behaviors.TextChangedBehavior">
-            <summary>
-            A behavior for being able to bind an <see cref="T:Xamarin.Forms.Entry"/>'s TextChanged event to an <see cref="T:System.Windows.Input.ICommand"/>.
-            </summary>
-        </member>
-        <member name="F:IdApp.Behaviors.TextChangedBehavior.TextChangedCommandProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.TextChangedBehavior.TextChangedCommand">
-            <summary>
-            The command to bind to when text changes.
-            </summary>
-        </member>
-        <member name="F:IdApp.Behaviors.TextChangedBehavior.TextChangedCommandParameterProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.TextChangedBehavior.TextChangedCommandParameter">
-            <summary>
-            The command parameter to bind to when text changes.
-            </summary>
-        </member>
-        <member name="M:IdApp.Behaviors.TextChangedBehavior.OnAttachedTo(Xamarin.Forms.Entry)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.TextChangedBehavior.OnDetachingFrom(Xamarin.Forms.Entry)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Behaviors.UnfocusOnClickedBehavior">
-            <summary>
-            Used for unfocusing an input control.
-            </summary>
-        </member>
-        <member name="P:IdApp.Behaviors.UnfocusOnClickedBehavior.UnfocusControl">
-            <summary>
-            The view to unfocus.
-            </summary>
-        </member>
-        <member name="M:IdApp.Behaviors.UnfocusOnClickedBehavior.OnAttachedTo(Xamarin.Forms.Button)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.UnfocusOnClickedBehavior.OnDetachingFrom(Xamarin.Forms.Button)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Behaviors.UnfocusOnClickedBehavior.Unfocus(Xamarin.Forms.View)">
-            <summary>
-            Sets focus on an element.
-            </summary>
-            <param name="Element">Element to focus on.</param>
         </member>
         <member name="T:IdApp.Constants">
             <summary>
