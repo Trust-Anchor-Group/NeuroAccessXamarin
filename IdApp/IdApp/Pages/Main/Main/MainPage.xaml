@@ -21,10 +21,6 @@
             <mainTabBar:MainTabBarView x:Name="MainTabBar"
                                        Grid.Row="1"
 
-									   LeftButton1Text="{x:Static resx:FontAwesome.Contacts}"
-                                       LeftButton1Command="{Binding Path=ViewMyContactsCommand}"
-									   LeftButton1Overlay="{Binding Path=Left1Overlay}"
-									   
 									   CenterButtonText="{x:Static resx:FontAwesome.ScanQr}"
                                        CenterButtonCommand="{Binding Path=ScanQrCodeCommand}"
 

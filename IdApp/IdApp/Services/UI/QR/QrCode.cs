@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using IdApp.Pages.Contacts.Chat;
 using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Services.Navigation;
 using SkiaSharp;
@@ -15,7 +14,6 @@ using IdApp.Services.Notification.Identities;
 using IdApp.Services.Notification.Contracts;
 using Xamarin.CommunityToolkit.Helpers;
 using Waher.Persistence;
-using Waher.Security.JWT;
 
 namespace IdApp.Services.UI.QR
 {
@@ -96,9 +94,6 @@ namespace IdApp.Services.UI.QR
 					case Constants.UriSchemes.UriSchemeOnboarding:
 						await Services.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["ThisCodeCannotBeClaimedAtThisTime"]);
 						return false;
-
-					case Constants.UriSchemes.UriSchemeXmpp:
-						return await ChatViewModel.ProcessXmppUri(Url);
 
 					default:
 						if (await Launcher.TryOpenAsync(uri))

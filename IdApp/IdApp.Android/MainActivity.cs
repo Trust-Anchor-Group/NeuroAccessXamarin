@@ -24,7 +24,7 @@ namespace IdApp.Android
 		Categories = new string[] { Intent.CategoryDefault }, DataMimeType = "*/*")]
 	[IntentFilter(new string[] { Intent.ActionView },
 		Categories = new string[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
-		DataSchemes = new string[] { "iotid", "iotsc", "tagsign", "obinfo", "xmpp" })]
+		DataSchemes = new string[] { "iotid", "iotsc", "tagsign", "obinfo" })]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		private static NfcAdapter nfcAdapter = null;

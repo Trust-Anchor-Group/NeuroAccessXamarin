@@ -79,11 +79,6 @@ namespace IdApp
             /// </summary>
             public const string UriSchemeOnboarding = "obinfo";
 
-            /// <summary>
-            /// XMPP URI Scheme (xmpp)
-            /// </summary>
-            public const string UriSchemeXmpp = "xmpp";
-
 			/// <summary>
 			/// AES-256-encrypted data.
 			/// </summary>
@@ -110,8 +105,7 @@ namespace IdApp
 					UriSchemeIotId or
                     UriSchemeIotSc or
                     UriSchemeTagSign or
-                    UriSchemeOnboarding or
-                    UriSchemeXmpp => Url,
+                    UriSchemeOnboarding => Url,
 
 					_ => null,
 				};

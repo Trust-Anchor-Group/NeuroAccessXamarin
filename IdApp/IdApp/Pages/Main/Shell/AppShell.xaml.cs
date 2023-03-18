@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using IdApp.Pages.Contacts.Chat;
-using IdApp.Pages.Contacts.MyContacts;
 using IdApp.Pages.Contracts.ClientSignature;
 using IdApp.Pages.Contracts.MyContracts;
 using IdApp.Pages.Contracts.NewContract;
@@ -86,10 +84,6 @@ namespace IdApp.Pages.Main.Shell
 			Routing.RegisterRoute(nameof(ViewIdentityPage), typeof(ViewIdentityPage));
 			Routing.RegisterRoute(nameof(PetitionIdentityPage), typeof(PetitionIdentityPage));
 			Routing.RegisterRoute(nameof(TransferIdentityPage), typeof(TransferIdentityPage));
-
-			// Contacts:
-			Routing.RegisterRoute(nameof(MyContactsPage), typeof(MyContactsPage));
-			Routing.RegisterRoute(nameof(ChatPage), Device.RuntimePlatform == Device.iOS ? typeof(ChatPageIos) : typeof(ChatPage));
 
 			// Contracts:
 			Routing.RegisterRoute(nameof(ClientSignaturePage), typeof(ClientSignaturePage));
@@ -191,12 +185,5 @@ namespace IdApp.Pages.Main.Shell
 				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["About"], sb.ToString());
 			});
 		}
-
-		internal async void ContactsMenuItem_Clicked(object Sender, EventArgs e)
-		{
-			await this.GoToPage(nameof(MyContactsPage), new ContactListNavigationArgs(LocalizationResourceManager.Current["ContactsDescription"],
-				SelectContactAction.ViewIdentity));
-		}
-
 	}
 }

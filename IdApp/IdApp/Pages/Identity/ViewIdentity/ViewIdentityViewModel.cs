@@ -17,8 +17,6 @@ using Xamarin.Forms;
 using IdApp.Pages.Identity.TransferIdentity;
 using IdApp.Services.UI.Photos;
 using IdApp.Services.Data.Countries;
-using IdApp.Pages.Contacts.Chat;
-using IdApp.Popups.Xmpp.RemoveSubscription;
 using IdApp.Services.Notification;
 using IdApp.Pages.Main.Security;
 using Xamarin.CommunityToolkit.Helpers;
@@ -54,11 +52,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 			this.CompromiseCommand = new Command(async _ => await this.Compromise(), _ => this.IsConnected);
 			this.ChangePinCommand = new Command(async _ => await this.ChangePin(), _ => this.IsConnected);
 			this.CopyCommand = new Command(Item => this.CopyToClipboard(Item));
-			this.AddContactCommand = new Command(async _ => await this.AddContact(), _ => this.ThirdPartyNotInContacts);
-			this.RemoveContactCommand = new Command(async _ => await this.RemoveContact(), _ => this.ThirdPartyInContacts);
-			this.ChatCommand = new Command(async _ => await this.OpenChat(), _ => this.ThirdParty);
-			this.SubscribeToCommand = new Command(async _ => await this.SubscribeTo(), _ => this.NotSubscribed);
-			this.UnsubscribeFromCommand = new Command(async _ => await this.UnsubscribeFrom(), _ => this.Subscribed);
 		}
 
 		/// <inheritdoc/>
@@ -111,9 +104,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 					await Database.Provider.Flush();
 				}
 
-				this.ThirdPartyNotInContacts = Info is null;
-				this.ThirdPartyInContacts = !this.ThirdPartyNotInContacts;
-
 				if (this.NotificationService.TryGetNotificationEvents(EventButton.Contacts, this.BareJid, out NotificationEvent[] Events))
 				{
 					this.NrPendingChatMessages = Events.Length;
@@ -127,8 +117,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 			}
 			else
 			{
-				this.ThirdPartyNotInContacts = false;
-				this.ThirdPartyInContacts = false;
 				this.HasPendingChatMessages = false;
 				this.NrPendingChatMessages = 0;
 			}
@@ -137,9 +125,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 
 			this.TagProfile.Changed += this.TagProfile_Changed;
 			this.XmppService.LegalIdentityChanged += this.SmartContracts_LegalIdentityChanged;
-			this.XmppService.OnRosterItemAdded += this.CheckRosterItem;
-			this.XmppService.OnRosterItemRemoved += this.CheckRosterItem;
-			this.XmppService.OnRosterItemUpdated += this.CheckRosterItem;
 			this.NotificationService.OnNewNotification += this.NotificationService_OnNewNotification;
 			this.NotificationService.OnNotificationsDeleted += this.NotificationService_OnNotificationsDeleted;
 		}
@@ -171,10 +156,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 
 			this.TagProfile.Changed -= this.TagProfile_Changed;
 			this.XmppService.LegalIdentityChanged -= this.SmartContracts_LegalIdentityChanged;
-
-			this.XmppService.OnRosterItemAdded -= this.CheckRosterItem;
-			this.XmppService.OnRosterItemRemoved -= this.CheckRosterItem;
-			this.XmppService.OnRosterItemUpdated -= this.CheckRosterItem;
 
 			this.NotificationService.OnNewNotification -= this.NotificationService_OnNewNotification;
 			this.NotificationService.OnNotificationsDeleted -= this.NotificationService_OnNotificationsDeleted;
@@ -225,31 +206,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		/// The command for copying data to clipboard.
 		/// </summary>
 		public ICommand CopyCommand { get; }
-
-		/// <summary>
-		/// The command for adding the identity to the list of contacts.
-		/// </summary>
-		public ICommand AddContactCommand { get; }
-
-		/// <summary>
-		/// The command for removing the identity from the list of contacts.
-		/// </summary>
-		public ICommand RemoveContactCommand { get; }
-
-		/// <summary>
-		/// The command for opening the chat page.
-		/// </summary>
-		public ICommand ChatCommand { get; }
-
-		/// <summary>
-		/// The command for subscribing to the presence of a contact
-		/// </summary>
-		public ICommand SubscribeToCommand { get; }
-
-		/// <summary>
-		/// The command for unsubscribing from the presence of a contact
-		/// </summary>
-		public ICommand UnsubscribeFromCommand { get; }
 
 		#endregion
 
@@ -316,8 +272,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 			this.IsNotForReview = !this.IsForReview;
 			this.ThirdParty = (this.LegalIdentity is not null) && !this.IsPersonal;
 
-			this.UpdateSubscriptionStatus();
-
 			this.IsForReviewFirstName = !string.IsNullOrWhiteSpace(this.FirstName) && this.IsForReview;
 			this.IsForReviewMiddleNames = !string.IsNullOrWhiteSpace(this.MiddleNames) && this.IsForReview;
 			this.IsForReviewLastNames = !string.IsNullOrWhiteSpace(this.LastNames) && this.IsForReview;
@@ -371,8 +325,7 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		private void EvaluateAllCommands()
 		{
 			this.EvaluateCommands(this.ApproveCommand, this.RejectCommand, this.RevokeCommand, this.TransferCommand,
-				this.ChangePinCommand, this.CompromiseCommand, this.AddContactCommand, this.RemoveContactCommand,
-				this.ChatCommand, this.SubscribeToCommand, this.UnsubscribeFromCommand);
+				this.ChangePinCommand, this.CompromiseCommand);
 		}
 
 		/// <inheritdoc/>
@@ -851,36 +804,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		}
 
 		/// <summary>
-		/// See <see cref="ThirdPartyInContacts"/>
-		/// </summary>
-		public static readonly BindableProperty ThirdPartyInContactsProperty =
-			BindableProperty.Create(nameof(ThirdPartyInContacts), typeof(bool), typeof(ViewIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the identity is in the contact list.
-		/// </summary>
-		public bool ThirdPartyInContacts
-		{
-			get => (bool)this.GetValue(ThirdPartyInContactsProperty);
-			set => this.SetValue(ThirdPartyInContactsProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ThirdPartyNotInContacts"/>
-		/// </summary>
-		public static readonly BindableProperty ThirdPartyNotInContactsProperty =
-			BindableProperty.Create(nameof(ThirdPartyNotInContacts), typeof(bool), typeof(ViewIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the identity is not in the contact list.
-		/// </summary>
-		public bool ThirdPartyNotInContacts
-		{
-			get => (bool)this.GetValue(ThirdPartyNotInContactsProperty);
-			set => this.SetValue(ThirdPartyNotInContactsProperty, value);
-		}
-
-		/// <summary>
 		/// See <see cref="IsPersonal"/>
 		/// </summary>
 		public static readonly BindableProperty IsPersonalProperty =
@@ -893,36 +816,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		{
 			get => (bool)this.GetValue(IsPersonalProperty);
 			set => this.SetValue(IsPersonalProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="Subscribed"/>
-		/// </summary>
-		public static readonly BindableProperty SubscribedProperty =
-			BindableProperty.Create(nameof(Subscribed), typeof(bool), typeof(ViewIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the identity is for review or not. This property has its inverse in <see cref="IsForReview"/>.
-		/// </summary>
-		public bool Subscribed
-		{
-			get => (bool)this.GetValue(SubscribedProperty);
-			set => this.SetValue(SubscribedProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="NotSubscribed"/>
-		/// </summary>
-		public static readonly BindableProperty NotSubscribedProperty =
-			BindableProperty.Create(nameof(NotSubscribed), typeof(bool), typeof(ViewIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the identity is for review or not. This property has its inverse in <see cref="IsForReview"/>.
-		/// </summary>
-		public bool NotSubscribed
-		{
-			get => (bool)this.GetValue(NotSubscribedProperty);
-			set => this.SetValue(NotSubscribedProperty, value);
 		}
 
 		/// <summary>
@@ -1491,83 +1384,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 			}
 		}
 
-		private async Task AddContact()
-		{
-			try
-			{
-				string FriendlyName = ContactInfo.GetFriendlyName(this.LegalIdentity);
-
-				RosterItem Item = this.XmppService.GetRosterItem(this.BareJid);
-				if (Item is null)
-					this.XmppService.AddRosterItem(new RosterItem(this.BareJid, FriendlyName));
-
-				ContactInfo Info = await ContactInfo.FindByBareJid(this.BareJid);
-				if (Info is null)
-				{
-					Info = new ContactInfo()
-					{
-						BareJid = this.BareJid,
-						LegalId = this.LegalId,
-						LegalIdentity = this.LegalIdentity,
-						FriendlyName = FriendlyName,
-						IsThing = false
-					};
-
-					await Database.Insert(Info);
-				}
-				else
-				{
-					Info.LegalId = this.LegalId;
-					Info.LegalIdentity = this.LegalIdentity;
-					Info.FriendlyName = FriendlyName;
-
-					await Database.Update(Info);
-				}
-
-				await this.AttachmentCacheService.MakePermanent(this.LegalId);
-				await Database.Provider.Flush();
-
-				this.ThirdPartyInContacts = true;
-				this.ThirdPartyNotInContacts = false;
-
-				this.EvaluateAllCommands();
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
-		private async Task RemoveContact()
-		{
-			try
-			{
-				if (!await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["Confirm"], LocalizationResourceManager.Current["AreYouSureYouWantToRemoveContact"], LocalizationResourceManager.Current["Yes"], LocalizationResourceManager.Current["Cancel"]))
-					return;
-
-				ContactInfo Info = await ContactInfo.FindByBareJid(this.BareJid);
-				if (Info is not null)
-				{
-					await Database.Delete(Info);
-					await this.AttachmentCacheService.MakeTemporary(Info.LegalId);
-					await Database.Provider.Flush();
-				}
-
-				RosterItem Item = this.XmppService.GetRosterItem(this.BareJid);
-				if (Item is not null)
-					this.XmppService.RemoveRosterItem(this.BareJid);
-
-				this.ThirdPartyInContacts = false;
-				this.ThirdPartyNotInContacts = true;
-
-				this.EvaluateAllCommands();
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
 		private async Task Transfer()
 		{
 			if (!this.IsPersonal)
@@ -1676,100 +1492,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 				return;
 
 			await SecurityViewModel.ChangePin(this);
-		}
-
-		private async Task OpenChat()
-		{
-			try
-			{
-				await this.NavigationService.GoToAsync(nameof(ChatPage), new ChatNavigationArgs(this.LegalId, this.BareJid,
-					ContactInfo.GetFriendlyName(this.LegalIdentity))
-				{ UniqueId = this.BareJid });
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
-		private async Task SubscribeTo()
-		{
-			if (this.ThirdPartyNotInContacts)
-				await this.AddContact();
-
-			try
-			{
-				string IdXml;
-
-				if (this.TagProfile.LegalIdentity is null)
-					IdXml = string.Empty;
-				else
-				{
-					StringBuilder Xml = new();
-					this.TagProfile.LegalIdentity.Serialize(Xml, true, true, true, true, true, true, true);
-					IdXml = Xml.ToString();
-				}
-
-				this.XmppService.RequestPresenceSubscription(this.BareJid, IdXml);
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["SuccessTitle"], LocalizationResourceManager.Current["PresenceSubscriptionRequestSent"]);
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
-		private async Task UnsubscribeFrom()
-		{
-			try
-			{
-				this.XmppService.RequestPresenceUnsubscription(this.BareJid);
-
-				RosterItem Item = this.XmppService.GetRosterItem(this.BareJid);
-				if (Item.State == SubscriptionState.Both || Item.State == SubscriptionState.From)
-				{
-					RemoveSubscriptionPopupPage Page = new(this.BareJid);
-
-					await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(Page);
-					bool? Remove = await Page.Result;
-
-					if (Remove.HasValue && Remove.Value)
-					{
-						this.XmppService.RequestRevokePresenceSubscription(this.BareJid);
-
-						ContactInfo Info = await ContactInfo.FindByBareJid(this.BareJid);
-						if ((Info is not null) && Info.AllowSubscriptionFrom.HasValue && Info.AllowSubscriptionFrom.Value)
-						{
-							Info.AllowSubscriptionFrom = null;
-							await Database.Update(Info);
-						}
-					}
-				}
-
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["SuccessTitle"], LocalizationResourceManager.Current["PresenceUnsubscriptionRequestSent"]);
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
-		private Task CheckRosterItem(object Sender, RosterItem Item)
-		{
-			if (string.Compare(Item.BareJid, this.BareJid, true) == 0)
-				this.UiSerializer.BeginInvokeOnMainThread(() => this.UpdateSubscriptionStatus());
-
-			return Task.CompletedTask;
-		}
-
-		private void UpdateSubscriptionStatus()
-		{
-			RosterItem Item = this.XmppService.GetRosterItem(this.BareJid);
-
-			this.Subscribed = this.ThirdParty && (Item is not null) && (Item.State == SubscriptionState.Both || Item.State == SubscriptionState.To);
-			this.NotSubscribed = this.ThirdParty && (Item is null || (Item.State != SubscriptionState.Both && Item.State != SubscriptionState.To));
-
-			this.EvaluateAllCommands();
 		}
 
 		#region ILinkableView

@@ -107,9 +107,6 @@
     <EmbeddedResource Update="Pages\BootstrapErrorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Contacts\Chat\ChatPageIos.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\ContentBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -216,12 +213,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\Contacts\Chat\ChatPage.xaml.cs">
-      <DependentUpon>ChatPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Contacts\MyContacts\MyContactsPage.xaml.cs">
-      <DependentUpon>MyContactsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Contracts\PetitionSignature\PetitionSignaturePage.xaml.cs">
       <DependentUpon>PetitionSignaturePage.xaml</DependentUpon>
     </Compile>

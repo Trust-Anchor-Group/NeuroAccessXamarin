@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using IdApp.Controls.Extended;
 using IdApp.Extensions;
-using IdApp.Pages.Contacts.MyContacts;
 using IdApp.Pages.Contracts.MyContracts.ObjectModels;
 using IdApp.Pages.Contracts.NewContract.ObjectModel;
 using IdApp.Pages.Contracts.ViewContract;
@@ -615,45 +614,6 @@ namespace IdApp.Pages.Contracts.NewContract
 			}
 		}
 
-		private async void AddPartButton_Clicked(object Sender, EventArgs e)
-		{
-			try
-			{
-				if (Sender is Button button)
-				{
-					this.saveStateWhileScanning = true;
-					this.stateTemplateWhileScanning = this.template;
-
-					TaskCompletionSource<ContactInfoModel> Selected = new();
-					ContactListNavigationArgs Args = new(LocalizationResourceManager.Current["AddContactToContract"], Selected)
-					{
-						CanScanQrCode = true,
-						CancelReturnCounter = true
-					};
-
-					await this.NavigationService.GoToAsync(nameof(MyContactsPage), Args);
-
-					ContactInfoModel Contact = await Selected.Task;
-					if (Contact is null)
-						return;
-
-					if (string.IsNullOrEmpty(Contact.LegalId))
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["SelectedContactCannotBeAdded"]);
-					else
-					{
-						this.partsToAdd[button.StyleId] = Contact.LegalId;
-						string settingsKey = partSettingsPrefix + button.StyleId;
-						await this.SettingsService.SaveState(settingsKey, Contact.LegalId);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
 		private async void Parameter_DateChanged(object Sender, NullableDateChangedEventArgs e)
 		{
 			try
@@ -1036,7 +996,6 @@ namespace IdApp.Pages.Contracts.NewContract
 						StyleId = Role.Name,
 						Margin = (Thickness)Application.Current.Resources["DefaultBottomOnlyMargin"]
 					};
-					button.Clicked += this.AddPartButton_Clicked;
 
 					rolesLayout.Children.Add(button);
 				}

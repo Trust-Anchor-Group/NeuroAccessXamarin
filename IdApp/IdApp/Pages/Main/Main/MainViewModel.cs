@@ -1,6 +1,5 @@
 ﻿using IdApp.DeviceSpecific;
 using IdApp.Extensions;
-using IdApp.Pages.Contacts.MyContacts;
 using IdApp.Pages.Contracts.MyContracts;
 using IdApp.Pages.Identity.ViewIdentity;
 using IdApp.Services.Data.Countries;
@@ -40,7 +39,6 @@ namespace IdApp.Pages.Main.Main
 			this.photosLoader = new PhotosLoader();
 
 			this.ViewMyIdentityCommand = new Command(async () => await this.ViewMyIdentity(), () => this.IsConnected);
-			this.ViewMyContactsCommand = new Command(async () => await this.ViewMyContacts(), () => this.IsConnected);
 			this.ScanQrCodeCommand = new Command(async () => await this.ScanQrCode());
 			this.ViewContractsCommand = new Command(async () => await this.ViewContracts(), () => this.IsConnected);
 			this.SharePhotoCommand = new Command(async () => await this.SharePhoto());
@@ -211,21 +209,6 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ViewMyIdentityCommandProperty);
 			set => this.SetValue(ViewMyIdentityCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewMyContactsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewMyContactsCommandProperty =
-			BindableProperty.Create(nameof(ViewMyContactsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing the user's own contracts.
-		/// </summary>
-		public ICommand ViewMyContactsCommand
-		{
-			get => (ICommand)this.GetValue(ViewMyContactsCommandProperty);
-			set => this.SetValue(ViewMyContactsCommandProperty, value);
 		}
 
 		/// <summary>
@@ -580,12 +563,6 @@ namespace IdApp.Pages.Main.Main
 			await this.NavigationService.GoToAsync(nameof(ViewIdentityPage));
 		}
 
-		private async Task ViewMyContacts()
-		{
-			await this.NavigationService.GoToAsync(nameof(MyContactsPage),
-				new ContactListNavigationArgs(LocalizationResourceManager.Current["ContactsDescription"], SelectContactAction.ViewIdentity));
-		}
-
 		private async Task ViewContracts()
 		{
 			await this.NavigationService.GoToAsync(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.Contracts));
@@ -667,8 +644,7 @@ namespace IdApp.Pages.Main.Main
 					this.ConnectionErrorsText = string.Empty;
 
 				this.HasConnectionErrors = !string.IsNullOrWhiteSpace(this.ConnectionErrorsText);
-				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ViewMyContactsCommand, this.ScanQrCodeCommand,
-					this.ViewContractsCommand);
+				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ScanQrCodeCommand, this.ViewContractsCommand);
 			}
 			catch (Exception ex)
 			{

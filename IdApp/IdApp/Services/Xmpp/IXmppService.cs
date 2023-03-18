@@ -182,29 +182,6 @@ namespace IdApp.Services.Xmpp
 
 		#endregion
 
-		#region Messages
-
-		/// <summary>
-		/// Sends a message
-		/// </summary>
-		/// <param name="QoS">Quality of Service level of message.</param>
-		/// <param name="Type">Type of message to send.</param>
-		/// <param name="Id">Message ID</param>
-		/// <param name="To">Destination address</param>
-		/// <param name="CustomXml">Custom XML</param>
-		/// <param name="Body">Body text of chat message.</param>
-		/// <param name="Subject">Subject</param>
-		/// <param name="Language">Language used.</param>
-		/// <param name="ThreadId">Thread ID</param>
-		/// <param name="ParentThreadId">Parent Thread ID</param>
-		/// <param name="DeliveryCallback">Callback to call when message has been sent, or failed to be sent.</param>
-		/// <param name="State">State object to pass on to the callback method.</param>
-		public void SendMessage(QoSLevel QoS, Waher.Networking.XMPP.MessageType Type, string Id, string To, string CustomXml,
-			string Body, string Subject, string Language, string ThreadId, string ParentThreadId,
-			DeliveryEventHandler DeliveryCallback, object State);
-
-		#endregion
-
 		#region Presence
 
 		/// <summary>

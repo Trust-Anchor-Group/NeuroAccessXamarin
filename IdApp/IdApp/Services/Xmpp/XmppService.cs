@@ -1,14 +1,10 @@
 ﻿using IdApp.Extensions;
-using IdApp.Pages.Contacts.Chat;
 using IdApp.Pages.Registration.RegisterIdentity;
 using IdApp.Popups.Xmpp.ReportOrBlock;
 using IdApp.Popups.Xmpp.ReportType;
 using IdApp.Popups.Xmpp.SubscribeTo;
 using IdApp.Popups.Xmpp.SubscriptionRequest;
 using IdApp.Services.Contracts;
-using IdApp.Services.Messages;
-using IdApp.Services.Navigation;
-using IdApp.Services.Notification.Xmpp;
 using IdApp.Services.Push;
 using IdApp.Services.Tag;
 using IdApp.Services.UI.Photos;
@@ -21,8 +17,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Waher.Content;
-using Waher.Content.Html;
-using Waher.Content.Markdown;
 using Waher.Content.Xml;
 using Waher.Events;
 using Waher.Events.XMPP;
@@ -30,12 +24,10 @@ using Waher.Networking.Sniffers;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.Abuse;
 using Waher.Networking.XMPP.Contracts;
-using Waher.Networking.XMPP.DataForms;
 using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.HTTPX;
 using Waher.Networking.XMPP.MUC;
 using Waher.Networking.XMPP.PEP;
-using Waher.Networking.XMPP.PubSub;
 using Waher.Networking.XMPP.Push;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Persistence;
@@ -44,9 +36,6 @@ using Waher.Runtime.Inventory;
 using Waher.Runtime.Profiling;
 using Waher.Runtime.Settings;
 using Waher.Runtime.Temporary;
-using Waher.Security.JWT;
-using Waher.Things;
-using Waher.Things.SensorData;
 using Xamarin.CommunityToolkit.Helpers;
 
 namespace IdApp.Services.Xmpp
@@ -160,8 +149,6 @@ namespace IdApp.Services.Xmpp
 					this.xmppClient.OnStateChanged += this.XmppClient_StateChanged;
 					this.xmppClient.OnConnectionError += this.XmppClient_ConnectionError;
 					this.xmppClient.OnError += this.XmppClient_Error;
-					this.xmppClient.OnChatMessage += this.XmppClient_OnChatMessage;
-					this.xmppClient.OnNormalMessage += this.XmppClient_OnNormalMessage;
 					this.xmppClient.OnPresenceSubscribe += this.XmppClient_OnPresenceSubscribe;
 					this.xmppClient.OnPresenceUnsubscribed += this.XmppClient_OnPresenceUnsubscribed;
 					this.xmppClient.OnRosterItemAdded += this.XmppClient_OnRosterItemAdded;
@@ -1209,260 +1196,6 @@ namespace IdApp.Services.Xmpp
 		#endregion
 
 		#region Messages
-
-		/// <summary>
-		/// Sends a message
-		/// </summary>
-		/// <param name="QoS">Quality of Service level of message.</param>
-		/// <param name="Type">Type of message to send.</param>
-		/// <param name="Id">Message ID</param>
-		/// <param name="To">Destination address</param>
-		/// <param name="CustomXml">Custom XML</param>
-		/// <param name="Body">Body text of chat message.</param>
-		/// <param name="Subject">Subject</param>
-		/// <param name="Language">Language used.</param>
-		/// <param name="ThreadId">Thread ID</param>
-		/// <param name="ParentThreadId">Parent Thread ID</param>
-		/// <param name="DeliveryCallback">Callback to call when message has been sent, or failed to be sent.</param>
-		/// <param name="State">State object to pass on to the callback method.</param>
-		public void SendMessage(QoSLevel QoS, Waher.Networking.XMPP.MessageType Type, string Id, string To, string CustomXml, string Body,
-			string Subject, string Language, string ThreadId, string ParentThreadId, DeliveryEventHandler DeliveryCallback, object State)
-		{
-			this.xmppClient.SendMessage(QoS, Type, Id, To, CustomXml, Body, Subject, Language, ThreadId, ParentThreadId, DeliveryCallback, State);
-			// TODO: End-to-End encryption
-		}
-
-		private Task XmppClient_OnNormalMessage(object Sender, MessageEventArgs e)
-		{
-			Log.Warning("Unhandled message received.", e.To, e.From,
-				new KeyValuePair<string, object>("Stanza", e.Message.OuterXml));
-
-			return Task.CompletedTask;
-		}
-
-		private async Task XmppClient_OnChatMessage(object Sender, MessageEventArgs e)
-		{
-			string RemoteBareJid = e.FromBareJID;
-
-			foreach (XmlNode N in e.Message.ChildNodes)
-			{
-				if (N is XmlElement E &&
-					E.LocalName == "qlRef" &&
-					E.NamespaceURI == XmppClient.NamespaceQuickLogin &&
-					RemoteBareJid.IndexOf('@') < 0 &&
-					RemoteBareJid.IndexOf('/') < 0)
-				{
-					LegalIdentity RemoteIdentity = null;
-
-					foreach (XmlNode N2 in E.ChildNodes)
-					{
-						if (N2 is XmlElement E2 &&
-							E2.LocalName == "identity" &&
-							E2.NamespaceURI == ContractsClient.NamespaceLegalIdentities)
-						{
-							RemoteIdentity = LegalIdentity.Parse(E2);
-							break;
-						}
-					}
-
-					if (RemoteIdentity is not null)
-					{
-						IdentityStatus Status = await this.ValidateIdentity(RemoteIdentity);
-						if (Status != IdentityStatus.Valid)
-						{
-							Log.Warning("Message rejected because the embedded legal identity was not valid.",
-								new KeyValuePair<string, object>("Identity", RemoteIdentity.Id),
-								new KeyValuePair<string, object>("From", RemoteBareJid),
-								new KeyValuePair<string, object>("Status", Status));
-							return;
-						}
-
-						string Jid = RemoteIdentity["JID"];
-
-						if (string.IsNullOrEmpty(Jid))
-						{
-							Log.Warning("Message rejected because the embedded legal identity lacked JID.",
-								new KeyValuePair<string, object>("Identity", RemoteIdentity.Id),
-								new KeyValuePair<string, object>("From", RemoteBareJid),
-								new KeyValuePair<string, object>("Status", Status));
-							return;
-						}
-
-						if (string.Compare(XML.Attribute(E, "bareJid", string.Empty), Jid, true) != 0)
-						{
-							Log.Warning("Message rejected because the embedded legal identity had a different JID compared to the JID of the quick-login reference.",
-								new KeyValuePair<string, object>("Identity", RemoteIdentity.Id),
-								new KeyValuePair<string, object>("From", RemoteBareJid),
-								new KeyValuePair<string, object>("Status", Status));
-							return;
-						}
-
-						RemoteBareJid = Jid;
-					}
-				}
-			}
-
-			ContactInfo ContactInfo = await ContactInfo.FindByBareJid(RemoteBareJid);
-			string FriendlyName = ContactInfo?.FriendlyName ?? RemoteBareJid;
-			string ReplaceObjectId = null;
-
-			ChatMessage Message = new()
-			{
-				Created = DateTime.UtcNow,
-				RemoteBareJid = RemoteBareJid,
-				RemoteObjectId = e.Id,
-				MessageType = Messages.MessageType.Received,
-				Html = string.Empty,
-				PlainText = e.Body,
-				Markdown = string.Empty
-			};
-
-			foreach (XmlNode N in e.Message.ChildNodes)
-			{
-				if (N is XmlElement E)
-				{
-					switch (N.LocalName)
-					{
-						case "content":
-							if (E.NamespaceURI == "urn:xmpp:content")
-							{
-								string Type = XML.Attribute(E, "type");
-
-								switch (Type)
-								{
-									case "text/markdown":
-										Message.Markdown = E.InnerText;
-										break;
-
-									case "text/plain":
-										Message.PlainText = E.InnerText;
-										break;
-
-									case "text/html":
-										Message.Html = E.InnerText;
-										break;
-								}
-							}
-							break;
-
-						case "html":
-							if (E.NamespaceURI == "http://jabber.org/protocol/xhtml-im")
-							{
-								string Html = E.InnerXml;
-
-								int i = Html.IndexOf("<body", StringComparison.OrdinalIgnoreCase);
-								if (i >= 0)
-								{
-									i = Html.IndexOf('>', i + 5);
-									if (i >= 0)
-										Html = Html[(i + 1)..].TrimStart();
-
-									i = Html.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
-									if (i >= 0)
-										Html = Html[..i].TrimEnd();
-								}
-
-								Message.Html = Html;
-							}
-							break;
-
-						case "replace":
-							if (E.NamespaceURI == "urn:xmpp:message-correct:0")
-								ReplaceObjectId = XML.Attribute(E, "id");
-							break;
-
-						case "delay":
-							if (E.NamespaceURI == PubSubClient.NamespaceDelayedDelivery &&
-								E.HasAttribute("stamp") &&
-								XML.TryParse(E.GetAttribute("stamp"), out DateTime Timestamp2))
-							{
-								Message.Created = Timestamp2.ToUniversalTime();
-							}
-							break;
-					}
-				}
-			}
-
-			if (!string.IsNullOrEmpty(Message.Markdown))
-			{
-				try
-				{
-					MarkdownSettings Settings = new()
-					{
-						AllowScriptTag = false,
-						EmbedEmojis = false,    // TODO: Emojis
-						AudioAutoplay = false,
-						AudioControls = false,
-						ParseMetaData = false,
-						VideoAutoplay = false,
-						VideoControls = false
-					};
-
-					MarkdownDocument Doc = await MarkdownDocument.CreateAsync(Message.Markdown, Settings);
-
-					if (string.IsNullOrEmpty(Message.PlainText))
-						Message.PlainText = (await Doc.GeneratePlainText()).Trim();
-
-					if (string.IsNullOrEmpty(Message.Html))
-						Message.Html = HtmlDocument.GetBody(await Doc.GenerateHTML());
-				}
-				catch (Exception ex)
-				{
-					this.LogService.LogException(ex);
-					Message.Markdown = string.Empty;
-				}
-			}
-
-			if (string.IsNullOrEmpty(ReplaceObjectId))
-				await Database.Insert(Message);
-			else
-			{
-				ChatMessage Old = await Database.FindFirstIgnoreRest<ChatMessage>(new FilterAnd(
-					new FilterFieldEqualTo("RemoteBareJid", RemoteBareJid),
-					new FilterFieldEqualTo("RemoteObjectId", ReplaceObjectId)));
-
-				if (Old is null)
-				{
-					ReplaceObjectId = null;
-					await Database.Insert(Message);
-				}
-				else
-				{
-					Old.Updated = Message.Created;
-					Old.Html = Message.Html;
-					Old.PlainText = Message.PlainText;
-					Old.Markdown = Message.Markdown;
-
-					await Database.Update(Old);
-
-					Message = Old;
-				}
-			}
-
-			this.UiSerializer.BeginInvokeOnMainThread(async () =>
-			{
-				INavigationService NavigationService = App.Instantiate<INavigationService>();
-
-				if ((NavigationService.CurrentPage is ChatPage || NavigationService.CurrentPage is ChatPageIos) &&
-					NavigationService.CurrentPage.BindingContext is ChatViewModel ChatViewModel &&
-					string.Compare(ChatViewModel.BareJid, RemoteBareJid, true) == 0)
-				{
-					if (string.IsNullOrEmpty(ReplaceObjectId))
-						await ChatViewModel.MessageAddedAsync(Message);
-					else
-						await ChatViewModel.MessageUpdatedAsync(Message);
-				}
-				else
-				{
-					await this.NotificationService.NewEvent(new ChatMessageNotificationEvent(e, RemoteBareJid)
-					{
-						ReplaceObjectId = ReplaceObjectId,
-						BareJid = RemoteBareJid,
-						Category = RemoteBareJid
-					});
-				}
-			});
-		}
 
 		private Task ClientMessage(object Sender, MessageEventArgs e)
 		{
