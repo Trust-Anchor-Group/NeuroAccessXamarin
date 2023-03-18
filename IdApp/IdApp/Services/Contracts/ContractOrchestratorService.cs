@@ -1,8 +1,5 @@
 ﻿using IdApp.Extensions;
-using IdApp.Pages.Contracts.NewContract;
-using IdApp.Pages.Contracts.ViewContract;
 using IdApp.Pages.Identity.ViewIdentity;
-using IdApp.Services.Notification.Contracts;
 using IdApp.Services.Notification.Identities;
 using System;
 using System.Collections.Generic;
@@ -15,8 +12,6 @@ using Waher.Content.Xml;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Networking.XMPP.StanzaErrors;
-using Waher.Persistence;
-using Waher.Persistence.Filters;
 using Waher.Runtime.Inventory;
 using Xamarin.CommunityToolkit.Helpers;
 
@@ -37,14 +32,9 @@ namespace IdApp.Services.Contracts
 				this.XmppService.PetitionForPeerReviewIdReceived += this.Contracts_PetitionForPeerReviewIdReceived;
 				this.XmppService.PetitionForIdentityReceived += this.Contracts_PetitionForIdentityReceived;
 				this.XmppService.PetitionForSignatureReceived += this.Contracts_PetitionForSignatureReceived;
-				this.XmppService.PetitionedContractResponseReceived += this.Contracts_PetitionedSmartContractResponseReceived;
-				this.XmppService.PetitionForContractReceived += this.Contracts_PetitionForSmartContractReceived;
 				this.XmppService.PetitionedIdentityResponseReceived += this.Contracts_PetitionedIdentityResponseReceived;
 				this.XmppService.PetitionedPeerReviewIdResponseReceived += this.Contracts_PetitionedPeerReviewResponseReceived;
 				this.XmppService.SignaturePetitionResponseReceived += this.Contracts_SignaturePetitionResponseReceived;
-				this.XmppService.ContractProposalReceived += this.Contracts_ContractProposalReceived;
-				this.XmppService.ContractUpdated += this.Contracts_ContractUpdated;
-				this.XmppService.ContractSigned += this.Contracts_ContractSigned;
 
 				this.EndLoad(true);
 			}
@@ -60,14 +50,9 @@ namespace IdApp.Services.Contracts
 				this.XmppService.PetitionForPeerReviewIdReceived -= this.Contracts_PetitionForPeerReviewIdReceived;
 				this.XmppService.PetitionForIdentityReceived -= this.Contracts_PetitionForIdentityReceived;
 				this.XmppService.PetitionForSignatureReceived -= this.Contracts_PetitionForSignatureReceived;
-				this.XmppService.PetitionedContractResponseReceived -= this.Contracts_PetitionedSmartContractResponseReceived;
-				this.XmppService.PetitionForContractReceived -= this.Contracts_PetitionForSmartContractReceived;
 				this.XmppService.PetitionedIdentityResponseReceived -= this.Contracts_PetitionedIdentityResponseReceived;
 				this.XmppService.PetitionedPeerReviewIdResponseReceived -= this.Contracts_PetitionedPeerReviewResponseReceived;
 				this.XmppService.SignaturePetitionResponseReceived -= this.Contracts_SignaturePetitionResponseReceived;
-				this.XmppService.ContractProposalReceived -= this.Contracts_ContractProposalReceived;
-				this.XmppService.ContractUpdated -= this.Contracts_ContractUpdated;
-				this.XmppService.ContractSigned -= this.Contracts_ContractSigned;
 
 				this.EndUnload();
 			}
@@ -177,38 +162,6 @@ namespace IdApp.Services.Contracts
 			}
 		}
 
-		private async Task Contracts_PetitionedSmartContractResponseReceived(object Sender, ContractPetitionResponseEventArgs e)
-		{
-			try
-			{
-				await this.NotificationService.NewEvent(new ContractResponseNotificationEvent(e));
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		private async Task Contracts_PetitionForSmartContractReceived(object Sender, ContractPetitionEventArgs e)
-		{
-			try
-			{
-				(bool Succeeded, Contract Contract) = await this.NetworkService.TryRequest(() => this.XmppService.GetContract(e.RequestedContractId));
-
-				if (!Succeeded)
-					return;
-
-				if (Contract.State == ContractState.Deleted || Contract.State == ContractState.Rejected)
-					await this.NetworkService.TryRequest(() => this.XmppService.SendPetitionContractResponse(e.RequestedContractId, e.PetitionId, e.RequestorFullJid, false));
-				else
-					await this.NotificationService.NewEvent(new ContractPetitionNotificationEvent(Contract, e));
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
 		private async Task Contracts_PetitionedIdentityResponseReceived(object Sender, LegalIdentityPetitionResponseEventArgs e)
 		{
 			try
@@ -288,32 +241,12 @@ namespace IdApp.Services.Contracts
 						await Task.Delay(Constants.Timeouts.XmppInit);
 						this.DownloadLegalIdentityInternal(id);
 					}
-
-					await this.CheckContractReferences();
 				}
 			}
 			catch (Exception ex)
 			{
 				this.LogService.LogException(ex);
 			}
-		}
-
-		private async Task Contracts_ContractProposalReceived(object Sender, ContractProposalEventArgs e)
-		{
-			Contract Contract;
-			bool Succeeded;
-
-			(Succeeded, Contract) = await this.NetworkService.TryRequest(() => this.XmppService.GetContract(e.ContractId));
-			if (!Succeeded || Contract is null)
-				return;     // Contract not available.
-
-			if (Contract.State != ContractState.Approved && Contract.State != ContractState.BeingSigned)
-				return;     // Not in a state to be signed.
-
-			ContractProposalNotificationEvent Event = new(e);
-			Event.SetContract(Contract);
-
-			await this.NotificationService.NewEvent(Event);
 		}
 
 		#endregion
@@ -438,79 +371,6 @@ namespace IdApp.Services.Contracts
 			}
 		}
 
-		public Task OpenContract(string ContractId, string Purpose, Dictionary<CaseInsensitiveString, object> ParameterValues)
-		{
-			return this.OpenContract(ContractId, Purpose, ParameterValues, 0);
-		}
-
-		public async Task OpenContract(string ContractId, string Purpose, Dictionary<CaseInsensitiveString, object> ParameterValues, int ReturnCounter)
-		{
-			try
-			{
-				Contract Contract = await this.XmppService.GetContract(ContractId);
-
-				ContractReference Ref = await Database.FindFirstDeleteRest<ContractReference>(
-					new FilterFieldEqualTo("ContractId", Contract.ContractId));
-
-				if (Ref is not null && (Ref.Updated != Contract.Updated || !Ref.ContractLoaded))
-				{
-					await Ref.SetContract(Contract, this);
-					await Database.Update(Ref);
-				}
-
-				this.UiSerializer.BeginInvokeOnMainThread(async () =>
-				{
-					if (Contract.PartsMode == ContractParts.TemplateOnly && Contract.State == ContractState.Approved)
-					{
-						if (Ref is null)
-						{
-							Ref = new ContractReference()
-							{
-								ContractId = Contract.ContractId
-							};
-
-							await Ref.SetContract(Contract, this);
-							await Database.Insert(Ref);
-						}
-
-						NewContractNavigationArgs e = new(Contract, ParameterValues);
-						if (ReturnCounter > 0)
-							e.ReturnCounter = ReturnCounter;
-
-						await this.NavigationService.GoToAsync(nameof(NewContractPage), e);
-					}
-					else
-					{
-						ViewContractNavigationArgs e = new(Contract, false);
-						if (ReturnCounter > 0)
-							e.ReturnCounter = ReturnCounter;
-
-						await this.NavigationService.GoToAsync(nameof(ViewContractPage), e);
-					}
-				});
-			}
-			catch (ForbiddenException)
-			{
-				// This happens if you try to view someone else's contract.
-				// When this happens, try to send a petition to view it instead.
-				// Normal operation. Should not be logged.
-
-				this.UiSerializer.BeginInvokeOnMainThread(async () =>
-				{
-					bool succeeded = await this.NetworkService.TryRequest(() => this.XmppService.PetitionContract(ContractId, Guid.NewGuid().ToString(), Purpose));
-					if (succeeded)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["PetitionSent"], LocalizationResourceManager.Current["APetitionHasBeenSentToTheContract"]);
-					}
-				});
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex, this.GetClassAndMethod(MethodBase.GetCurrentMethod()));
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], ex);
-			}
-		}
-
 		/// <summary>
 		/// TAG Signature request scanned.
 		/// </summary>
@@ -561,121 +421,6 @@ namespace IdApp.Services.Contracts
 			catch (Exception ex)
 			{
 				this.LogService.LogException(ex);
-			}
-		}
-
-		private async Task Contracts_ContractSigned(object Sender, ContractSignedEventArgs e)
-		{
-			try
-			{
-				Contract Contract = await this.XmppService.GetContract(e.ContractId);
-				ContractReference Ref = await Database.FindFirstDeleteRest<ContractReference>(new FilterFieldEqualTo("ContractId", e.ContractId));
-
-				if (Ref is null)
-				{
-					Ref = new ContractReference();
-
-					await Ref.SetContract(Contract, this);
-					await Database.Insert(Ref);
-				}
-				else
-				{
-					await Ref.SetContract(Contract, this);
-					await Database.Update(Ref);
-				}
-
-				await this.NotificationService.NewEvent(new ContractSignedNotificationEvent(Contract, e));
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		private async Task Contracts_ContractUpdated(object Sender, ContractReferenceEventArgs e)
-		{
-			try
-			{
-				Contract Contract = await this.XmppService.GetContract(e.ContractId);
-				ContractReference Ref = await Database.FindFirstDeleteRest<ContractReference>(new FilterFieldEqualTo("ContractId", e.ContractId));
-
-				if (Ref is null)
-				{
-					Ref = new ContractReference();
-
-					await Ref.SetContract(Contract, this);
-					await Database.Insert(Ref);
-				}
-				else
-				{
-					await Ref.SetContract(Contract, this);
-					await Database.Update(Ref);
-				}
-
-				await this.NotificationService.NewEvent(new ContractUpdatedNotificationEvent(Contract, e));
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		public async Task CheckContractReferences()
-		{
-			try
-			{
-				DateTime TP = await this.SettingsService.RestoreDateTimeState("ContractReferences.LastCheck", DateTime.MinValue);
-
-				if ((DateTime.UtcNow - TP).Days < 30)
-					return;
-
-				await this.CheckContractReferences(await this.XmppService.GetCreatedContractReferences());
-				await this.CheckContractReferences(await this.XmppService.GetSignedContractReferences());
-
-				await this.SettingsService.SaveState("ContractReferences.LastCheck", DateTime.UtcNow);
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		private async Task CheckContractReferences(string[] ContractIds)
-		{
-			foreach (string ContractId in ContractIds)
-			{
-				try
-				{
-					ContractReference Ref = await Database.FindFirstDeleteRest<ContractReference>(new FilterFieldEqualTo("ContractId", ContractId));
-
-					if (Ref is null)
-					{
-						Ref = new ContractReference()
-						{
-							ContractId = ContractId
-						};
-
-						try
-						{
-							Contract Contract = await this.XmppService.GetContract(ContractId);
-
-							await Ref.SetContract(Contract, this);
-						}
-						catch (Exception)
-						{
-							DateTime TP = DateTime.UtcNow;
-
-							Ref.Created = TP;
-							Ref.Updated = TP;
-						}
-
-						await Database.Insert(Ref);
-					}
-				}
-				catch (Exception ex)
-				{
-					this.LogService.LogException(ex);
-				}
 			}
 		}
 

@@ -65,11 +65,6 @@ namespace IdApp
 			public const string UriSchemeIotId = "iotid";
 
             /// <summary>
-            /// The IoT Smart Contract URI Scheme (iotsc)
-            /// </summary>
-            public const string UriSchemeIotSc = "iotsc";
-
-            /// <summary>
             /// TAG Signature (Quick-Login) URI Scheme (tagsign)
             /// </summary>
             public const string UriSchemeTagSign = "tagsign";
@@ -103,7 +98,6 @@ namespace IdApp
 				return Url switch
 				{
 					UriSchemeIotId or
-                    UriSchemeIotSc or
                     UriSchemeTagSign or
                     UriSchemeOnboarding => Url,
 
@@ -120,16 +114,6 @@ namespace IdApp
             {
                 return !string.IsNullOrWhiteSpace(Url) &&
                        Url.StartsWith(UriSchemeIotId + ":", StringComparison.InvariantCultureIgnoreCase);
-            }
-
-            /// <summary>
-            /// Generates a IoT Scan Uri form the specified id.
-            /// </summary>
-            /// <param name="id">The Id to use when generating the Uri.</param>
-            /// <returns>Smart Contract URI</returns>
-            public static string CreateSmartContractUri(string id)
-            {
-                return UriSchemeIotSc + ":" + id;
             }
 
             /// <summary>

@@ -20,13 +20,8 @@
             </Grid.RowDefinitions>
             <mainTabBar:MainTabBarView x:Name="MainTabBar"
                                        Grid.Row="1"
-
 									   CenterButtonText="{x:Static resx:FontAwesome.ScanQr}"
-                                       CenterButtonCommand="{Binding Path=ScanQrCodeCommand}"
-
-									   RightButton1Text="{x:Static resx:FontAwesome.Paragraph}"
-									   RightButton1Command="{Binding Path=ViewContractsCommand}"
-									   RightButton1Overlay="{Binding Path=Right1Overlay}"/>
+                                       CenterButtonCommand="{Binding Path=ScanQrCodeCommand}"/>
             <Grid Grid.Row="0" Margin="{StaticResource DefaultMargin}" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

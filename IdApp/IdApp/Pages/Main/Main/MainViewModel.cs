@@ -1,6 +1,5 @@
 ﻿using IdApp.DeviceSpecific;
 using IdApp.Extensions;
-using IdApp.Pages.Contracts.MyContracts;
 using IdApp.Pages.Identity.ViewIdentity;
 using IdApp.Services.Data.Countries;
 using IdApp.Services.Notification;
@@ -40,7 +39,6 @@ namespace IdApp.Pages.Main.Main
 
 			this.ViewMyIdentityCommand = new Command(async () => await this.ViewMyIdentity(), () => this.IsConnected);
 			this.ScanQrCodeCommand = new Command(async () => await this.ScanQrCode());
-			this.ViewContractsCommand = new Command(async () => await this.ViewContracts(), () => this.IsConnected);
 			this.SharePhotoCommand = new Command(async () => await this.SharePhoto());
 			this.ShareQRCommand = new Command(async () => await this.ShareQR());
 		}
@@ -224,21 +222,6 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ScanQrCodeCommandProperty);
 			set => this.SetValue(ScanQrCodeCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewContractsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewContractsCommandProperty =
-			BindableProperty.Create(nameof(ViewContractsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing a user's contracts.
-		/// </summary>
-		public ICommand ViewContractsCommand
-		{
-			get => (ICommand)this.GetValue(ViewContractsCommandProperty);
-			set => this.SetValue(ViewContractsCommandProperty, value);
 		}
 
 		/// <summary>
@@ -563,11 +546,6 @@ namespace IdApp.Pages.Main.Main
 			await this.NavigationService.GoToAsync(nameof(ViewIdentityPage));
 		}
 
-		private async Task ViewContracts()
-		{
-			await this.NavigationService.GoToAsync(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.Contracts));
-		}
-
 		private async Task ScanQrCode()
 		{
 			await Services.UI.QR.QrCode.ScanQrCodeAndHandleResult();
@@ -644,7 +622,7 @@ namespace IdApp.Pages.Main.Main
 					this.ConnectionErrorsText = string.Empty;
 
 				this.HasConnectionErrors = !string.IsNullOrWhiteSpace(this.ConnectionErrorsText);
-				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ScanQrCodeCommand, this.ViewContractsCommand);
+				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ScanQrCodeCommand);
 			}
 			catch (Exception ex)
 			{

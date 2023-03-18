@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Web;
 using System.Collections.Specialized;
 using IdApp.Services.Notification.Identities;
-using IdApp.Services.Notification.Contracts;
 using Xamarin.CommunityToolkit.Helpers;
 using Waher.Persistence;
 
@@ -61,27 +60,6 @@ namespace IdApp.Services.UI.QR
 						Services.NotificationService.ExpectEvent<IdentityResponseNotificationEvent>(DateTime.Now.AddMinutes(1));
 						string legalId = Constants.UriSchemes.RemoveScheme(Url);
 						await Services.ContractOrchestratorService.OpenLegalIdentity(legalId, LocalizationResourceManager.Current["ScannedQrCode"]);
-						return true;
-
-					case Constants.UriSchemes.UriSchemeIotSc:
-						Services.NotificationService.ExpectEvent<ContractResponseNotificationEvent>(DateTime.Now.AddMinutes(1));
-
-						Dictionary<CaseInsensitiveString, object> Parameters = new();
-
-						string contractId = Constants.UriSchemes.RemoveScheme(Url);
-						int i = contractId.IndexOf('?');
-
-						if (i > 0)
-						{
-							NameValueCollection QueryParameters = HttpUtility.ParseQueryString(contractId[i..]);
-
-							foreach (string Key in QueryParameters.AllKeys)
-								Parameters[Key] = QueryParameters[Key];
-
-							contractId = contractId[..i];
-						}
-
-						await Services.ContractOrchestratorService.OpenContract(contractId, LocalizationResourceManager.Current["ScannedQrCode"], Parameters);
 						return true;
 
 					case Constants.UriSchemes.UriSchemeTagSign:

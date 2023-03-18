@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using IdApp.Pages.Contracts.ClientSignature;
-using IdApp.Pages.Contracts.MyContracts;
-using IdApp.Pages.Contracts.NewContract;
-using IdApp.Pages.Contracts.PetitionContract;
 using IdApp.Pages.Contracts.PetitionSignature;
-using IdApp.Pages.Contracts.ServerSignature;
-using IdApp.Pages.Contracts.ViewContract;
 using IdApp.Pages.Identity.PetitionIdentity;
 using IdApp.Pages.Identity.TransferIdentity;
 using IdApp.Pages.Identity.ViewIdentity;
@@ -86,13 +80,7 @@ namespace IdApp.Pages.Main.Shell
 			Routing.RegisterRoute(nameof(TransferIdentityPage), typeof(TransferIdentityPage));
 
 			// Contracts:
-			Routing.RegisterRoute(nameof(ClientSignaturePage), typeof(ClientSignaturePage));
-			Routing.RegisterRoute(nameof(MyContractsPage), typeof(MyContractsPage));
-			Routing.RegisterRoute(nameof(NewContractPage), typeof(NewContractPage));
-			Routing.RegisterRoute(nameof(PetitionContractPage), typeof(PetitionContractPage));
 			Routing.RegisterRoute(nameof(PetitionSignaturePage), typeof(PetitionSignaturePage));
-			Routing.RegisterRoute(nameof(ServerSignaturePage), typeof(ServerSignaturePage));
-			Routing.RegisterRoute(nameof(ViewContractPage), typeof(ViewContractPage));
 		}
 
 		private async Task GoToPage(string route)
@@ -135,16 +123,6 @@ namespace IdApp.Pages.Main.Shell
 		internal async void ScanQrCodeMenuItem_Clicked(object Sender, EventArgs e)
 		{
 			await QrCode.ScanQrCodeAndHandleResult();
-		}
-
-		private async void ContractsMenuItem_Clicked(object Sender, EventArgs e)
-		{
-			await this.GoToPage(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.Contracts));
-		}
-
-		private async void NewContractMenuItem_Clicked(object Sender, EventArgs e)
-		{
-			await this.GoToPage(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.ContractTemplates));
 		}
 
 		private async void Calculator_Clicked(object Sender, EventArgs e)
