@@ -1,9 +1,10 @@
 # Neuro-Access Xamarin App
 
 The **Neuro-Access Xamarin App** is a scaled down version of the [TAG ID App](https://github.com/Trust-Anchor-Group/IdApp) focusing
-on helping the user get safe access to online (or physical) resources. The app is provided by
-[Trust Anchor Group](https://trustanchorgroup.com/) (**TAG** for short), and is written in C#, on the Xamarin platform. The
-solution contains both an Android and an iOS version of the App.
+on helping the user get safe access to online (or physical) resources using TAG signatures and the
+[QuickLogin API](https://lab.tagroot.io/QuickLogin.md). The app is provided by [Trust Anchor Group](https://trustanchorgroup.com/)
+(**TAG** for short), and is written in C#, on the Xamarin platform. The solution contains both an Android and an iOS version of the
+App.
 
 The app is built with .NET Standard 2.0 and Xamarin.Forms 5.0 (Shell), and relies on nugets from the [IoTGateway](https://github.com/PeterWaher/IoTGateway) 
 framework to perform tasks related to communication and persistence.
