@@ -19,38 +19,12 @@ using IdApp.Pages.Main.Links;
 using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Pages.Main.Security;
 using IdApp.Pages.Main.XmppForm;
-using IdApp.Pages.Things.CanControl;
-using IdApp.Pages.Things.CanRead;
-using IdApp.Pages.Things.IsFriend;
-using IdApp.Pages.Things.MyThings;
-using IdApp.Pages.Things.ReadSensor;
-using IdApp.Pages.Things.ViewClaimThing;
-using IdApp.Pages.Things.ViewThing;
-using IdApp.Pages.Wallet.AccountEvent;
-using IdApp.Pages.Wallet.BuyEDaler;
-using IdApp.Pages.Wallet.EDalerReceived;
-using IdApp.Pages.Wallet.IssueEDaler;
-using IdApp.Pages.Wallet.MachineReport;
-using IdApp.Pages.Wallet.MachineVariables;
-using IdApp.Pages.Wallet.MyTokens;
-using IdApp.Pages.Wallet.MyWallet;
-using IdApp.Pages.Wallet.Payment;
-using IdApp.Pages.Wallet.PaymentAcceptance;
-using IdApp.Pages.Wallet.PendingPayment;
-using IdApp.Pages.Wallet.RequestPayment;
-using IdApp.Pages.Wallet.SellEDaler;
-using IdApp.Pages.Wallet.SendPayment;
-using IdApp.Pages.Wallet.ServiceProviders;
-using IdApp.Pages.Wallet.TokenDetails;
-using IdApp.Pages.Wallet.TokenEvents;
 using IdApp.Services.Contracts;
 using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
 using IdApp.Services.Network;
-using IdApp.Services.ThingRegistries;
 using IdApp.Services.UI;
 using IdApp.Services.UI.QR;
-using IdApp.Services.Wallet;
 using IdApp.Services.Xmpp;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
@@ -104,16 +78,6 @@ namespace IdApp.Pages.Main.Shell
 		/// </summary>
 		public IContractOrchestratorService ContractOrchestratorService => App.Instantiate<IContractOrchestratorService>();
 
-		/// <summary>
-		/// Current Thing Registry Orchestrator Service
-		/// </summary>
-		public IThingRegistryOrchestratorService ThingRegistryOrchestratorService => App.Instantiate<IThingRegistryOrchestratorService>();
-
-		/// <summary>
-		/// Current Neuro-Wallet Orchestrator Service
-		/// </summary>
-		public INeuroWalletOrchestratorService NeuroWalletOrchestratorService => App.Instantiate<INeuroWalletOrchestratorService>();
-
 		private void RegisterRoutes()
 		{
 			// General:
@@ -141,34 +105,6 @@ namespace IdApp.Pages.Main.Shell
 			Routing.RegisterRoute(nameof(PetitionSignaturePage), typeof(PetitionSignaturePage));
 			Routing.RegisterRoute(nameof(ServerSignaturePage), typeof(ServerSignaturePage));
 			Routing.RegisterRoute(nameof(ViewContractPage), typeof(ViewContractPage));
-
-			// Things
-			Routing.RegisterRoute(nameof(ViewClaimThingPage), typeof(ViewClaimThingPage));
-			Routing.RegisterRoute(nameof(MyThingsPage), typeof(MyThingsPage));
-			Routing.RegisterRoute(nameof(ViewThingPage), typeof(ViewThingPage));
-			Routing.RegisterRoute(nameof(ReadSensorPage), typeof(ReadSensorPage));
-			Routing.RegisterRoute(nameof(IsFriendPage), typeof(IsFriendPage));
-			Routing.RegisterRoute(nameof(CanReadPage), typeof(CanReadPage));
-			Routing.RegisterRoute(nameof(CanControlPage), typeof(CanControlPage));
-
-			// Wallet
-			Routing.RegisterRoute(nameof(IssueEDalerPage), typeof(IssueEDalerPage));
-			Routing.RegisterRoute(nameof(EDalerReceivedPage), typeof(EDalerReceivedPage));
-			Routing.RegisterRoute(nameof(MyWalletPage), typeof(MyWalletPage));
-			Routing.RegisterRoute(nameof(RequestPaymentPage), typeof(RequestPaymentPage));
-			Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
-			Routing.RegisterRoute(nameof(SendPaymentPage), typeof(SendPaymentPage));
-			Routing.RegisterRoute(nameof(PaymentAcceptancePage), typeof(PaymentAcceptancePage));
-			Routing.RegisterRoute(nameof(PendingPaymentPage), typeof(PendingPaymentPage));
-			Routing.RegisterRoute(nameof(AccountEventPage), typeof(AccountEventPage));
-			Routing.RegisterRoute(nameof(TokenDetailsPage), typeof(TokenDetailsPage));
-			Routing.RegisterRoute(nameof(TokenEventsPage), typeof(TokenEventsPage));
-			Routing.RegisterRoute(nameof(MyTokensPage), typeof(MyTokensPage));
-			Routing.RegisterRoute(nameof(MachineVariablesPage), typeof(MachineVariablesPage));
-			Routing.RegisterRoute(nameof(MachineReportPage), typeof(MachineReportPage));
-			Routing.RegisterRoute(nameof(ServiceProvidersPage), typeof(ServiceProvidersPage));
-			Routing.RegisterRoute(nameof(BuyEDalerPage), typeof(BuyEDalerPage));
-			Routing.RegisterRoute(nameof(SellEDalerPage), typeof(SellEDalerPage));
 		}
 
 		private async Task GoToPage(string route)
@@ -271,11 +207,6 @@ namespace IdApp.Pages.Main.Shell
 		{
 			await this.GoToPage(nameof(MyContactsPage), new ContactListNavigationArgs(LocalizationResourceManager.Current["ContactsDescription"],
 				SelectContactAction.ViewIdentity));
-		}
-
-		internal async void ThingsMenuItem_Clicked(object Sender, EventArgs e)
-		{
-			await this.GoToPage(nameof(Things.MyThings.MyThingsPage));
 		}
 
 	}

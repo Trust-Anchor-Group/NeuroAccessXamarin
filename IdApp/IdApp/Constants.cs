@@ -60,19 +60,9 @@ namespace IdApp
         public static class UriSchemes
         {
 			/// <summary>
-			/// The App's URI Scheme (tagaccess)
-			/// </summary>
-			public const string UriSchemeTagNeuroAccessApp = "tagaccess";
-
-			/// <summary>
 			/// The IoT ID URI Scheme (iotid)
 			/// </summary>
 			public const string UriSchemeIotId = "iotid";
-
-            /// <summary>
-            /// The IoT Discovery URI Scheme (iotdisco)
-            /// </summary>
-            public const string UriSchemeIotDisco = "iotdisco";
 
             /// <summary>
             /// The IoT Smart Contract URI Scheme (iotsc)
@@ -83,16 +73,6 @@ namespace IdApp
             /// TAG Signature (Quick-Login) URI Scheme (tagsign)
             /// </summary>
             public const string UriSchemeTagSign = "tagsign";
-
-            /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeEDaler = "edaler";
-
-            /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeNeuroFeature = "nfeat";
 
             /// <summary>
             /// Onboarding URI Scheme (obinfo)
@@ -128,14 +108,10 @@ namespace IdApp
 				return Url switch
 				{
 					UriSchemeIotId or
-                    UriSchemeIotDisco or
                     UriSchemeIotSc or
                     UriSchemeTagSign or
-                    UriSchemeEDaler or
-                    UriSchemeNeuroFeature or
                     UriSchemeOnboarding or
-                    UriSchemeXmpp or
-					UriSchemeTagNeuroAccessApp => Url,
+                    UriSchemeXmpp => Url,
 
 					_ => null,
 				};
@@ -170,16 +146,6 @@ namespace IdApp
             public static string CreateIdUri(string id)
             {
                 return UriSchemeIotId + ":" + id;
-            }
-
-            /// <summary>
-            /// Generates a Neuro-Feature ID Uri form the specified id.
-            /// </summary>
-            /// <param name="id">The Id to use when generating the Uri.</param>
-            /// <returns>Neuro-Feature URI</returns>
-            public static string CreateTokenUri(string id)
-            {
-                return UriSchemeNeuroFeature + ":" + id;
             }
 
             /// <summary>

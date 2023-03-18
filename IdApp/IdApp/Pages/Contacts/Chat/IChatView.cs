@@ -22,22 +22,7 @@ namespace IdApp.Pages.Contacts.Chat
 		/// <summary>
 		/// IoT Smart Contract URI Scheme (iotsc)
 		/// </summary>
-		IotSc,
-
-		/// <summary>
-		/// IoT Discovery URI Scheme (iotdisco)
-		/// </summary>
-		IotDisco,
-
-		/// <summary>
-		/// eDaler URI Scheme (edaler)
-		/// </summary>
-		EDaler,
-
-		/// <summary>
-		/// Neuro-Feature URI Scheme (nfeat)
-		/// </summary>
-		NeuroFeature
+		IotSc
 	}
 
 	/// <summary>

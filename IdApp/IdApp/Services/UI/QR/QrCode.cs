@@ -86,33 +86,11 @@ namespace IdApp.Services.UI.QR
 						await Services.ContractOrchestratorService.OpenContract(contractId, LocalizationResourceManager.Current["ScannedQrCode"], Parameters);
 						return true;
 
-					case Constants.UriSchemes.UriSchemeIotDisco:
-						if (Services.XmppService.IsIoTDiscoClaimURI(Url))
-							await Services.ThingRegistryOrchestratorService.OpenClaimDevice(Url);
-						else if (Services.XmppService.IsIoTDiscoSearchURI(Url))
-							await Services.ThingRegistryOrchestratorService.OpenSearchDevices(Url);
-						else if (Services.XmppService.IsIoTDiscoDirectURI(Url))
-							await Services.ThingRegistryOrchestratorService.OpenDeviceReference(Url);
-						else
-						{
-							await Services.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["InvalidIoTDiscoveryCode"] + Environment.NewLine + Environment.NewLine + Url);
-							return false;
-						}
-						return true;
-
 					case Constants.UriSchemes.UriSchemeTagSign:
 						Services.NotificationService.ExpectEvent<RequestSignatureNotificationEvent>(DateTime.Now.AddMinutes(1));
 
 						string request = Constants.UriSchemes.RemoveScheme(Url);
 						await Services.ContractOrchestratorService.TagSignature(request);
-						return true;
-
-					case Constants.UriSchemes.UriSchemeEDaler:
-						await Services.NeuroWalletOrchestratorService.OpenEDalerUri(Url);
-						return true;
-
-					case Constants.UriSchemes.UriSchemeNeuroFeature:
-						await Services.NeuroWalletOrchestratorService.OpenNeuroFeatureUri(Url);
 						return true;
 
 					case Constants.UriSchemes.UriSchemeOnboarding:
@@ -121,99 +99,6 @@ namespace IdApp.Services.UI.QR
 
 					case Constants.UriSchemes.UriSchemeXmpp:
 						return await ChatViewModel.ProcessXmppUri(Url);
-
-					case Constants.UriSchemes.UriSchemeTagNeuroAccessApp:
-						string Token = Constants.UriSchemes.RemoveScheme(Url);
-						JwtToken Parsed = Services.CryptoService.ParseAndValidateJwtToken(Token);
-						if (Parsed is null)
-							return false;
-
-						if (!Parsed.TryGetClaim("cmd", out object Obj) || Obj is not string Command ||
-							!Parsed.TryGetClaim(JwtClaims.ClientId, out Obj) || Obj is not string ClientId ||
-							ClientId != Services.CryptoService.DeviceID ||
-							!Parsed.TryGetClaim(JwtClaims.Issuer, out Obj) || Obj is not string Issuer ||
-							Issuer != Services.CryptoService.DeviceID ||
-							!Parsed.TryGetClaim(JwtClaims.Subject, out Obj) || Obj is not string Subject ||
-							Subject != Services.XmppService.BareJid)
-						{
-							return false;
-						}
-
-						switch (Command)
-						{
-							case "bes":  // Buy eDaler Successful
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId ||
-									!Parsed.TryGetClaim("amt", out object Amount) ||
-									!Parsed.TryGetClaim("cur", out Obj) || Obj is not string Currency)
-								{
-									return false;
-								}
-
-								decimal AmountDec;
-
-								try
-								{
-									AmountDec = Convert.ToDecimal(Amount);
-								}
-								catch (Exception)
-								{
-									return false;
-								}
-
-								Services.XmppService.BuyEDalerCompleted(TransactionId, AmountDec, Currency);
-								return true;
-
-							case "bef":  // Buy eDaler Failed
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId2)
-									return false;
-
-								Services.XmppService.BuyEDalerFailed(TransactionId2, LocalizationResourceManager.Current["PaymentFailed"]);
-								return true;
-
-							case "bec":  // Buy eDaler Cancelled
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId3)
-									return false;
-
-								Services.XmppService.BuyEDalerFailed(TransactionId3, LocalizationResourceManager.Current["PaymentCancelled"]);
-								return true;
-
-							case "ses":  // Sell eDaler Successful
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId4 ||
-									!Parsed.TryGetClaim("amt", out Amount) ||
-									!Parsed.TryGetClaim("cur", out Obj) || Obj is not string Currency4)
-								{
-									return false;
-								}
-
-								try
-								{
-									AmountDec = Convert.ToDecimal(Amount);
-								}
-								catch (Exception)
-								{
-									return false;
-								}
-
-								Services.XmppService.SellEDalerCompleted(TransactionId4, AmountDec, Currency4);
-								return true;
-
-							case "sef":  // Sell eDaler Failed
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId5)
-									return false;
-
-								Services.XmppService.SellEDalerFailed(TransactionId5, LocalizationResourceManager.Current["PaymentFailed"]);
-								return true;
-
-							case "sec":  // Sell eDaler Cancelled
-								if (!Parsed.TryGetClaim("tid", out Obj) || Obj is not string TransactionId6)
-									return false;
-
-								Services.XmppService.SellEDalerFailed(TransactionId6, LocalizationResourceManager.Current["PaymentCancelled"]);
-								return true;
-
-							default:
-								return false;
-						}
 
 					default:
 						if (await Launcher.TryOpenAsync(uri))

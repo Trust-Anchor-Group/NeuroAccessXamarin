@@ -9,11 +9,6 @@ namespace IdApp.Pages.Contacts.MyContacts
 	public enum SelectContactAction
 	{
 		/// <summary>
-		/// Make a payment to contact.
-		/// </summary>
-		MakePayment,
-
-		/// <summary>
 		/// View the identity.
 		/// </summary>
 		ViewIdentity,

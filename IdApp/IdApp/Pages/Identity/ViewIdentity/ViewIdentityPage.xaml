@@ -175,9 +175,6 @@
                 <Button Text="{x:Static resx:AppResources.RemoveContact}" 
                             Command="{Binding Path=RemoveContactCommand}" IsVisible="{Binding Path=ThirdPartyInContacts}" Margin="{StaticResource DefaultBottomOnlyMargin}"
                             IsEnabled="{Binding Path=IsBusy, Converter={converters:LogicalNot}}" />
-                <Button Text="{x:Static resx:AppResources.SendPaymentTo}" 
-                            Command="{Binding Path=SendPaymentToCommand}" IsVisible="{Binding Path=ThirdParty}" Margin="{StaticResource DefaultBottomOnlyMargin}"
-                            IsEnabled="{Binding Path=IsBusy, Converter={converters:LogicalNot}}" />
 				<Grid ColumnDefinitions="*" RowDefinitions="auto" Padding="0" Margin="0" ColumnSpacing="0" RowSpacing="0">
 					<Button Grid.Column="0" Grid.Row="0" Text="{x:Static resx:AppResources.Chat}" 
                             Command="{Binding Path=ChatCommand}" IsVisible="{Binding Path=ThirdParty}" Margin="{StaticResource DefaultBottomOnlyMargin}"

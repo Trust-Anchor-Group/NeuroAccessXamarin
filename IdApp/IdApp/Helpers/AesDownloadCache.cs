@@ -10,9 +10,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Waher.Content;
-using Waher.Networking.XMPP.Concentrator;
 using Waher.Runtime.Temporary;
-using Xamarin.Forms;
 
 namespace IdApp.Helpers
 {

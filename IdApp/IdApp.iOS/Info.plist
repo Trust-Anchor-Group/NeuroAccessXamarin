@@ -66,14 +66,10 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>iotid</string>
-				<string>iotdisco</string>
 				<string>iotsc</string>
 				<string>tagsign</string>
-				<string>edaler</string>
-				<string>nfeat</string>
 				<string>obinfo</string>
 				<string>xmpp</string>
-				<string>tagaccess</string>
 			</array>
 		</dict>
 	</array>

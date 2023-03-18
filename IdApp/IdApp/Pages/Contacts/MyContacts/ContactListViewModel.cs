@@ -3,12 +3,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using EDaler;
-using EDaler.Uris;
 using IdApp.Pages.Contacts.Chat;
 using IdApp.Pages.Identity.ViewIdentity;
-using IdApp.Pages.Wallet;
-using IdApp.Pages.Wallet.Payment;
 using IdApp.Services;
 using IdApp.Services.Notification;
 using IdApp.Services.UI.QR;
@@ -365,38 +361,6 @@ namespace IdApp.Pages.Contacts.MyContacts
 				{
 					switch (this.Action)
 					{
-						case SelectContactAction.MakePayment:
-							StringBuilder sb = new();
-
-							sb.Append("edaler:fi=");
-							sb.Append(this.TagProfile.LegalIdentity.Id);
-
-							if (!string.IsNullOrEmpty(Contact.LegalId))
-							{
-								sb.Append(";ti=");
-								sb.Append(Contact.LegalId);
-							}
-							else if (!string.IsNullOrEmpty(Contact.BareJid))
-							{
-								sb.Append(";t=");
-								sb.Append(Contact.BareJid);
-							}
-
-							Balance Balance = await this.XmppService.GetEDalerBalance();
-
-							sb.Append(";cu=");
-							sb.Append(Balance.Currency);
-
-							if (!EDalerUri.TryParse(sb.ToString(), out EDalerUri Parsed))
-								break;
-
-							await this.NavigationService.GoToAsync(nameof(PaymentPage), new EDalerUriNavigationArgs(Parsed)
-							{
-								ReturnRoute = "../.."
-							});
-
-							break;
-
 						case SelectContactAction.ViewIdentity:
 						default:
 							if (Contact.LegalIdentity is not null)
