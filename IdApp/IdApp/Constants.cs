@@ -60,9 +60,9 @@ namespace IdApp
         public static class UriSchemes
         {
 			/// <summary>
-			/// The App's URI Scheme (tagidapp)
+			/// The App's URI Scheme (tagaccess)
 			/// </summary>
-			public const string UriSchemeTagIdApp = "tagidapp";
+			public const string UriSchemeTagNeuroAccessApp = "tagaccess";
 
 			/// <summary>
 			/// The IoT ID URI Scheme (iotid)
@@ -135,7 +135,7 @@ namespace IdApp
                     UriSchemeNeuroFeature or
                     UriSchemeOnboarding or
                     UriSchemeXmpp or
-					UriSchemeTagIdApp => Url,
+					UriSchemeTagNeuroAccessApp => Url,
 
 					_ => null,
 				};

@@ -122,7 +122,7 @@ namespace IdApp.Services.UI.QR
 					case Constants.UriSchemes.UriSchemeXmpp:
 						return await ChatViewModel.ProcessXmppUri(Url);
 
-					case Constants.UriSchemes.UriSchemeTagIdApp:
+					case Constants.UriSchemes.UriSchemeTagNeuroAccessApp:
 						string Token = Constants.UriSchemes.RemoveScheme(Url);
 						JwtToken Parsed = Services.CryptoService.ParseAndValidateJwtToken(Token);
 						if (Parsed is null)

@@ -454,9 +454,9 @@
             IoT Schemes
             </summary>
         </member>
-        <member name="F:IdApp.Constants.UriSchemes.UriSchemeTagIdApp">
+        <member name="F:IdApp.Constants.UriSchemes.UriSchemeTagNeuroAccessApp">
             <summary>
-            The App's URI Scheme (tagidapp)
+            The App's URI Scheme (tagaccess)
             </summary>
         </member>
         <member name="F:IdApp.Constants.UriSchemes.UriSchemeIotId">
