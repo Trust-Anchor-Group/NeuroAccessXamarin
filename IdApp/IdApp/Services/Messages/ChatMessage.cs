@@ -82,9 +82,6 @@ namespace IdApp.Services.Messages
 			this.XmppUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.Xmpp));
 			this.IotIdUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.IotId));
 			this.IotScUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.IotSc));
-			this.NeuroFeatureUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.NeuroFeature));
-			this.IotDiscoUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.IotDisco));
-			this.EDalerUriClicked = new Command(async Parameter => await this.ExecuteUriClicked(Parameter, UriScheme.EDaler));
 			this.HyperlinkClicked = new Command(async Parameter => await this.ExecuteHyperlinkClicked(Parameter));
 		}
 
@@ -255,21 +252,6 @@ namespace IdApp.Services.Messages
 		/// Command executed when a multi-media-link with the iotsc URI scheme is clicked.
 		/// </summary>
 		public ICommand IotScUriClicked { get; }
-
-		/// <summary>
-		/// Command executed when a multi-media-link with the nfeat URI scheme is clicked.
-		/// </summary>
-		public ICommand NeuroFeatureUriClicked { get; }
-
-		/// <summary>
-		/// Command executed when a multi-media-link with the iotdisco URI scheme is clicked.
-		/// </summary>
-		public ICommand IotDiscoUriClicked { get; }
-
-		/// <summary>
-		/// Command executed when a multi-media-link with the edaler URI scheme is clicked.
-		/// </summary>
-		public ICommand EDalerUriClicked { get; }
 
 		/// <summary>
 		/// Command executed when a hyperlink in rendered markdown has been clicked.

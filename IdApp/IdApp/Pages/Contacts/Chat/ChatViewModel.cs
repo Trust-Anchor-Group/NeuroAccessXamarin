@@ -1,16 +1,8 @@
-﻿using EDaler;
-using EDaler.Uris;
-using IdApp.Converters;
+﻿using IdApp.Converters;
 using IdApp.Pages.Contacts.MyContacts;
 using IdApp.Pages.Contracts.MyContracts;
 using IdApp.Pages.Contracts.ViewContract;
 using IdApp.Pages.Identity.ViewIdentity;
-using IdApp.Pages.Things.MyThings;
-using IdApp.Pages.Wallet;
-using IdApp.Pages.Wallet.MyTokens;
-using IdApp.Pages.Wallet.MyWallet.ObjectModels;
-using IdApp.Pages.Wallet.SendPayment;
-using IdApp.Pages.Wallet.TokenDetails;
 using IdApp.Popups.Xmpp.SubscribeTo;
 using IdApp.Services;
 using IdApp.Services.Messages;
@@ -18,7 +10,6 @@ using IdApp.Services.Notification;
 using IdApp.Services.Tag;
 using IdApp.Services.UI.QR;
 using IdApp.Services.Xmpp;
-using NeuroFeatures;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using SkiaSharp;
@@ -68,9 +59,6 @@ namespace IdApp.Pages.Contacts.Chat
 			this.EmbedFile = new Command(async _ => await this.ExecuteEmbedFile(), _ => this.CanExecuteEmbedFile());
 			this.EmbedId = new Command(async _ => await this.ExecuteEmbedId(), _ => this.CanExecuteEmbedId());
 			this.EmbedContract = new Command(async _ => await this.ExecuteEmbedContract(), _ => this.CanExecuteEmbedContract());
-			this.EmbedMoney = new Command(async _ => await this.ExecuteEmbedMoney(), _ => this.CanExecuteEmbedMoney());
-			this.EmbedToken = new Command(async _ => await this.ExecuteEmbedToken(), _ => this.CanExecuteEmbedToken());
-			this.EmbedThing = new Command(async _ => await this.ExecuteEmbedThing(), _ => this.CanExecuteEmbedThing());
 
 			this.MessageSelected = new Command(async Parameter => await this.ExecuteMessageSelected(Parameter));
 		}
@@ -112,7 +100,7 @@ namespace IdApp.Pages.Contacts.Chat
 		private void EvaluateAllCommands()
 		{
 			this.EvaluateCommands(this.SendCommand, this.CancelCommand, this.LoadMoreMessages, this.TakePhoto, this.EmbedFile,
-				this.EmbedId, this.EmbedContract, this.EmbedMoney, this.EmbedToken, this.EmbedThing);
+				this.EmbedId, this.EmbedContract);
 		}
 
 		/// <inheritdoc/>
@@ -905,157 +893,6 @@ namespace IdApp.Pages.Contacts.Chat
 		}
 
 		/// <summary>
-		/// Command to embed a payment
-		/// </summary>
-		public ICommand EmbedMoney { get; }
-
-		private bool CanExecuteEmbedMoney()
-		{
-			return this.IsConnected && !this.IsWriting;
-		}
-
-		private async Task ExecuteEmbedMoney()
-		{
-			StringBuilder sb = new();
-
-			sb.Append("edaler:");
-
-			if (!string.IsNullOrEmpty(this.LegalId))
-			{
-				sb.Append("ti=");
-				sb.Append(this.LegalId);
-			}
-			else if (!string.IsNullOrEmpty(this.BareJid))
-			{
-				sb.Append("t=");
-				sb.Append(this.BareJid);
-			}
-			else
-				return;
-
-			Balance CurrentBalance = await this.XmppService.GetEDalerBalance();
-
-			sb.Append(";cu=");
-			sb.Append(CurrentBalance.Currency);
-
-			if (!EDalerUri.TryParse(sb.ToString(), out EDalerUri Parsed))
-				return;
-
-			TaskCompletionSource<string> UriToSend = new();
-
-			await this.NavigationService.GoToAsync(nameof(SendPaymentPage), new EDalerUriNavigationArgs(Parsed,
-				this.FriendlyName, UriToSend));
-
-			string Uri = await UriToSend.Task;
-			if (string.IsNullOrEmpty(Uri) || !EDalerUri.TryParse(Uri, out Parsed))
-				return;
-
-			await this.waitUntilBound.Task;     // Wait until view is bound again.
-
-			sb.Clear();
-			sb.Append(MoneyToString.ToString(Parsed.Amount));
-
-			if (Parsed.AmountExtra.HasValue)
-			{
-				sb.Append(" (+");
-				sb.Append(MoneyToString.ToString(Parsed.AmountExtra.Value));
-				sb.Append(")");
-			}
-
-			sb.Append(" ");
-			sb.Append(Parsed.Currency);
-
-			await this.ExecuteSendMessage(string.Empty, "![" + sb.ToString() + "](" + Uri + ")");
-		}
-
-		/// <summary>
-		/// Command to embed a token reference
-		/// </summary>
-		public ICommand EmbedToken { get; }
-
-		private bool CanExecuteEmbedToken()
-		{
-			return this.IsConnected && !this.IsWriting;
-		}
-
-		private async Task ExecuteEmbedToken()
-		{
-			MyTokensNavigationArgs Args = new();
-			await this.NavigationService.GoToAsync(nameof(MyTokensPage), Args);
-
-			TokenItem Selected = await Args.WaitForTokenSelection();
-			if (Selected is null)
-				return;
-
-			await this.NavigationService.GoBackAsync();
-
-			StringBuilder Markdown = new();
-
-			Markdown.AppendLine("```nfeat");
-
-			Selected.Token.Serialize(Markdown);
-
-			Markdown.AppendLine();
-			Markdown.AppendLine("```");
-
-			await this.ExecuteSendMessage(string.Empty, Markdown.ToString());
-			return;
-
-		}
-
-		/// <summary>
-		/// Command to embed a reference to a thing
-		/// </summary>
-		public ICommand EmbedThing { get; }
-
-		private bool CanExecuteEmbedThing()
-		{
-			return this.IsConnected && !this.IsWriting;
-		}
-
-		private async Task ExecuteEmbedThing()
-		{
-			TaskCompletionSource<ContactInfoModel> ThingToShare = new();
-
-			await this.NavigationService.GoToAsync(nameof(MyThingsPage), new MyThingsNavigationArgs(ThingToShare));
-
-			ContactInfoModel Thing = await ThingToShare.Task;
-			if (Thing is null)
-				return;
-
-			await this.waitUntilBound.Task;     // Wait until view is bound again.
-
-			StringBuilder sb = new();
-
-			sb.Append("![");
-			sb.Append(MarkdownDocument.Encode(Thing.FriendlyName));
-			sb.Append("](iotdisco:JID=");
-			sb.Append(Thing.BareJid);
-
-			if (!string.IsNullOrEmpty(Thing.SourceId))
-			{
-				sb.Append(";SID=");
-				sb.Append(Thing.SourceId);
-			}
-
-			if (!string.IsNullOrEmpty(Thing.Partition))
-			{
-				sb.Append(";PT=");
-				sb.Append(Thing.Partition);
-			}
-
-			if (!string.IsNullOrEmpty(Thing.NodeId))
-			{
-				sb.Append(";NID=");
-				sb.Append(Thing.NodeId);
-			}
-
-			sb.Append(")");
-
-			await this.ExecuteSendMessage(string.Empty, sb.ToString());
-		}
-
-		/// <summary>
 		/// Command executed when a message has been selected (or deselected) in the list view.
 		/// </summary>
 		public ICommand MessageSelected { get; }
@@ -1136,17 +973,6 @@ namespace IdApp.Pages.Contacts.Chat
 							case UriScheme.IotSc:
 								ParsedContract ParsedContract = await Contract.Parse(Doc.DocumentElement);
 								await this.NavigationService.GoToAsync(nameof(ViewContractPage), new ViewContractNavigationArgs(ParsedContract.Contract, false));
-								break;
-
-							case UriScheme.NeuroFeature:
-								if (!Token.TryParse(Doc.DocumentElement, out Token ParsedToken))
-									throw new Exception(LocalizationResourceManager.Current["InvalidNeuroFeatureToken"]);
-
-								if (!this.NotificationService.TryGetNotificationEvents(EventButton.Wallet, ParsedToken.TokenId, out NotificationEvent[] Events))
-									Events = new NotificationEvent[0];
-
-								await this.NavigationService.GoToAsync(nameof(TokenDetailsPage),
-									new TokenDetailsNavigationArgs(new TokenItem(ParsedToken, this, Events)) { ReturnCounter = 1 });
 								break;
 
 							default:

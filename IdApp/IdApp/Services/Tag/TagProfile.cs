@@ -74,13 +74,9 @@ namespace IdApp.Services.Tag
 		private string passwordHash;
 		private string passwordHashMethod;
 		private string legalJid;
-		private string registryJid;
-		private string provisioningJid;
 		private string httpFileUploadJid;
 		private string logJid;
 		private string mucJid;
-		private string eDalerJid;
-		private string neuroFeaturesJid;
 		private string pinHash;
 		private long? httpFileUploadMaxSize;
 		private bool? supportsPushNotification;
@@ -144,14 +140,10 @@ namespace IdApp.Services.Tag
 				PasswordHash = this.PasswordHash,
 				PasswordHashMethod = this.PasswordHashMethod,
 				LegalJid = this.LegalJid,
-				RegistryJid = this.RegistryJid,
-				ProvisioningJid = this.ProvisioningJid,
 				HttpFileUploadJid = this.HttpFileUploadJid,
 				HttpFileUploadMaxSize = this.HttpFileUploadMaxSize,
 				LogJid = this.LogJid,
 				MucJid = this.MucJid,
-				EDalerJid = this.EDalerJid,
-				NeuroFeaturesJid = this.NeuroFeaturesJid,
 				SupportsPushNotification = this.SupportsPushNotification,
 				PinHash = this.PinHash,
 				IsTest = this.IsTest,
@@ -184,14 +176,10 @@ namespace IdApp.Services.Tag
 				this.PasswordHash = configuration.PasswordHash;
 				this.PasswordHashMethod = configuration.PasswordHashMethod;
 				this.LegalJid = configuration.LegalJid;
-				this.RegistryJid = configuration.RegistryJid;
-				this.ProvisioningJid = configuration.ProvisioningJid;
 				this.HttpFileUploadJid = configuration.HttpFileUploadJid;
 				this.HttpFileUploadMaxSize = configuration.HttpFileUploadMaxSize;
 				this.LogJid = configuration.LogJid;
 				this.MucJid = configuration.MucJid;
-				this.EDalerJid = configuration.EDalerJid;
-				this.NeuroFeaturesJid = configuration.NeuroFeaturesJid;
 				this.SupportsPushNotification = configuration.SupportsPushNotification;
 				this.PinHash = configuration.PinHash;
 				this.IsTest = configuration.IsTest;
@@ -211,13 +199,9 @@ namespace IdApp.Services.Tag
 		public virtual bool NeedsUpdating()
 		{
 			return string.IsNullOrWhiteSpace(this.legalJid) ||
-				   string.IsNullOrWhiteSpace(this.registryJid) ||
-				   string.IsNullOrWhiteSpace(this.provisioningJid) ||
 				   string.IsNullOrWhiteSpace(this.httpFileUploadJid) ||
 				   string.IsNullOrWhiteSpace(this.logJid) ||
 				   string.IsNullOrWhiteSpace(this.mucJid) ||
-				   string.IsNullOrWhiteSpace(this.eDalerJid) ||
-				   string.IsNullOrWhiteSpace(this.neuroFeaturesJid) ||
 				   !this.supportsPushNotification.HasValue;
 		}
 
@@ -382,34 +366,6 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public string RegistryJid
-		{
-			get => this.registryJid;
-			private set
-			{
-				if (!string.Equals(this.registryJid, value))
-				{
-					this.registryJid = value;
-					this.FlagAsDirty(nameof(this.RegistryJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public string ProvisioningJid
-		{
-			get => this.provisioningJid;
-			private set
-			{
-				if (!string.Equals(this.provisioningJid, value))
-				{
-					this.provisioningJid = value;
-					this.FlagAsDirty(nameof(this.ProvisioningJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
 		public string HttpFileUploadJid
 		{
 			get => this.httpFileUploadJid;
@@ -461,34 +417,6 @@ namespace IdApp.Services.Tag
 				{
 					this.mucJid = value;
 					this.FlagAsDirty(nameof(this.MucJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public string EDalerJid
-		{
-			get => this.eDalerJid;
-			private set
-			{
-				if (!string.Equals(this.eDalerJid, value))
-				{
-					this.eDalerJid = value;
-					this.FlagAsDirty(nameof(this.EDalerJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public string NeuroFeaturesJid
-		{
-			get => this.neuroFeaturesJid;
-			private set
-			{
-				if (!string.Equals(this.neuroFeaturesJid, value))
-				{
-					this.neuroFeaturesJid = value;
-					this.FlagAsDirty(nameof(this.NeuroFeaturesJid));
 				}
 			}
 		}
@@ -861,18 +789,6 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public void SetProvisioningJid(string provisioningJid)
-		{
-			this.ProvisioningJid = provisioningJid;
-		}
-
-		/// <inheritdoc/>
-		public void SetRegistryJid(string registryJid)
-		{
-			this.RegistryJid = registryJid;
-		}
-
-		/// <inheritdoc/>
 		public void SetFileUploadParameters(string httpFileUploadJid, long? maxSize)
 		{
 			this.HttpFileUploadJid = httpFileUploadJid;
@@ -889,18 +805,6 @@ namespace IdApp.Services.Tag
 		public void SetMucJid(string mucJid)
 		{
 			this.MucJid = mucJid;
-		}
-
-		/// <inheritdoc/>
-		public void SetEDalerJid(string eDalerJid)
-		{
-			this.EDalerJid = eDalerJid;
-		}
-
-		/// <inheritdoc/>
-		public void SetNeuroFeaturesJid(string neuroFeaturesJid)
-		{
-			this.NeuroFeaturesJid = neuroFeaturesJid;
 		}
 
 		/// <inheritdoc/>
@@ -923,10 +827,6 @@ namespace IdApp.Services.Tag
 			sb.Append(this.account);
 			sb.Append(':');
 			sb.Append(this.legalJid);
-			sb.Append(':');
-			sb.Append(this.registryJid);
-			sb.Append(':');
-			sb.Append(this.provisioningJid);
 			sb.Append(':');
 			sb.Append(pin);
 
@@ -951,13 +851,9 @@ namespace IdApp.Services.Tag
 			this.passwordHash = string.Empty;
 			this.passwordHashMethod = string.Empty;
 			this.legalJid = string.Empty;
-			this.registryJid = string.Empty;
-			this.provisioningJid = string.Empty;
 			this.httpFileUploadJid = string.Empty;
 			this.logJid = string.Empty;
 			this.mucJid = string.Empty;
-			this.eDalerJid = string.Empty;
-			this.neuroFeaturesJid = string.Empty;
 			this.supportsPushNotification = null;
 			this.pinHash = string.Empty;
 			this.httpFileUploadMaxSize = null;

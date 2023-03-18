@@ -9,9 +9,7 @@ using IdApp.Services.Nfc;
 using IdApp.Services.Settings;
 using IdApp.Services.Storage;
 using IdApp.Services.Tag;
-using IdApp.Services.ThingRegistries;
 using IdApp.Services.UI;
-using IdApp.Services.Wallet;
 using Xamarin.Forms;
 using IdApp.Services.Push;
 using IdApp.Services.Notification;
@@ -37,8 +35,6 @@ namespace IdApp.Services
         private ILogService logService;
         private INetworkService networkService;
         private IContractOrchestratorService contractOrchestratorService;
-        private INeuroWalletOrchestratorService neuroWalletOrchestratorService;
-        private IThingRegistryOrchestratorService thingRegistryOrchestratorService;
         private IAttachmentCacheService attachmentCacheService;
         private ICryptoService cryptoService;
         private ISettingsService settingsService;
@@ -120,18 +116,6 @@ namespace IdApp.Services
         }
 
         /// <summary>
-        /// Neuro-Wallet orchestrator service.
-        /// </summary>
-        public INeuroWalletOrchestratorService NeuroWalletOrchestratorService
-        {
-            get
-            {
-                this.neuroWalletOrchestratorService ??= App.Instantiate<INeuroWalletOrchestratorService>();
-                return this.neuroWalletOrchestratorService;
-            }
-        }
-
-        /// <summary>
         /// Contract orchestrator service.
         /// </summary>
         public IContractOrchestratorService ContractOrchestratorService
@@ -140,18 +124,6 @@ namespace IdApp.Services
             {
                 this.contractOrchestratorService ??= App.Instantiate<IContractOrchestratorService>();
                 return this.contractOrchestratorService;
-            }
-        }
-
-        /// <summary>
-        /// Thing Registry orchestrator service.
-        /// </summary>
-        public IThingRegistryOrchestratorService ThingRegistryOrchestratorService
-        {
-            get
-            {
-                this.thingRegistryOrchestratorService ??= App.Instantiate<IThingRegistryOrchestratorService>();
-                return this.thingRegistryOrchestratorService;
             }
         }
 

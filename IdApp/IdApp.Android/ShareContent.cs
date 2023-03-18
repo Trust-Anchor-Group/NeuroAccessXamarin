@@ -33,7 +33,7 @@ namespace IdApp.Android
 
             Intent.AddFlags(ActivityFlags.GrantReadUriPermission);
             Intent.AddFlags(ActivityFlags.GrantWriteUriPermission);
-            Intent.PutExtra(Intent.ExtraStream, FileProvider.GetUriForFile(Application.Context, "com.tag.IdApp.fileprovider", fileDir));
+            Intent.PutExtra(Intent.ExtraStream, FileProvider.GetUriForFile(Application.Context, "com.tag.NeuroAccess.fileprovider", fileDir));
 
             Intent myIntent = Intent.CreateChooser(Intent, Title);
             myIntent?.AddFlags(ActivityFlags.NewTask);

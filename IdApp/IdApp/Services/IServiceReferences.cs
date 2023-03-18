@@ -9,9 +9,7 @@ using IdApp.Services.Nfc;
 using IdApp.Services.Settings;
 using IdApp.Services.Storage;
 using IdApp.Services.Tag;
-using IdApp.Services.ThingRegistries;
 using IdApp.Services.UI;
-using IdApp.Services.Wallet;
 using IdApp.Services.Push;
 using IdApp.Services.Notification;
 
@@ -53,19 +51,9 @@ namespace IdApp.Services
 		public INetworkService NetworkService { get; }
 
 		/// <summary>
-		/// Neuro-Wallet orchestrator service.
-		/// </summary>
-		public INeuroWalletOrchestratorService NeuroWalletOrchestratorService { get; }
-
-		/// <summary>
 		/// Contract orchestrator service.
 		/// </summary>
 		public IContractOrchestratorService ContractOrchestratorService { get; }
-
-		/// <summary>
-		/// Thing Registry orchestrator service.
-		/// </summary>
-		public IThingRegistryOrchestratorService ThingRegistryOrchestratorService { get; }
 
 		/// <summary>
 		/// AttachmentCache service.

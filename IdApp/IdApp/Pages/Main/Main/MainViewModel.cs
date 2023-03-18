@@ -41,10 +41,8 @@ namespace IdApp.Pages.Main.Main
 
 			this.ViewMyIdentityCommand = new Command(async () => await this.ViewMyIdentity(), () => this.IsConnected);
 			this.ViewMyContactsCommand = new Command(async () => await this.ViewMyContacts(), () => this.IsConnected);
-			this.ViewMyThingsCommand = new Command(async () => await this.ViewMyThings(), () => this.IsConnected);
 			this.ScanQrCodeCommand = new Command(async () => await this.ScanQrCode());
 			this.ViewContractsCommand = new Command(async () => await this.ViewContracts(), () => this.IsConnected);
-			this.ViewWalletCommand = new Command(async () => await this.ViewWallet(), () => this.IsConnected);
 			this.SharePhotoCommand = new Command(async () => await this.SharePhoto());
 			this.ShareQRCommand = new Command(async () => await this.ShareQR());
 		}
@@ -231,21 +229,6 @@ namespace IdApp.Pages.Main.Main
 		}
 
 		/// <summary>
-		/// See <see cref="ViewMyThingsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewMyThingsCommandProperty =
-			BindableProperty.Create(nameof(ViewMyThingsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing the user's own contracts.
-		/// </summary>
-		public ICommand ViewMyThingsCommand
-		{
-			get => (ICommand)this.GetValue(ViewMyThingsCommandProperty);
-			set => this.SetValue(ViewMyThingsCommandProperty, value);
-		}
-
-		/// <summary>
 		/// See <see cref="ScanQrCodeCommand"/>
 		/// </summary>
 		public static readonly BindableProperty ScanQrCodeCommandProperty =
@@ -273,21 +256,6 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ViewContractsCommandProperty);
 			set => this.SetValue(ViewContractsCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewWalletCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewWalletCommandProperty =
-			BindableProperty.Create(nameof(ViewWalletCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing a user's wallet.
-		/// </summary>
-		public ICommand ViewWalletCommand
-		{
-			get => (ICommand)this.GetValue(ViewWalletCommandProperty);
-			set => this.SetValue(ViewWalletCommandProperty, value);
 		}
 
 		/// <summary>
@@ -618,19 +586,9 @@ namespace IdApp.Pages.Main.Main
 				new ContactListNavigationArgs(LocalizationResourceManager.Current["ContactsDescription"], SelectContactAction.ViewIdentity));
 		}
 
-		private async Task ViewMyThings()
-		{
-			await this.NavigationService.GoToAsync(nameof(Things.MyThings.MyThingsPage));
-		}
-
 		private async Task ViewContracts()
 		{
 			await this.NavigationService.GoToAsync(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.Contracts));
-		}
-
-		private async Task ViewWallet()
-		{
-			await this.NeuroWalletOrchestratorService.OpenWallet();
 		}
 
 		private async Task ScanQrCode()
@@ -709,8 +667,8 @@ namespace IdApp.Pages.Main.Main
 					this.ConnectionErrorsText = string.Empty;
 
 				this.HasConnectionErrors = !string.IsNullOrWhiteSpace(this.ConnectionErrorsText);
-				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ViewMyContactsCommand, this.ViewMyThingsCommand,
-					this.ScanQrCodeCommand, this.ViewContractsCommand, this.ViewWalletCommand);
+				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ViewMyContactsCommand, this.ScanQrCodeCommand,
+					this.ViewContractsCommand);
 			}
 			catch (Exception ex)
 			{

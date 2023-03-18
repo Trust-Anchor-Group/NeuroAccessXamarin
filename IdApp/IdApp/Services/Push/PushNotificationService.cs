@@ -1,16 +1,11 @@
-﻿using EDaler;
-using IdApp.DeviceSpecific;
-using IdApp.Services.Xmpp;
-using NeuroFeatures;
+﻿using IdApp.DeviceSpecific;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Waher.Content;
-using Waher.Events;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.Contracts;
-using Waher.Networking.XMPP.Provisioning;
 using Waher.Networking.XMPP.Push;
 using Waher.Runtime.Inventory;
 using Waher.Runtime.Settings;
@@ -335,140 +330,6 @@ namespace IdApp.Services.Push
 
 						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "contractProposal", ContractsClient.NamespaceSmartContracts,
 							Constants.PushChannels.Contracts, "Stanza", string.Empty, Content.ToString());
-
-						#endregion
-
-						#region eDaler
-
-						// Push Notification Rule, for eDaler balance updates when offline.
-
-						Content.Clear();
-						Content.Append("E:=GetElement(Stanza,'balance');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["BalanceUpdated"]));
-						Content.Append("',");
-						Content.Append("'amount':Num(GetAttribute(E,'amount')),");
-						Content.Append("'currency':GetAttribute(E,'currency'),");
-						Content.Append("'timestamp':DateTime(GetAttribute(E,'timestamp')),");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.EDaler);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "balance", EDalerClient.NamespaceEDaler,
-							Constants.PushChannels.EDaler, "Stanza", string.Empty, Content.ToString());
-
-						#endregion
-
-						#region Neuro-Features
-
-						// Push Notification Rule, for token additions when offline.
-
-						Content.Clear();
-						Content.Append("E:=GetElement(Stanza,'tokenAdded');");
-						Content.Append("E2:=GetElement(E,'token');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["TokenAdded"]));
-						Content.Append("',");
-						Content.Append("'myBody':GetAttribute(E2,'friendlyName'),");
-						Content.Append("'value':Num(GetAttribute(E2,'value')),");
-						Content.Append("'currency':GetAttribute(E2,'currency'),");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.Tokens);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "tokenAdded", NeuroFeaturesClient.NamespaceNeuroFeatures,
-							Constants.PushChannels.Tokens, "Stanza", string.Empty, Content.ToString());
-
-						// Push Notification Rule, for token removals when offline.
-
-						Content.Clear();
-						Content.Append("E:=GetElement(Stanza,'tokenRemoved');");
-						Content.Append("E2:=GetElement(E,'token');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["TokenRemoved"]));
-						Content.Append("',");
-						Content.Append("'myBody':GetAttribute(E2,'friendlyName'),");
-						Content.Append("'value':Num(GetAttribute(E2,'value')),");
-						Content.Append("'currency':GetAttribute(E2,'currency'),");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.Tokens);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "tokenRemoved", NeuroFeaturesClient.NamespaceNeuroFeatures,
-							Constants.PushChannels.Tokens, "Stanza", string.Empty, Content.ToString());
-
-						#endregion
-
-						#region Provisioning
-
-						// Push Notification Rule, for friendship requests from things when offline.
-
-						Content.Clear();
-						Content.Append("ToJid:=GetAttribute(Stanza,'to');");
-						Content.Append("E:=GetElement(Stanza,'isFriend');");
-						Content.Append("RemoteJid:=GetAttribute(E,'remoteJid');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["AccessRequest"]));
-						Content.Append("',");
-						Content.Append("'myBody':RosterName(ToJid,RemoteJid),");
-						Content.Append("'remoteJid':RemoteJid,");
-						Content.Append("'jid':GetAttribute(E,'jid'),");
-						Content.Append("'key':GetAttribute(E,'key'),");
-						Content.Append("'q':'isFriend',");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.Provisioning);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "isFriend", ProvisioningClient.NamespaceProvisioningOwner,
-							Constants.PushChannels.Provisioning, "Stanza", string.Empty, Content.ToString());
-
-						// Push Notification Rule, for readout requests from things when offline.
-
-						Content.Clear();
-						Content.Append("ToJid:=GetAttribute(Stanza,'to');");
-						Content.Append("E:=GetElement(Stanza,'canRead');");
-						Content.Append("RemoteJid:=GetAttribute(E,'remoteJid');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["ReadRequest"]));
-						Content.Append("',");
-						Content.Append("'myBody':RosterName(ToJid,RemoteJid),");
-						Content.Append("'remoteJid':RemoteJid,");
-						Content.Append("'jid':GetAttribute(E,'jid'),");
-						Content.Append("'key':GetAttribute(E,'key'),");
-						Content.Append("'q':'canRead',");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.Provisioning);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "canRead", ProvisioningClient.NamespaceProvisioningOwner,
-							Constants.PushChannels.Provisioning, "Stanza", string.Empty, Content.ToString());
-
-						// Push Notification Rule, for control requests from things when offline.
-
-						Content.Clear();
-						Content.Append("ToJid:=GetAttribute(Stanza,'to');");
-						Content.Append("E:=GetElement(Stanza,'canControl');");
-						Content.Append("RemoteJid:=GetAttribute(E,'remoteJid');");
-						Content.Append("{'myTitle':'");
-						Content.Append(JSON.Encode(LocalizationResourceManager.Current["ControlRequest"]));
-						Content.Append("',");
-						Content.Append("'myBody':RosterName(ToJid,RemoteJid),");
-						Content.Append("'remoteJid':RemoteJid,");
-						Content.Append("'jid':GetAttribute(E,'jid'),");
-						Content.Append("'key':GetAttribute(E,'key'),");
-						Content.Append("'q':'canControl',");
-						Content.Append("'channelId':'");
-						Content.Append(Constants.PushChannels.Provisioning);
-						Content.Append("',");
-						Content.Append("'content_available':true}");
-
-						await this.XmppService.AddPushNotificationRule(MessageType.Normal, "canControl", ProvisioningClient.NamespaceProvisioningOwner,
-							Constants.PushChannels.Provisioning, "Stanza", string.Empty, Content.ToString());
 
 						#endregion
 

@@ -60,19 +60,9 @@ namespace IdApp
         public static class UriSchemes
         {
 			/// <summary>
-			/// The App's URI Scheme (tagidapp)
-			/// </summary>
-			public const string UriSchemeTagIdApp = "tagidapp";
-
-			/// <summary>
 			/// The IoT ID URI Scheme (iotid)
 			/// </summary>
 			public const string UriSchemeIotId = "iotid";
-
-            /// <summary>
-            /// The IoT Discovery URI Scheme (iotdisco)
-            /// </summary>
-            public const string UriSchemeIotDisco = "iotdisco";
 
             /// <summary>
             /// The IoT Smart Contract URI Scheme (iotsc)
@@ -83,16 +73,6 @@ namespace IdApp
             /// TAG Signature (Quick-Login) URI Scheme (tagsign)
             /// </summary>
             public const string UriSchemeTagSign = "tagsign";
-
-            /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeEDaler = "edaler";
-
-            /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeNeuroFeature = "nfeat";
 
             /// <summary>
             /// Onboarding URI Scheme (obinfo)
@@ -128,14 +108,10 @@ namespace IdApp
 				return Url switch
 				{
 					UriSchemeIotId or
-                    UriSchemeIotDisco or
                     UriSchemeIotSc or
                     UriSchemeTagSign or
-                    UriSchemeEDaler or
-                    UriSchemeNeuroFeature or
                     UriSchemeOnboarding or
-                    UriSchemeXmpp or
-					UriSchemeTagIdApp => Url,
+                    UriSchemeXmpp => Url,
 
 					_ => null,
 				};
@@ -170,16 +146,6 @@ namespace IdApp
             public static string CreateIdUri(string id)
             {
                 return UriSchemeIotId + ":" + id;
-            }
-
-            /// <summary>
-            /// Generates a Neuro-Feature ID Uri form the specified id.
-            /// </summary>
-            /// <param name="id">The Id to use when generating the Uri.</param>
-            /// <returns>Neuro-Feature URI</returns>
-            public static string CreateTokenUri(string id)
-            {
-                return UriSchemeNeuroFeature + ":" + id;
             }
 
             /// <summary>
@@ -484,7 +450,7 @@ namespace IdApp
 			/// <summary>
 			/// ResolutionGroupName used for resolving Effects.
 			/// </summary>
-			public const string ResolutionGroupName = "com.tag.IdApp";
+			public const string ResolutionGroupName = "com.tag.NeuroAccess";
 
 			/// <summary>
 			/// PasswordMaskTogglerEffect.
@@ -552,12 +518,12 @@ namespace IdApp
 			/// <summary>
 			/// Resource where Android App can be downloaded.
 			/// </summary>
-			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.IdApp";
+			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.NeuroAccess";
 
 			/// <summary>
 			/// Resource where iPhone App can be downloaded.
 			/// </summary>
-			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-id/id1580610247";
+			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-access/id1580610247";
 		}
 
 	}

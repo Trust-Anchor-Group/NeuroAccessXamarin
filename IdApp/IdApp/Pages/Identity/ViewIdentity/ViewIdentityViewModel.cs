@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml;
-using EDaler;
 using IdApp.Extensions;
 using IdApp.Services;
 using Waher.Content.Xml;
@@ -16,7 +15,6 @@ using Waher.Persistence;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using IdApp.Pages.Identity.TransferIdentity;
-using IdApp.Services.Contracts;
 using IdApp.Services.UI.Photos;
 using IdApp.Services.Data.Countries;
 using IdApp.Pages.Contacts.Chat;
@@ -58,7 +56,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 			this.CopyCommand = new Command(Item => this.CopyToClipboard(Item));
 			this.AddContactCommand = new Command(async _ => await this.AddContact(), _ => this.ThirdPartyNotInContacts);
 			this.RemoveContactCommand = new Command(async _ => await this.RemoveContact(), _ => this.ThirdPartyInContacts);
-			this.SendPaymentToCommand = new Command(async _ => await this.SendPaymentTo(), _ => this.ThirdParty);
 			this.ChatCommand = new Command(async _ => await this.OpenChat(), _ => this.ThirdParty);
 			this.SubscribeToCommand = new Command(async _ => await this.SubscribeTo(), _ => this.NotSubscribed);
 			this.UnsubscribeFromCommand = new Command(async _ => await this.UnsubscribeFrom(), _ => this.Subscribed);
@@ -240,11 +237,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		public ICommand RemoveContactCommand { get; }
 
 		/// <summary>
-		/// The command for sending a payment to entity.
-		/// </summary>
-		public ICommand SendPaymentToCommand { get; }
-
-		/// <summary>
 		/// The command for opening the chat page.
 		/// </summary>
 		public ICommand ChatCommand { get; }
@@ -380,7 +372,7 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		{
 			this.EvaluateCommands(this.ApproveCommand, this.RejectCommand, this.RevokeCommand, this.TransferCommand,
 				this.ChangePinCommand, this.CompromiseCommand, this.AddContactCommand, this.RemoveContactCommand,
-				this.SendPaymentToCommand, this.ChatCommand, this.SubscribeToCommand, this.UnsubscribeFromCommand);
+				this.ChatCommand, this.SubscribeToCommand, this.UnsubscribeFromCommand);
 		}
 
 		/// <inheritdoc/>
@@ -1569,26 +1561,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 				this.ThirdPartyNotInContacts = true;
 
 				this.EvaluateAllCommands();
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-		}
-
-		private async Task SendPaymentTo()
-		{
-			try
-			{
-				Balance Balance = await this.XmppService.GetEDalerBalance();
-				string Uri;
-
-				if (this.LegalIdentity is null)
-					Uri = this.XmppService.CreateIncompleteEDalerPayMeUri(this.BareJid, null, null, Balance.Currency, string.Empty);
-				else
-					Uri = this.XmppService.CreateIncompleteEDalerPayMeUri(this.LegalIdentity, null, null, Balance.Currency, string.Empty);
-
-				await this.NeuroWalletOrchestratorService.OpenEDalerUri(Uri);
 			}
 			catch (Exception ex)
 			{

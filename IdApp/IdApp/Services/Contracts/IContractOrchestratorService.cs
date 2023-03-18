@@ -1,6 +1,5 @@
 ﻿using IdApp.Services.Navigation;
 using IdApp.Services.Tag;
-using NeuroFeatures;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Waher.Networking.XMPP.Contracts;

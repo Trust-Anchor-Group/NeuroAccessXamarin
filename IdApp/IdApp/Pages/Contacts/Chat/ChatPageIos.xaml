@@ -137,21 +137,6 @@
 									Text="{x:Static resx:FontAwesome.Paragraph}" TextColor="{StaticResource TextColorLightTheme}"
 									FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Medium"
 									Command="{Binding EmbedContract}"/>
-
-							<Button CornerRadius="8" WidthRequest="40" HeightRequest="40"
-									Text="{x:Static resx:FontAwesome.MoneyBill}" TextColor="{StaticResource TextColorLightTheme}"
-									FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Medium"
-									Command="{Binding EmbedMoney}"/>
-
-							<Button CornerRadius="8" WidthRequest="40" HeightRequest="40"
-									Text="{x:Static resx:FontAwesome.StarOfLife}" TextColor="{StaticResource TextColorLightTheme}"
-									FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Medium"
-									Command="{Binding EmbedToken}"/>
-
-							<Button CornerRadius="8" WidthRequest="40" HeightRequest="40"
-									Text="{x:Static resx:FontAwesome.Things}" TextColor="{StaticResource TextColorLightTheme}"
-									FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Medium"
-									Command="{Binding EmbedThing}"/>
 						</StackLayout>
 					</xct:Expander>
 				</fadeview:FadeView.FrontView>
