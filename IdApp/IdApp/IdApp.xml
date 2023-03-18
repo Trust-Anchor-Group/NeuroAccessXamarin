@@ -541,12 +541,12 @@
         </member>
         <member name="F:IdApp.Constants.Domains.IdDomain">
             <summary>
-            TAG ID domain.
+            Neuro-Access domain.
             </summary>
         </member>
         <member name="F:IdApp.Constants.Domains.OnboardingDomain">
             <summary>
-            TAG ID onboarding domain.
+            Neuro-Access onboarding domain.
             </summary>
         </member>
         <member name="T:IdApp.Constants.XmppProperties">
@@ -8163,7 +8163,7 @@
         </member>
         <member name="T:IdApp.Pages.Main.Shell.AppShell">
             <summary>
-            The Xamarin Forms Shell implementation of the TAG ID App.
+            The Xamarin Forms Shell implementation of the Neuro-Access App.
             </summary>
         </member>
         <member name="M:IdApp.Pages.Main.Shell.AppShell.#ctor">
@@ -13608,7 +13608,7 @@
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagHeading">
             <summary>
-              Looks up a localized string similar to Welcome to TAG Digital ID App!.
+              Looks up a localized string similar to Welcome to Neuro-Access App!.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagPhoneNrCodeSent">
@@ -13618,7 +13618,7 @@
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagSubheading">
             <summary>
-              Looks up a localized string similar to Before connecting to the TAG ID network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below..
+              Looks up a localized string similar to Before connecting to the Neuro-Access network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.WelcomeToTagValidateEMail">

@@ -1,6 +1,6 @@
 # User Interface #
 
-The TAG ID App uses standard Xamarin features, and is built around the [Xamarin Shell](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/shell/) experience.
+The Neuro-Access App uses standard Xamarin features, and is built around the [Xamarin Shell](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/shell/) experience.
 
 ## Overview ##
 

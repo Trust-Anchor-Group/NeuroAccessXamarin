@@ -185,12 +185,12 @@ namespace IdApp
         public static class Domains
 		{
             /// <summary>
-            /// TAG ID domain.
+            /// Neuro-Access domain.
             /// </summary>
             public const string IdDomain = "id.tagroot.io";
 
             /// <summary>
-            /// TAG ID onboarding domain.
+            /// Neuro-Access onboarding domain.
             /// </summary>
             public const string OnboardingDomain = "onboarding.id.tagroot.io";
         }

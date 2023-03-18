@@ -6046,7 +6046,7 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to TAG Digital ID App!.
+        ///   Looks up a localized string similar to Welcome to Neuro-Access App!.
         /// </summary>
         internal static string WelcomeToTagHeading {
             get {
@@ -6064,7 +6064,7 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Before connecting to the TAG ID network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below..
+        ///   Looks up a localized string similar to Before connecting to the Neuro-Access network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below..
         /// </summary>
         internal static string WelcomeToTagSubheading {
             get {

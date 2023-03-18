@@ -1036,10 +1036,10 @@
     <value>Tegnebog</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Velkommen til TAG Digital ID App!</value>
+    <value>Velkommen til Neuro-Access App!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Før vi opretter forbindelse til TAG ID-netværket, skal vi vælge en tjenesteudbyder til dig. For at gøre dette skal vi kende formålet med at bruge appen. Vælg den mest passende mulighed nedenfor.</value>
+    <value>Før vi opretter forbindelse til Neuro-Access-netværket, skal vi vælge en tjenesteudbyder til dig. For at gøre dette skal vi kende formålet med at bruge appen. Vælg den mest passende mulighed nedenfor.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Autentificering af netværksidentitet</value>

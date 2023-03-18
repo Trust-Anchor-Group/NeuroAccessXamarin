@@ -1036,10 +1036,10 @@
     <value>Portofel</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Bine ati venit la TAG Digital ID App!</value>
+    <value>Bine ati venit la Neuro-Access App!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Înainte de a ne conecta la rețeaua TAG ID, trebuie să selectăm un furnizor de servicii pentru dvs. Pentru a face acest lucru, trebuie să cunoaștem scopul utilizării aplicației. Selectați cea mai potrivită opțiune de mai jos.</value>
+    <value>Înainte de a ne conecta la rețeaua Neuro-Access, trebuie să selectăm un furnizor de servicii pentru dvs. Pentru a face acest lucru, trebuie să cunoaștem scopul utilizării aplicației. Selectați cea mai potrivită opțiune de mai jos.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Autentificarea identității rețelei</value>

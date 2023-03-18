@@ -259,7 +259,9 @@
     <None Include="Resources\Resx\PListResources.de.resx" />
     <None Include="Resources\Resx\PListResources.fr.resx" />
     <None Include="Resources\Resx\PListResources.da.resx" />
-    <None Include="Resources\Resx\PListResources.no.resx" />
+    <None Include="Resources\Resx\PListResources.no.resx">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\Resx\PListResources.fi.resx" />
     <None Include="Resources\Resx\PListResources.sr.resx" />
     <None Include="Resources\Resx\PListResources.sv.resx" />

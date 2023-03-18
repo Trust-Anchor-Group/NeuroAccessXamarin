@@ -33,7 +33,7 @@ using Xamarin.Forms;
 namespace IdApp.Pages.Main.Shell
 {
 	/// <summary>
-	/// The Xamarin Forms Shell implementation of the TAG ID App.
+	/// The Xamarin Forms Shell implementation of the Neuro-Access App.
 	/// </summary>
 	public partial class AppShell : ShellBasePage
 	{
