@@ -16,7 +16,6 @@ using IdApp.Pages.Identity.ViewIdentity;
 using IdApp.Pages.Main.Calculator;
 using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Pages.Main.Security;
-using IdApp.Pages.Main.XmppForm;
 using IdApp.Services.Contracts;
 using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
@@ -82,7 +81,6 @@ namespace IdApp.Pages.Main.Shell
 			Routing.RegisterRoute(nameof(ScanQrCodePage), typeof(ScanQrCodePage));
 			Routing.RegisterRoute(nameof(CalculatorPage), typeof(CalculatorPage));
 			Routing.RegisterRoute(nameof(SecurityPage), typeof(SecurityPage));
-			Routing.RegisterRoute(nameof(XmppFormPage), typeof(XmppFormPage));
 
 			// Identity:
 			Routing.RegisterRoute(nameof(ViewIdentityPage), typeof(ViewIdentityPage));
