@@ -96,7 +96,6 @@
     <Compile Include="Renderers\IdAppShellRenderer.cs" />
     <Compile Include="ShareContent.cs" />
     <Compile Include="..\Version\Version.cs" />
-    <Compile Include="Renderers\ExtendedDatePickeriOSRenderer.cs" />
     <Compile Include="Renderers\AesImageLoaderSourceHandler.cs" />
   </ItemGroup>
   <ItemGroup>
