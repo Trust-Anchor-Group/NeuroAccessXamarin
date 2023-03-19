@@ -362,11 +362,6 @@
             Onboarding URI Scheme (obinfo)
             </summary>
         </member>
-        <member name="F:IdApp.Constants.UriSchemes.Aes256">
-            <summary>
-            AES-256-encrypted data.
-            </summary>
-        </member>
         <member name="M:IdApp.Constants.UriSchemes.GetScheme(System.String)">
             <summary>
             Gets the predefined scheme from an IoT Code
@@ -1468,59 +1463,6 @@
             <param name="State">The state to convert.</param>
             <returns>String representation</returns>
         </member>
-        <member name="T:IdApp.Helpers.AesDownloadCache">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesDownloadCache.#ctor(FFImageLoading.Config.Configuration)">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:IdApp.Helpers.AesDownloadCache.AttachmentCacheService">
-            <summary>
-            Provides a reference to the attachment cache service.
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesDownloadCache.DownloadAndCacheIfNeededAsync(System.String,FFImageLoading.Work.TaskParameter,FFImageLoading.Config.Configuration,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Helpers.AesImageSource">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesImageSource.#ctor(System.Uri)">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesImageSource.#ctor">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:IdApp.Helpers.AesImageSource.AttachmentCacheService">
-            <summary>
-            Provides a reference to the attachment cache service.
-            </summary>
-        </member>
-        <member name="F:IdApp.Helpers.AesImageSource.UriProperty">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:IdApp.Helpers.AesImageSource.IsEmpty">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:IdApp.Helpers.AesImageSource.Uri">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesImageSource.GetStreamAsync(System.Threading.CancellationToken)">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.AesImageSource.ToString">
-            <summary>
-            </summary>
-        </member>
         <member name="T:IdApp.Helpers.EntryProperties">
             <summary>
             EntryProperties is a class which defines attached bindable properties used by our custom renderers for <see cref="T:Xamarin.Forms.Entry"/>.
@@ -1595,13 +1537,6 @@
             <summary>
             Keyboard height
             </summary>
-        </member>
-        <member name="T:IdApp.Helpers.MyCachedImage">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:IdApp.Helpers.MyCachedImage.CoerceImageSource(System.Object)">
-            <inheritdoc/>
         </member>
         <member name="T:IdApp.Helpers.PasswordMask">
             <summary>
