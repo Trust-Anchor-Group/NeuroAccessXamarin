@@ -1077,146 +1077,6 @@
             Gets or sets the value indicating if the current <see cref="T:IdApp.Controls.TemplatedSwitch.TemplatedSwitch"/> is toggled.
             </summary>
         </member>
-        <member name="T:IdApp.Converters.BinaryToBase64">
-            <summary>
-            Converts binary data to base64-encoded strings.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BinaryToBase64.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BinaryToBase64.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BinaryToBase64.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.BooleanToBoldFont">
-            <summary>
-            Converts a boolean value to a bold font (if true), or regular font (if false).
-            </summary>
-        </member>
-        <member name="P:IdApp.Converters.BooleanToBoldFont.Invert">
-            <summary>
-            Set to true if the conversion should be inverted or not.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToBoldFont.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToBoldFont.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToBoldFont.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.BooleanToChar">
-            <summary>
-            Converts a boolean value to a unicode character.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToChar.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToChar.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToChar.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.BooleanToColor">
-            <summary>
-            Converts a boolean value to a color ("AlertColor"), or <see cref="P:Xamarin.Forms.Color.Default"/> (if false).
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToColor.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToColor.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToColor.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.BooleanToTextType">
-            <summary>
-            Converts a boolean value to a <see cref="T:Xamarin.Forms.TextType"/> value, which is <c>Html</c> if <c>true</c>, or <c>Text</c> if <c>false</c>.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToTextType.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToTextType.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToTextType.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.BooleanToYesNo">
-            <summary>
-            Converts a boolean value to either Yes or No
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToYesNo.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToYesNo.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.BooleanToYesNo.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.ContractStateToColor">
-            <summary>
-            Converts a contract state to a color.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.ContractStateToColor.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.ContractStateToColor.ToColor(Waher.Networking.XMPP.Contracts.ContractState)">
-            <summary>
-            Converts a contract state to a representative color.
-            </summary>
-            <param name="State">Contract State</param>
-            <returns>Color</returns>
-        </member>
-        <member name="M:IdApp.Converters.ContractStateToColor.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.ContractStateToColor.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.DateTimeToString">
-            <summary>
-            Converts a <see cref="T:System.DateTime"/> value to a <see cref="T:System.String"/> value. If the value is
-            <see cref="F:System.DateTime.MinValue"/> or <see cref="F:System.DateTime.MaxValue"/>, the empty string is returned.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.DateTimeToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.DateTimeToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.DateTimeToString.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:IdApp.Converters.DateToString">
-            <summary>
-            Converts the date part of a <see cref="T:System.DateTime"/> value to a <see cref="T:System.String"/> value. If the value is
-            <see cref="F:System.DateTime.MinValue"/> or <see cref="F:System.DateTime.MaxValue"/>, the empty string is returned.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.DateToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.DateToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.DateToString.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
         <member name="T:IdApp.Converters.EqualsOne">
             <summary>
             Is true if an integer property is equal to one.
@@ -1320,27 +1180,6 @@
         <member name="M:IdApp.Converters.LogicalNot.ProvideValue(System.IServiceProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:IdApp.Converters.MoneyToString">
-            <summary>
-            Converts values to strings.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.MoneyToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.MoneyToString.ToString(System.Decimal)">
-            <summary>
-            Converts a monetary value to a string, removing any round-off errors.
-            </summary>
-            <param name="Money"></param>
-            <returns></returns>
-        </member>
-        <member name="M:IdApp.Converters.MoneyToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.MoneyToString.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
-        </member>
         <member name="T:IdApp.Converters.PinStrengthToErrorMessage">
             <summary>
             PinStrengthToErrorMessage is an <see cref="T:Xamarin.Forms.IValueConverter"/> which converts <see cref="T:IdApp.Services.Tag.PinStrength"/> to an error message to display.
@@ -1365,22 +1204,6 @@
             <summary>
             Returns an instance of <see cref="T:IdApp.Converters.PinStrengthToErrorMessage"/> class.
             </summary>
-        </member>
-        <member name="T:IdApp.Converters.TimeToString">
-            <summary>
-            Converts the time part of a <see cref="T:System.DateTime"/> value, or a <see cref="T:System.TimeSpan"/> value
-            to a <see cref="T:System.String"/> value. If the value is <see cref="F:System.DateTime.MinValue"/> or <see cref="F:System.DateTime.MaxValue"/>,
-            the empty string is returned.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.TimeToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.TimeToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.TimeToString.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:IdApp.DeviceSpecific.ICloseApplication">
             <summary>
