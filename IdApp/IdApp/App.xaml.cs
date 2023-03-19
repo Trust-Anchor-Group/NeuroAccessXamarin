@@ -10,7 +10,6 @@ using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
 using IdApp.Services.Network;
 using IdApp.Services.Nfc;
-using IdApp.Services.Notification;
 using IdApp.Services.Push;
 using IdApp.Services.Settings;
 using IdApp.Services.Storage;
@@ -283,7 +282,6 @@ namespace IdApp
 			Types.InstantiateDefault<IXmppService>(false, appAssembly, this.startupProfiler);
 			Types.InstantiateDefault<IAttachmentCacheService>(false);
 			Types.InstantiateDefault<IContractOrchestratorService>(false);
-			Types.InstantiateDefault<INotificationService>(false);
 			Types.InstantiateDefault<IPushNotificationService>(false);
 			Types.InstantiateDefault<INfcService>(false);
 
@@ -458,9 +456,6 @@ namespace IdApp
 
 				Thread?.NewState("Orchestrators");
 				await this.services.ContractOrchestratorService.Load(isResuming, Token);
-
-				Thread?.NewState("Notifications");
-				await this.services.NotificationService.Load(isResuming, Token);
 			}
 			catch (OperationCanceledException)
 			{

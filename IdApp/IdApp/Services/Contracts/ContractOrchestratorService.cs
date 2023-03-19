@@ -1,6 +1,7 @@
 ﻿using IdApp.Extensions;
+using IdApp.Pages.Contracts.PetitionSignature;
+using IdApp.Pages.Identity.PetitionIdentity;
 using IdApp.Pages.Identity.ViewIdentity;
-using IdApp.Services.Notification.Identities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,7 +67,13 @@ namespace IdApp.Services.Contracts
 		{
 			try
 			{
-				await this.NotificationService.NewEvent(new PeerRequestIdentityReviewNotificationEvent(e));
+				LegalIdentity Identity = e.RequestorIdentity;
+
+				if (Identity is not null)
+				{
+					await this.NavigationService.GoToAsync(nameof(ViewIdentityPage), new ViewIdentityNavigationArgs(Identity,
+						e.RequestorFullJid, e.SignatoryIdentityId, e.PetitionId, e.Purpose, e.ContentToSign));
+				}
 			}
 			catch (Exception ex)
 			{
@@ -110,7 +117,15 @@ namespace IdApp.Services.Contracts
 					});
 				}
 				else
-					await this.NotificationService.NewEvent(new RequestIdentityNotificationEvent(e));
+				{
+					Identity = e.RequestorIdentity;
+
+					if (Identity is not null)
+					{
+						await this.NavigationService.GoToAsync(nameof(PetitionIdentityPage), new PetitionIdentityNavigationArgs(
+							Identity, e.RequestorFullJid, e.RequestedIdentityId, e.PetitionId, e.Purpose));
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -154,7 +169,15 @@ namespace IdApp.Services.Contracts
 					});
 				}
 				else
-					await this.NotificationService.NewEvent(new RequestSignatureNotificationEvent(e));
+				{
+					Identity = e.RequestorIdentity;
+
+					if (Identity is not null)
+					{
+						await this.NavigationService.GoToAsync(nameof(PetitionSignaturePage), new PetitionSignatureNavigationArgs(
+							Identity, e.RequestorFullJid, e.SignatoryIdentityId, e.ContentToSign, e.PetitionId, e.Purpose));
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -166,7 +189,15 @@ namespace IdApp.Services.Contracts
 		{
 			try
 			{
-				await this.NotificationService.NewEvent(new IdentityResponseNotificationEvent(e));
+				LegalIdentity Identity = e.RequestedIdentity;
+
+				if (!e.Response || Identity is null)
+					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["Message"], LocalizationResourceManager.Current["SignaturePetitionDenied"], LocalizationResourceManager.Current["Ok"]);
+				else
+				{
+					await this.NavigationService.GoToAsync(nameof(ViewIdentityPage),
+						new ViewIdentityNavigationArgs(Identity));
+				}
 			}
 			catch (Exception ex)
 			{
@@ -416,7 +447,12 @@ namespace IdApp.Services.Contracts
 		{
 			try
 			{
-				await this.NotificationService.NewEvent(new SignatureResponseNotificationEvent(e));
+				LegalIdentity Identity = e.RequestedIdentity;
+
+				if (!e.Response || Identity is null)
+					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["Message"], LocalizationResourceManager.Current["PetitionToViewLegalIdentityWasDenied"], LocalizationResourceManager.Current["Ok"]);
+				else
+					await this.NavigationService.GoToAsync(nameof(ViewIdentityPage), new ViewIdentityNavigationArgs(Identity));
 			}
 			catch (Exception ex)
 			{

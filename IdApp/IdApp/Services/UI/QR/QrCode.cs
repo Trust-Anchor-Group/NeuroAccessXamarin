@@ -1,18 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using IdApp.Pages.Main.ScanQrCode;
+﻿using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Services.Navigation;
 using SkiaSharp;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using Waher.Content.QR;
 using Waher.Content.QR.Encoding;
 using Xamarin.Essentials;
-using System.Collections.Generic;
-using System.Web;
-using System.Collections.Specialized;
-using IdApp.Services.Notification.Identities;
 using Xamarin.CommunityToolkit.Helpers;
-using Waher.Persistence;
 
 namespace IdApp.Services.UI.QR
 {
@@ -57,14 +52,11 @@ namespace IdApp.Services.UI.QR
 				switch (uri.Scheme.ToLower())
 				{
 					case Constants.UriSchemes.UriSchemeIotId:
-						Services.NotificationService.ExpectEvent<IdentityResponseNotificationEvent>(DateTime.Now.AddMinutes(1));
 						string legalId = Constants.UriSchemes.RemoveScheme(Url);
 						await Services.ContractOrchestratorService.OpenLegalIdentity(legalId, LocalizationResourceManager.Current["ScannedQrCode"]);
 						return true;
 
 					case Constants.UriSchemes.UriSchemeTagSign:
-						Services.NotificationService.ExpectEvent<RequestSignatureNotificationEvent>(DateTime.Now.AddMinutes(1));
-
 						string request = Constants.UriSchemes.RemoveScheme(Url);
 						await Services.ContractOrchestratorService.TagSignature(request);
 						return true;

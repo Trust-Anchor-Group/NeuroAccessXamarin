@@ -11,7 +11,6 @@ using IdApp.Services.Storage;
 using IdApp.Services.Tag;
 using IdApp.Services.UI;
 using IdApp.Services.Push;
-using IdApp.Services.Notification;
 
 namespace IdApp.Services
 {
@@ -81,14 +80,8 @@ namespace IdApp.Services
 		public INfcService NfcService { get; }
 
 		/// <summary>
-		/// Notification Service
-		/// </summary>
-		public INotificationService NotificationService { get; }
-
-		/// <summary>
 		/// Push Notification Service
 		/// </summary>
 		public IPushNotificationService PushNotificationService { get; }
-
 	}
 }

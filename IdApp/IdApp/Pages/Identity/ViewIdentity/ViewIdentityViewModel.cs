@@ -17,7 +17,6 @@ using Xamarin.Forms;
 using IdApp.Pages.Identity.TransferIdentity;
 using IdApp.Services.UI.Photos;
 using IdApp.Services.Data.Countries;
-using IdApp.Services.Notification;
 using IdApp.Pages.Main.Security;
 using Xamarin.CommunityToolkit.Helpers;
 
@@ -103,50 +102,12 @@ namespace IdApp.Pages.Identity.ViewIdentity
 					await Database.Update(Info);
 					await Database.Provider.Flush();
 				}
-
-				if (this.NotificationService.TryGetNotificationEvents(EventButton.Contacts, this.BareJid, out NotificationEvent[] Events))
-				{
-					this.NrPendingChatMessages = Events.Length;
-					this.HasPendingChatMessages = this.NrPendingChatMessages > 0;
-				}
-				else
-				{
-					this.HasPendingChatMessages = false;
-					this.NrPendingChatMessages = 0;
-				}
-			}
-			else
-			{
-				this.HasPendingChatMessages = false;
-				this.NrPendingChatMessages = 0;
 			}
 
 			this.EvaluateAllCommands();
 
 			this.TagProfile.Changed += this.TagProfile_Changed;
 			this.XmppService.LegalIdentityChanged += this.SmartContracts_LegalIdentityChanged;
-			this.NotificationService.OnNewNotification += this.NotificationService_OnNewNotification;
-			this.NotificationService.OnNotificationsDeleted += this.NotificationService_OnNotificationsDeleted;
-		}
-
-		private void NotificationService_OnNewNotification(object Sender, NotificationEventArgs e)
-		{
-			if (e.Event.Button == EventButton.Contacts && e.Event.Category == this.BareJid)
-			{
-				this.NrPendingChatMessages++;
-				this.HasPendingChatMessages = true;
-			}
-		}
-
-		private void NotificationService_OnNotificationsDeleted(object Sender, NotificationEventsArgs e)
-		{
-			foreach (NotificationEvent Event in e.Events)
-			{
-				if (Event.Button == EventButton.Contacts && Event.Category == this.BareJid)
-					this.NrPendingChatMessages--;
-			}
-
-			this.HasPendingChatMessages = this.NrPendingChatMessages > 0;
 		}
 
 		/// <inheritdoc/>
@@ -156,9 +117,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 
 			this.TagProfile.Changed -= this.TagProfile_Changed;
 			this.XmppService.LegalIdentityChanged -= this.SmartContracts_LegalIdentityChanged;
-
-			this.NotificationService.OnNewNotification -= this.NotificationService_OnNewNotification;
-			this.NotificationService.OnNotificationsDeleted -= this.NotificationService_OnNotificationsDeleted;
 
 			this.LegalIdentity = null;
 
@@ -1206,36 +1164,6 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		{
 			get => (int)this.GetValue(FirstPhotoRotationProperty);
 			set => this.SetValue(FirstPhotoRotationProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="HasPendingChatMessages"/>
-		/// </summary>
-		public static readonly BindableProperty HasPendingChatMessagesProperty =
-			BindableProperty.Create(nameof(HasPendingChatMessages), typeof(bool), typeof(ViewIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the identity is in the contact.
-		/// </summary>
-		public bool HasPendingChatMessages
-		{
-			get => (bool)this.GetValue(HasPendingChatMessagesProperty);
-			set => this.SetValue(HasPendingChatMessagesProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="NrPendingChatMessages"/>
-		/// </summary>
-		public static readonly BindableProperty NrPendingChatMessagesProperty =
-			BindableProperty.Create(nameof(NrPendingChatMessages), typeof(int), typeof(ViewIdentityViewModel), default(int));
-
-		/// <summary>
-		/// Gets or sets whether the identity is in the contact.
-		/// </summary>
-		public int NrPendingChatMessages
-		{
-			get => (int)this.GetValue(NrPendingChatMessagesProperty);
-			set => this.SetValue(NrPendingChatMessagesProperty, value);
 		}
 
 		#endregion
