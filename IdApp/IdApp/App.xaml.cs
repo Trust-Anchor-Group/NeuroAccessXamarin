@@ -54,8 +54,6 @@ using Waher.Runtime.Text;
 using Waher.Script;
 using Waher.Script.Content;
 using Waher.Script.Graphs;
-using Waher.Security.JWS;
-using Waher.Security.JWT;
 using Waher.Security.LoginMonitor;
 using Waher.Things;
 using Xamarin.CommunityToolkit.Helpers;
@@ -216,9 +214,6 @@ namespace IdApp
 			{
 				this.InitInstances(Thread);
 
-				Thread?.NewState("JWT");
-				await this.services.CryptoService.InitializeJwtFactory();
-
 				await this.PerformStartup(false, Thread, BackgroundStart);
 
 				Result.TrySetResult(true);
@@ -265,8 +260,6 @@ namespace IdApp
 					typeof(PushNotificationClient).Assembly,    // Indexes Push Notification client framework
 					typeof(XmppServerlessMessaging).Assembly,   // Indexes End-to-End encryption mechanisms
 					typeof(HttpxClient).Assembly,               // Support for HTTP over XMPP (httpx) URI Schme.
-					typeof(JwtFactory).Assembly,                // Generation of JWT tokens.
-					typeof(JwsAlgorithm).Assembly,              // Available JWS algorithms.
 					typeof(IThingReference).Assembly);          // Thing & sensor data library.
 			}
 

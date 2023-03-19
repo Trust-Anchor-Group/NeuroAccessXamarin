@@ -1,9 +1,6 @@
-﻿using IdApp.Services.Navigation;
-using IdApp.Services.Tag;
-using System.Collections.Generic;
+﻿using IdApp.Services.Tag;
 using System.Threading.Tasks;
 using Waher.Networking.XMPP.Contracts;
-using Waher.Persistence;
 using Waher.Runtime.Inventory;
 
 namespace IdApp.Services.Contracts
