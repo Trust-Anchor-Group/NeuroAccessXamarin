@@ -745,47 +745,6 @@
             Resource where iPhone App can be downloaded.
             </summary>
         </member>
-        <member name="T:IdApp.Controls.FadeView.FadeView">
-            <summary>
-            The FadeView is a user control that holds two child controls: a <see cref="P:IdApp.Controls.FadeView.FadeView.FrontView"/> and a <see cref="P:IdApp.Controls.FadeView.FadeView.BackView"/>.
-            It can perform a fade animation from one view to another. In order to fade the view, simply set the <see cref="P:IdApp.Controls.FadeView.FadeView.IsFrontView"/> property.
-            </summary>
-        </member>
-        <member name="M:IdApp.Controls.FadeView.FadeView.#ctor">
-            <summary>
-            Creates an instance of the <see cref="T:IdApp.Controls.FadeView.FadeView"/> control.
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.FadeView.FadeView.IsFrontViewProperty">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:IdApp.Controls.FadeView.FadeView.IsFrontView">
-            <summary>
-            Set to true is the front vew must be shown.
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.FadeView.FadeView.FrontViewProperty">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:IdApp.Controls.FadeView.FadeView.FrontView">
-            <summary>
-            The view displayed on the 'front' side of this user control.
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.FadeView.FadeView.BackViewProperty">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:IdApp.Controls.FadeView.FadeView.BackView">
-            <summary>
-            The view displayed on the 'back' side of this user control.
-            </summary>
-        </member>
         <member name="T:IdApp.Controls.FlipView.FlipView">
             <summary>
             The FlipView is a user control that holds two child controls: a <see cref="P:IdApp.Controls.FlipView.FlipView.FrontView"/> and a <see cref="P:IdApp.Controls.FlipView.FlipView.BackView"/>.
@@ -872,66 +831,6 @@
             Makes the user control flip from front to back, or the other way around.
             </summary>
             <returns>true if back-side is shown after, false if front-side is shown after flip.</returns>
-        </member>
-        <member name="T:IdApp.Controls.LoadingCollectionView.LoadingCollectionView">
-            <summary>
-            CollectionView that can load new items when the last items is being displayed
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.LoadingCollectionView.LoadingCollectionView.LoadMoreCommandProperty">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:IdApp.Controls.LoadingCollectionView.LoadingCollectionView.LoadMoreCommand">
-            <summary>
-            Command executed when last item is appearing and new data should be loaded.
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.LoadingCollectionView.LoadingCollectionView.ItemSelectedCommandProperty">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:IdApp.Controls.LoadingCollectionView.LoadingCollectionView.ItemSelectedCommand">
-            <summary>
-            Command executed when last item is appearing and new data should be loaded.
-            </summary>
-        </member>
-        <member name="M:IdApp.Controls.LoadingCollectionView.LoadingCollectionView.#ctor">
-            <summary>
-            ListView that can load new items when the last items is being displayed
-            </summary>
-        </member>
-        <member name="T:IdApp.Controls.LoadingListView.LoadingListView">
-            <summary>
-            ListView that can load new items when the last items is being displayed
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.LoadingListView.LoadingListView.LoadMoreCommandProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.LoadingListView.LoadingListView.LoadMoreCommand">
-            <summary>
-            Command executed when last item is appearing and new data should be loaded.
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.LoadingListView.LoadingListView.ItemSelectedCommandProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.LoadingListView.LoadingListView.ItemSelectedCommand">
-            <summary>
-            Command executed when last item is appearing and new data should be loaded.
-            </summary>
-        </member>
-        <member name="M:IdApp.Controls.LoadingListView.LoadingListView.#ctor">
-            <summary>
-            ListView that can load new items when the last items is being displayed
-            </summary>
         </member>
         <member name="T:IdApp.Controls.MainTabBar.MainTabBarView">
             <summary>
