@@ -19,7 +19,6 @@ using Waher.Networking.XMPP.Abuse;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.HTTPX;
-using Waher.Networking.XMPP.PEP;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Persistence;
 using Waher.Runtime.Inventory;
@@ -46,7 +45,6 @@ namespace IdApp.Services.Xmpp
 		private ContractsClient contractsClient;
 		private HttpFileUploadClient fileUploadClient;
 		private AbuseClient abuseClient;
-		private PepClient pepClient;
 		private HttpxClient httpxClient;
 		private Timer reconnectTimer;
 		private string domainName;
@@ -178,10 +176,6 @@ namespace IdApp.Services.Xmpp
 						this.fileUploadClient = new HttpFileUploadClient(this.xmppClient, this.TagProfile.HttpFileUploadJid, this.TagProfile.HttpFileUploadMaxSize);
 					}
 
-					Thread?.NewState("PEP");
-					this.pepClient = new PepClient(this.xmppClient);
-					this.ReregisterPepEventHandlers(this.pepClient);
-
 					Thread?.NewState("HTTPX");
 					this.httpxClient = new HttpxClient(this.xmppClient, 8192);
 					Types.SetModuleParameter("XMPP", this.xmppClient);      // Makes the XMPP Client the default XMPP client, when resolving HTTP over XMPP requests.
@@ -230,9 +224,6 @@ namespace IdApp.Services.Xmpp
 
 			this.fileUploadClient?.Dispose();
 			this.fileUploadClient = null;
-
-			this.pepClient?.Dispose();
-			this.pepClient = null;
 
 			this.abuseClient?.Dispose();
 			this.abuseClient = null;
@@ -1116,80 +1107,6 @@ namespace IdApp.Services.Xmpp
 			return this.FileUploadClient.RequestUploadSlotAsync(FileName, ContentType, ContentSize);
 		}
 
-
-		#endregion
-
-		#region Personal Eventing Protocol (PEP)
-
-		private readonly LinkedList<KeyValuePair<Type, PersonalEventNotificationEventHandler>> pepHandlers = new();
-
-		/// <summary>
-		/// Reference to Personal Eventing Protocol (PEP) client, with a check that one is created.
-		/// Note: Do not make public. Reference only from inside the XmppService class.
-		/// </summary>
-		private PepClient PepClient
-		{
-			get
-			{
-				if (this.pepClient is null)
-					throw new InvalidOperationException(LocalizationResourceManager.Current["PepServiceNotFound"]);
-
-				return this.pepClient;
-			}
-		}
-
-		/// <summary>
-		/// Registers an event handler of a specific type of personal events.
-		/// </summary>
-		/// <param name="PersonalEventType">Type of personal event.</param>
-		/// <param name="Handler">Event handler.</param>
-		public void RegisterPepHandler(Type PersonalEventType, PersonalEventNotificationEventHandler Handler)
-		{
-			lock (this.pepHandlers)
-			{
-				this.pepHandlers.AddLast(new KeyValuePair<Type, PersonalEventNotificationEventHandler>(PersonalEventType, Handler));
-			}
-
-			this.PepClient.RegisterHandler(PersonalEventType, Handler);
-		}
-
-		/// <summary>
-		/// Unregisters an event handler of a specific type of personal events.
-		/// </summary>
-		/// <param name="PersonalEventType">Type of personal event.</param>
-		/// <param name="Handler">Event handler.</param>
-		/// <returns>If the event handler was found and removed.</returns>
-		public bool UnregisterPepHandler(Type PersonalEventType, PersonalEventNotificationEventHandler Handler)
-		{
-			lock (this.pepHandlers)
-			{
-				LinkedListNode<KeyValuePair<Type, PersonalEventNotificationEventHandler>> Node = this.pepHandlers.First;
-
-				while (Node is not null)
-				{
-					if (Node.Value.Key == PersonalEventType &&
-						Node.Value.Value.Target.Equals(Handler.Target) &&
-						Node.Value.Value.Method.Equals(Handler.Method))
-					{
-						this.pepHandlers.Remove(Node);
-						break;
-					}
-
-					Node = Node.Next;
-				}
-			}
-
-			return this.PepClient.UnregisterHandler(PersonalEventType, Handler);
-		}
-
-		private void ReregisterPepEventHandlers(PepClient PepClient)
-		{
-			lock (this.pepHandlers)
-			{
-				foreach (KeyValuePair<Type, PersonalEventNotificationEventHandler> P in this.pepHandlers)
-					PepClient.RegisterHandler(P.Key, P.Value);
-			}
-		}
 
 		#endregion
 

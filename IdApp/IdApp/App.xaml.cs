@@ -39,7 +39,6 @@ using Waher.Networking.XMPP.Contracts;
 using Waher.Networking.XMPP.HTTPX;
 using Waher.Networking.XMPP.P2P;
 using Waher.Networking.XMPP.P2P.E2E;
-using Waher.Networking.XMPP.PEP;
 using Waher.Persistence;
 using Waher.Persistence.Files;
 using Waher.Persistence.Serialization;
@@ -248,7 +247,6 @@ namespace IdApp
 					typeof(DnsResolver).Assembly,               // Serialization of DNS-related objects
 					typeof(XmppClient).Assembly,                // Serialization of general XMPP objects
 					typeof(ContractsClient).Assembly,           // Serialization of XMPP objects related to digital identities and smart contracts
-					typeof(PepClient).Assembly,                 // Serialization of XMPP objects related to personal eventing
 					typeof(Expression).Assembly,                // Indexes basic script functions
 					typeof(Graph).Assembly,                     // Indexes graph script functions
 					typeof(GraphEncoder).Assembly,              // Indexes content script functions

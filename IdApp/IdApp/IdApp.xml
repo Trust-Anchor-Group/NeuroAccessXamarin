@@ -12602,21 +12602,6 @@
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
         </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.RegisterPepHandler(System.Type,Waher.Networking.XMPP.PEP.PersonalEventNotificationEventHandler)">
-            <summary>
-            Registers an event handler of a specific type of personal events.
-            </summary>
-            <param name="PersonalEventType">Type of personal event.</param>
-            <param name="Handler">Event handler.</param>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.UnregisterPepHandler(System.Type,Waher.Networking.XMPP.PEP.PersonalEventNotificationEventHandler)">
-            <summary>
-            Unregisters an event handler of a specific type of personal events.
-            </summary>
-            <param name="PersonalEventType">Type of personal event.</param>
-            <param name="Handler">Event handler.</param>
-            <returns>If the event handler was found and removed.</returns>
-        </member>
         <member name="M:IdApp.Services.Xmpp.IXmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>
             Adds a legal identity.
@@ -12919,27 +12904,6 @@
             <param name="FileName">Name of file.</param>
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
-        </member>
-        <member name="P:IdApp.Services.Xmpp.XmppService.PepClient">
-            <summary>
-            Reference to Personal Eventing Protocol (PEP) client, with a check that one is created.
-            Note: Do not make public. Reference only from inside the XmppService class.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.RegisterPepHandler(System.Type,Waher.Networking.XMPP.PEP.PersonalEventNotificationEventHandler)">
-            <summary>
-            Registers an event handler of a specific type of personal events.
-            </summary>
-            <param name="PersonalEventType">Type of personal event.</param>
-            <param name="Handler">Event handler.</param>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.UnregisterPepHandler(System.Type,Waher.Networking.XMPP.PEP.PersonalEventNotificationEventHandler)">
-            <summary>
-            Unregisters an event handler of a specific type of personal events.
-            </summary>
-            <param name="PersonalEventType">Type of personal event.</param>
-            <param name="Handler">Event handler.</param>
-            <returns>If the event handler was found and removed.</returns>
         </member>
         <member name="M:IdApp.Services.Xmpp.XmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>

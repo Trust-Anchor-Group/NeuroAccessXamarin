@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.HttpFileUpload;
-using Waher.Networking.XMPP.PEP;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Runtime.Inventory;
 using IdApp.Pages.Registration.RegisterIdentity;
@@ -217,25 +216,6 @@ namespace IdApp.Services.Xmpp
 		/// <param name="ContentType">Internet content type.</param>
 		/// <param name="ContentSize">Size of content.</param>
 		Task<HttpFileUploadEventArgs> RequestUploadSlotAsync(string FileName, string ContentType, long ContentSize);
-
-		#endregion
-
-		#region Personal Eventing Protocol (PEP)
-
-		/// <summary>
-		/// Registers an event handler of a specific type of personal events.
-		/// </summary>
-		/// <param name="PersonalEventType">Type of personal event.</param>
-		/// <param name="Handler">Event handler.</param>
-		void RegisterPepHandler(Type PersonalEventType, PersonalEventNotificationEventHandler Handler);
-
-		/// <summary>
-		/// Unregisters an event handler of a specific type of personal events.
-		/// </summary>
-		/// <param name="PersonalEventType">Type of personal event.</param>
-		/// <param name="Handler">Event handler.</param>
-		/// <returns>If the event handler was found and removed.</returns>
-		bool UnregisterPepHandler(Type PersonalEventType, PersonalEventNotificationEventHandler Handler);
 
 		#endregion
 
