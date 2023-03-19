@@ -1283,20 +1283,6 @@
             <param name="message">The message.</param>
             <param name="innerException">The inner exception.</param>
         </member>
-        <member name="T:IdApp.Exceptions.XmppFeatureNotSupportedException">
-            <summary>
-            Represents a 'feature not supported' exception when communicating with an XMPP Server.
-            </summary>
-        </member>
-        <member name="M:IdApp.Exceptions.XmppFeatureNotSupportedException.#ctor">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Exceptions.XmppFeatureNotSupportedException.#ctor(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Exceptions.XmppFeatureNotSupportedException.#ctor(System.String,System.Exception)">
-            <inheritdoc/>
-        </member>
         <member name="T:IdApp.Extensions.ArrayExtensions">
             <summary>
             Extensions for generic <see cref="T:System.Array"/>s.
