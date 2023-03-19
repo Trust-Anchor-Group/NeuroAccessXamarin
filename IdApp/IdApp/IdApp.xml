@@ -555,16 +555,6 @@
             MessagingCenter events
             </summary>
         </member>
-        <member name="F:IdApp.Constants.MessagingCenter.ChatEditorFocus">
-            <summary>
-            Request to focus the chat editor control
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.MessagingCenter.ChatEditorUnfocus">
-            <summary>
-            Request to unfocus the chat editor control
-            </summary>
-        </member>
         <member name="F:IdApp.Constants.MessagingCenter.KeyboardAppears">
             <summary>
             Keyboard appears event
@@ -573,91 +563,6 @@
         <member name="F:IdApp.Constants.MessagingCenter.KeyboardDisappears">
             <summary>
             Keyboard disappears event
-            </summary>
-        </member>
-        <member name="T:IdApp.Constants.BatchSizes">
-            <summary>
-            Size constants.
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.BatchSizes.MessageBatchSize">
-            <summary>
-            Number of messages to load in a single batch.
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.BatchSizes.TokenBatchSize">
-            <summary>
-            Number of tokens to load in a single batch.
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.BatchSizes.AccountEventBatchSize">
-            <summary>
-            Number of account events to load in a single batch.
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.BatchSizes.DeviceBatchSize">
-            <summary>
-            Number of devices to load in a single batch.
-            </summary>
-        </member>
-        <member name="T:IdApp.Constants.ContractTemplates">
-            <summary>
-            Contract templates
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.ContractTemplates.CreateDemoTokenTemplate">
-            <summary>
-            Contract template for creating a demo token
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.ContractTemplates.TransferTokenTemplate">
-            <summary>
-            Contract template for transferring a token from a seller to a buyer
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.ContractTemplates.TokenConsignmentTemplate">
-            <summary>
-            Contract template for consigning the token to an auctioneer with the purpose of selling it.
-            </summary>
-        </member>
-        <member name="T:IdApp.Constants.PushChannels">
-            <summary>
-            Push chennels
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Messages">
-            <summary>
-            Messages channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Petitions">
-            <summary>
-            Petitions channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Identities">
-            <summary>
-            Identities channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Contracts">
-            <summary>
-            Contracts channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.EDaler">
-            <summary>
-            eDaler channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Tokens">
-            <summary>
-            Tokens channel
-            </summary>
-        </member>
-        <member name="F:IdApp.Constants.PushChannels.Provisioning">
-            <summary>
-            Provisioning channel
             </summary>
         </member>
         <member name="T:IdApp.Constants.Effects">

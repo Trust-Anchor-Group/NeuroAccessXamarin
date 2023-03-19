@@ -307,16 +307,6 @@ namespace IdApp
         public static class MessagingCenter
         {
 			/// <summary>
-			/// Request to focus the chat editor control
-			/// </summary>
-			public const string ChatEditorFocus = "ChatEditorFocus";
-
-			/// <summary>
-			/// Request to unfocus the chat editor control
-			/// </summary>
-			public const string ChatEditorUnfocus = "ChatEditorUnfocus";
-
-			/// <summary>
 			/// Keyboard appears event
 			/// </summary>
 			public const string KeyboardAppears = "KeyboardAppears";
@@ -326,94 +316,6 @@ namespace IdApp
             /// </summary>
             public const string KeyboardDisappears = "KeyboardDisappears";
         }
-
-        /// <summary>
-        /// Size constants.
-        /// </summary>
-        public static class BatchSizes
-		{
-            /// <summary>
-            /// Number of messages to load in a single batch.
-            /// </summary>
-            public const int MessageBatchSize = 30;
-
-            /// <summary>
-            /// Number of tokens to load in a single batch.
-            /// </summary>
-            public const int TokenBatchSize = 10;
-
-            /// <summary>
-            /// Number of account events to load in a single batch.
-            /// </summary>
-            public const int AccountEventBatchSize = 10;
-
-            /// <summary>
-            /// Number of devices to load in a single batch.
-            /// </summary>
-            public const int DeviceBatchSize = 100;
-		}
-
-        /// <summary>
-        /// Contract templates
-        /// </summary>
-        public static class ContractTemplates
-        {
-            /// <summary>
-            /// Contract template for creating a demo token
-            /// </summary>
-            public const string CreateDemoTokenTemplate = "2a6d69dc-cae9-bb6e-4015-a272cdb645ec@legal.lab.tagroot.io";
-
-            /// <summary>
-            /// Contract template for transferring a token from a seller to a buyer
-            /// </summary>
-            public const string TransferTokenTemplate = "2a6d6b09-cae9-bb7e-4015-a272cd9cd5b9@legal.lab.tagroot.io";
-
-			/// <summary>
-			/// Contract template for consigning the token to an auctioneer with the purpose of selling it.
-			/// </summary>
-			public const string TokenConsignmentTemplate = "2a6d86d3-cae9-be05-4015-a272cd0cbbb9@legal.lab.tagroot.io";
-		}
-
-		/// <summary>
-		/// Push chennels
-		/// </summary>
-		public static class PushChannels
-		{
-			/// <summary>
-			/// Messages channel
-			/// </summary>
-			public const string Messages = "Messages";
-
-			/// <summary>
-			/// Petitions channel
-			/// </summary>
-			public const string Petitions = "Petitions";
-
-			/// <summary>
-			/// Identities channel
-			/// </summary>
-			public const string Identities = "Identities";
-
-			/// <summary>
-			/// Contracts channel
-			/// </summary>
-			public const string Contracts = "Contracts";
-
-			/// <summary>
-			/// eDaler channel
-			/// </summary>
-			public const string EDaler = "eDaler";
-
-			/// <summary>
-			/// Tokens channel
-			/// </summary>
-			public const string Tokens = "Tokens";
-
-			/// <summary>
-			/// Provisioning channel
-			/// </summary>
-			public const string Provisioning = "Provisioning";
-		}
 
 		/// <summary>
 		/// Names of Effects.
