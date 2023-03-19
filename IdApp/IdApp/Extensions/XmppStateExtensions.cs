@@ -84,7 +84,6 @@ namespace IdApp.Extensions
 			};
 		}
 
-
         /// <summary>
         /// Converts the state to a localized string.
         /// </summary>

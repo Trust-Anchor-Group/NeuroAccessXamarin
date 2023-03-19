@@ -17,15 +17,5 @@ namespace IdApp.Extensions
             if (command is Command cmd)
                 cmd.ChangeCanExecute();
         }
-
-        /// <summary>
-        /// Calls the <see cref="ICommand.Execute"/> method with a <c>null</c> argument, given that the command <em>can</em> be executed (<see cref="ICommand.CanExecute"/>).
-        /// </summary>
-        /// <param name="command"></param>
-        public static void Execute(this ICommand command)
-        {
-            if (command is not null && command.CanExecute(null))
-                command?.Execute(null);
-        }
     }
 }

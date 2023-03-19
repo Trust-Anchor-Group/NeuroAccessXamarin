@@ -18,17 +18,5 @@ namespace IdApp.Extensions
         {
             return new[] { item };
         }
-
-        /// <summary>
-        /// Appends an item to an existing <see cref="IEnumerable{TSource}"/>.
-        /// </summary>
-        /// <typeparam name="TSource">The item type</typeparam>
-        /// <param name="first">The enumerable to append to.</param>
-        /// <param name="second">The item to append.</param>
-        /// <returns>Concatenation</returns>
-        public static IEnumerable<TSource> Append<TSource>(IEnumerable<TSource> first, TSource second)
-        {
-            return first.Concat(Create(second));
-        }
     }
 }
