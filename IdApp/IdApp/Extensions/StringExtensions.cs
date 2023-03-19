@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Waher.Content.Markdown;
-using Waher.Events;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace IdApp.Extensions
 {

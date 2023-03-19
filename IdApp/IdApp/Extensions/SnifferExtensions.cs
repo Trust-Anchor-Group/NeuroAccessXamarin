@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 using Waher.Networking.Sniffers;
 
 namespace IdApp.Extensions
