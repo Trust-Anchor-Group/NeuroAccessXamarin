@@ -31,7 +31,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Waher.Content;
 using Waher.Content.Images;
-using Waher.Content.Markdown;
 using Waher.Content.Xml;
 using Waher.Events;
 using Waher.Networking.DNS;
@@ -246,7 +245,6 @@ namespace IdApp
 					typeof(InternetContent).Assembly,           // Common Content-Types
 					typeof(ImageCodec).Assembly,                // Common Image Content-Types
 					typeof(XML).Assembly,                       // XML Content-Type
-					typeof(MarkdownDocument).Assembly,          // Markdown support
 					typeof(DnsResolver).Assembly,               // Serialization of DNS-related objects
 					typeof(XmppClient).Assembly,                // Serialization of general XMPP objects
 					typeof(ContractsClient).Assembly,           // Serialization of XMPP objects related to digital identities and smart contracts

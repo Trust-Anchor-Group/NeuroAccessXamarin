@@ -12162,6 +12162,21 @@
             <param name="MaxHeight">Maximum height when displaying photo.</param>
             <returns>Filename, Width, Height, if loaded, (null,0,0) if not.</returns>
         </member>
+        <member name="M:IdApp.Services.UI.Photos.PhotosLoader.GetTemporaryFile(System.Byte[])">
+            <summary>
+            Stores an image in binary form as a temporary file. Files will be deleted when application closes.
+            </summary>
+            <param name="BinaryImage">Binary image.</param>
+            <returns>Temporary file name.</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.PhotosLoader.GetTemporaryFile(System.Byte[],System.String)">
+            <summary>
+            Stores an image in binary form as a temporary file. Files will be deleted when application closes.
+            </summary>
+            <param name="BinaryImage">Binary image.</param>
+            <param name="FileExtension">File extension.</param>
+            <returns>Temporary file name.</returns>
+        </member>
         <member name="T:IdApp.Services.UI.QR.QrCode">
             <summary>
             Helper class to perform scanning of QR Codes by displaying the UI and handling async results.
