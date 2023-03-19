@@ -987,46 +987,6 @@
             The text to use for text on the fourth button
             </summary>
         </member>
-        <member name="F:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton1OverlayProperty">
-            <summary>
-            See <see cref="P:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton1Overlay"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton1Overlay">
-            <summary>
-            Overlay on the first button
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton2OverlayProperty">
-            <summary>
-            See <see cref="P:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton2Overlay"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.MainTabBar.MainTabBarView.LeftButton2Overlay">
-            <summary>
-            Overlay on the second button
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.MainTabBar.MainTabBarView.RightButton1OverlayProperty">
-            <summary>
-            See <see cref="P:IdApp.Controls.MainTabBar.MainTabBarView.RightButton1Overlay"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.MainTabBar.MainTabBarView.RightButton1Overlay">
-            <summary>
-            Overlay on the third button
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.MainTabBar.MainTabBarView.RightButton2OverlayProperty">
-            <summary>
-            See <see cref="P:IdApp.Controls.MainTabBar.MainTabBarView.RightButton2Overlay"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.MainTabBar.MainTabBarView.RightButton2Overlay">
-            <summary>
-            Overlay on the fourth button
-            </summary>
-        </member>
         <member name="M:IdApp.Controls.MainTabBar.MainTabBarView.Show">
             <summary>
             Call this method to show the toolbar content.
