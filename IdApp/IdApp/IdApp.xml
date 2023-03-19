@@ -9760,21 +9760,6 @@
             link
             </summary>
         </member>
-        <member name="T:IdApp.Resx.Pngs">
-            <summary>
-            A list of png resources.
-            </summary>
-        </member>
-        <member name="F:IdApp.Resx.Pngs.Image">
-            <summary>
-            An image icon from Google Fonts.
-            </summary>
-        </member>
-        <member name="F:IdApp.Resx.Pngs.BrokenImage">
-            <summary>
-            A broken image icon from Google Fonts.
-            </summary>
-        </member>
         <member name="T:IdApp.Resx.Svgs">
             <summary>
             A list of svg resources
