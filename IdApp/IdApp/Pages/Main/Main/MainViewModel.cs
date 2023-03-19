@@ -1,6 +1,8 @@
 ﻿using IdApp.DeviceSpecific;
 using IdApp.Extensions;
 using IdApp.Pages.Identity.ViewIdentity;
+using IdApp.Pages.Main.Calculator;
+using IdApp.Pages.Main.Shell;
 using IdApp.Services.Data.Countries;
 using IdApp.Services.UI.Photos;
 using System;
@@ -40,6 +42,9 @@ namespace IdApp.Pages.Main.Main
 			this.ScanQrCodeCommand = new Command(async () => await this.ScanQrCode());
 			this.SharePhotoCommand = new Command(async () => await this.SharePhoto());
 			this.ShareQRCommand = new Command(async () => await this.ShareQR());
+			this.CalculatorCommand = new Command(async () => await this.Calculator());
+			this.AboutCommand = new Command(() => this.About());
+			this.ExitCommand = new Command(() => this.Exit());
 		}
 
 		/// <inheritdoc />
@@ -207,6 +212,51 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ShareQRCommandProperty);
 			set => this.SetValue(ShareQRCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="CalculatorCommand"/>
+		/// </summary>
+		public static readonly BindableProperty CalculatorCommandProperty =
+			BindableProperty.Create(nameof(CalculatorCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for viewing the calculator.
+		/// </summary>
+		public ICommand CalculatorCommand
+		{
+			get => (ICommand)this.GetValue(CalculatorCommandProperty);
+			set => this.SetValue(CalculatorCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="AboutCommand"/>
+		/// </summary>
+		public static readonly BindableProperty AboutCommandProperty =
+			BindableProperty.Create(nameof(AboutCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for viewing information about the app.
+		/// </summary>
+		public ICommand AboutCommand
+		{
+			get => (ICommand)this.GetValue(AboutCommandProperty);
+			set => this.SetValue(AboutCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="ExitCommand"/>
+		/// </summary>
+		public static readonly BindableProperty ExitCommandProperty =
+			BindableProperty.Create(nameof(ExitCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for existing the app.
+		/// </summary>
+		public ICommand ExitCommand
+		{
+			get => (ICommand)this.GetValue(ExitCommandProperty);
+			set => this.SetValue(ExitCommandProperty, value);
 		}
 
 		/// <summary>
@@ -586,6 +636,24 @@ namespace IdApp.Pages.Main.Main
 					}
 				}
 			}
+		}
+
+		private async Task Calculator()
+		{
+			await this.NavigationService.GoToAsync(nameof(CalculatorPage), new CalculatorNavigationArgs(null));
+		}
+
+		private void About()
+		{
+			AppShell.ShowAbout(this.UiSerializer);
+		}
+
+		private void Exit()
+		{
+			this.UiSerializer.BeginInvokeOnMainThread(async () =>
+			{
+				await App.Stop();
+			});
 		}
 
 		#region ILinkableView

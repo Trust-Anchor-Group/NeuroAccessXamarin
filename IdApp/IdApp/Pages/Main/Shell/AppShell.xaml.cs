@@ -8,6 +8,7 @@ using IdApp.Pages.Identity.ViewIdentity;
 using IdApp.Pages.Main.Calculator;
 using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Pages.Main.Security;
+using IdApp.Services;
 using IdApp.Services.Contracts;
 using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
@@ -149,18 +150,23 @@ namespace IdApp.Pages.Main.Shell
 		{
 			Current.FlyoutIsPresented = false;
 
-			this.UiSerializer.BeginInvokeOnMainThread(async () =>
+			ShowAbout(this.UiSerializer);
+		}
+
+		internal static void ShowAbout(IUiSerializer UiSerializer)
+		{
+			UiSerializer.BeginInvokeOnMainThread(async () =>
 			{
 				StringBuilder sb = new();
 
 				sb.AppendLine("Name: " + AppInfo.Name);
 				sb.AppendLine("Version: " + AppInfo.VersionString + "." + AppInfo.BuildString);
-				sb.AppendLine("Runtime: " + this.GetType().Assembly.ImageRuntimeVersion);
+				sb.AppendLine("Runtime: " + typeof(AppShell).Assembly.ImageRuntimeVersion);
 				sb.AppendLine("Manufacturer: " + DeviceInfo.Manufacturer);
 				sb.AppendLine("Phone: " + DeviceInfo.Model);
 				sb.AppendLine("Platform: " + DeviceInfo.Platform + " " + DeviceInfo.VersionString);
 
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["About"], sb.ToString());
+				await UiSerializer.DisplayAlert(LocalizationResourceManager.Current["About"], sb.ToString());
 			});
 		}
 	}

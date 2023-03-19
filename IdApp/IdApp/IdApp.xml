@@ -3819,6 +3819,36 @@
             The command to bind to for viewing the user's own contracts.
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Main.Main.MainViewModel.CalculatorCommandProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Main.Main.MainViewModel.CalculatorCommand"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Main.Main.MainViewModel.CalculatorCommand">
+            <summary>
+            The command to bind to for viewing the calculator.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Main.Main.MainViewModel.AboutCommandProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Main.Main.MainViewModel.AboutCommand"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Main.Main.MainViewModel.AboutCommand">
+            <summary>
+            The command to bind to for viewing information about the app.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Main.Main.MainViewModel.ExitCommandProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Main.Main.MainViewModel.ExitCommand"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Main.Main.MainViewModel.ExitCommand">
+            <summary>
+            The command to bind to for existing the app.
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Main.Main.MainViewModel.HasPhotoProperty">
             <summary>
             See <see cref="P:IdApp.Pages.Main.Main.MainViewModel.HasPhoto"/>
