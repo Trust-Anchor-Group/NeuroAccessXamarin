@@ -50,7 +50,6 @@ using Waher.Script;
 using Waher.Script.Content;
 using Waher.Script.Graphs;
 using Waher.Security.LoginMonitor;
-using Waher.Things;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -251,8 +250,7 @@ namespace IdApp
 					typeof(Graph).Assembly,                     // Indexes graph script functions
 					typeof(GraphEncoder).Assembly,              // Indexes content script functions
 					typeof(XmppServerlessMessaging).Assembly,   // Indexes End-to-End encryption mechanisms
-					typeof(HttpxClient).Assembly,               // Support for HTTP over XMPP (httpx) URI Schme.
-					typeof(IThingReference).Assembly);          // Thing & sensor data library.
+					typeof(HttpxClient).Assembly);              // Support for HTTP over XMPP (httpx) URI Schme.
 			}
 
 			EndpointSecurity.SetCiphers(new Type[]
