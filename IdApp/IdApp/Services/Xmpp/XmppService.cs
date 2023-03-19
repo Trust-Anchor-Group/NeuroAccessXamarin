@@ -1,10 +1,5 @@
 ﻿using IdApp.Extensions;
 using IdApp.Pages.Registration.RegisterIdentity;
-using IdApp.Popups.Xmpp.ReportOrBlock;
-using IdApp.Popups.Xmpp.ReportType;
-using IdApp.Popups.Xmpp.SubscribeTo;
-using IdApp.Popups.Xmpp.SubscriptionRequest;
-using IdApp.Services.Contracts;
 using IdApp.Services.Push;
 using IdApp.Services.Tag;
 using IdApp.Services.UI.Photos;
@@ -31,7 +26,6 @@ using Waher.Networking.XMPP.PEP;
 using Waher.Networking.XMPP.Push;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Persistence;
-using Waher.Persistence.Filters;
 using Waher.Runtime.Inventory;
 using Waher.Runtime.Profiling;
 using Waher.Runtime.Settings;
@@ -136,6 +130,7 @@ namespace IdApp.Services.Xmpp
 					else
 						this.xmppClient = new XmppClient(HostName, PortNumber, this.accountName, this.passwordHash, this.passwordHashMethod, Constants.LanguageCodes.Default, this.appAssembly, this.sniffer);
 
+					this.xmppClient.RequestRosterOnStartup = false;
 					this.xmppClient.TrustServer = !IsIpAddress;
 					this.xmppClient.AllowCramMD5 = false;
 					this.xmppClient.AllowDigestMD5 = false;
@@ -150,11 +145,6 @@ namespace IdApp.Services.Xmpp
 					this.xmppClient.OnConnectionError += this.XmppClient_ConnectionError;
 					this.xmppClient.OnError += this.XmppClient_Error;
 					this.xmppClient.OnPresenceSubscribe += this.XmppClient_OnPresenceSubscribe;
-					this.xmppClient.OnPresenceUnsubscribed += this.XmppClient_OnPresenceUnsubscribed;
-					this.xmppClient.OnRosterItemAdded += this.XmppClient_OnRosterItemAdded;
-					this.xmppClient.OnRosterItemUpdated += this.XmppClient_OnRosterItemUpdated;
-					this.xmppClient.OnRosterItemRemoved += this.XmppClient_OnRosterItemRemoved;
-					this.xmppClient.OnPresence += this.XmppClient_OnPresence;
 
 					this.xmppClient.RegisterMessageHandler("Delivered", ContractsClient.NamespaceOnboarding, this.TransferIdDelivered, true);
 					this.xmppClient.RegisterMessageHandler("clientMessage", ContractsClient.NamespaceLegalIdentities, this.ClientMessage, true);
@@ -993,187 +983,10 @@ namespace IdApp.Services.Xmpp
 
 		#region Presence Subscriptions
 
-		private async Task XmppClient_OnPresenceSubscribe(object Sender, PresenceEventArgs e)
+		private Task XmppClient_OnPresenceSubscribe(object Sender, PresenceEventArgs e)
 		{
-			LegalIdentity RemoteIdentity = null;
-			string FriendlyName = string.IsNullOrWhiteSpace(e.NickName) ? e.FromBareJID : e.NickName;
-			string PhotoUrl = null;
-			int PhotoWidth = 0;
-			int PhotoHeight = 0;
-
-			foreach (XmlNode N in e.Presence.ChildNodes)
-			{
-				if (N is XmlElement E && E.LocalName == "identity" && E.NamespaceURI == ContractsClient.NamespaceLegalIdentities)
-				{
-					RemoteIdentity = LegalIdentity.Parse(E);
-					if (RemoteIdentity is not null)
-					{
-						FriendlyName = ContactInfo.GetFriendlyName(RemoteIdentity);
-
-						IdentityStatus Status = await this.contractsClient.ValidateAsync(RemoteIdentity);
-						if (Status != IdentityStatus.Valid)
-						{
-							e.Decline();
-
-							Log.Warning("Invalid ID received. Presence subscription declined.", e.FromBareJID, RemoteIdentity.Id, "IdValidationError",
-								new KeyValuePair<string, object>("Recipient JID", this.BareJid),
-								new KeyValuePair<string, object>("Sender JID", e.FromBareJID),
-								new KeyValuePair<string, object>("Legal ID", RemoteIdentity.Id),
-								new KeyValuePair<string, object>("Validation", Status));
-							return;
-						}
-
-						break;
-					}
-				}
-			}
-
-			ContactInfo Info = await ContactInfo.FindByBareJid(e.FromBareJID);
-			if ((Info is not null) && Info.AllowSubscriptionFrom.HasValue)
-			{
-				if (Info.AllowSubscriptionFrom.Value)
-					e.Accept();
-				else
-					e.Decline();
-
-				if (Info.FriendlyName != FriendlyName || ((RemoteIdentity is not null) && Info.LegalId != RemoteIdentity.Id))
-				{
-					if (RemoteIdentity is not null)
-					{
-						Info.LegalId = RemoteIdentity.Id;
-						Info.LegalIdentity = RemoteIdentity;
-					}
-
-					Info.FriendlyName = FriendlyName;
-					await Database.Update(Info);
-				}
-
-				return;
-			}
-
-			if ((RemoteIdentity is not null) && (RemoteIdentity.Attachments is not null))
-				(PhotoUrl, PhotoWidth, PhotoHeight) = await PhotosLoader.LoadPhotoAsTemporaryFile(RemoteIdentity.Attachments, 300, 300);
-
-			SubscriptionRequestPopupPage SubscriptionRequestPage = new(e.FromBareJID, FriendlyName, PhotoUrl, PhotoWidth, PhotoHeight);
-
-			await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(SubscriptionRequestPage);
-			PresenceRequestAction Action = await SubscriptionRequestPage.Result;
-
-			switch (Action)
-			{
-				case PresenceRequestAction.Accept:
-					e.Accept();
-
-					if (Info is null)
-					{
-						Info = new ContactInfo()
-						{
-							AllowSubscriptionFrom = true,
-							BareJid = e.FromBareJID,
-							FriendlyName = string.IsNullOrWhiteSpace(e.NickName) ? e.FromBareJID : e.NickName,
-							IsThing = false
-						};
-
-						await Database.Insert(Info);
-					}
-					else if (!Info.AllowSubscriptionFrom.HasValue || !Info.AllowSubscriptionFrom.Value)
-					{
-						Info.AllowSubscriptionFrom = true;
-						await Database.Update(Info);
-					}
-
-					RosterItem Item = this.xmppClient[e.FromBareJID];
-
-					if (Item is null || (Item.State != SubscriptionState.Both && Item.State != SubscriptionState.To))
-					{
-						SubscribeToPopupPage SubscribeToPage = new(e.FromBareJID);
-
-						await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(SubscribeToPage);
-						bool? SubscribeTo = await SubscribeToPage.Result;
-
-						if (SubscribeTo.HasValue && SubscribeTo.Value)
-						{
-							string IdXml;
-
-							if (this.TagProfile.LegalIdentity is null)
-								IdXml = string.Empty;
-							else
-							{
-								StringBuilder Xml = new();
-								this.TagProfile.LegalIdentity.Serialize(Xml, true, true, true, true, true, true, true);
-								IdXml = Xml.ToString();
-							}
-
-							e.Client.RequestPresenceSubscription(e.FromBareJID, IdXml);
-						}
-					}
-					break;
-
-				case PresenceRequestAction.Reject:
-					e.Decline();
-
-					ReportOrBlockPopupPage ReportOrBlockPage = new(e.FromBareJID);
-
-					await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(ReportOrBlockPage);
-					ReportOrBlockAction ReportOrBlock = await ReportOrBlockPage.Result;
-
-					if (ReportOrBlock == ReportOrBlockAction.Block || ReportOrBlock == ReportOrBlockAction.Report)
-					{
-						if (Info is null)
-						{
-							Info = new ContactInfo()
-							{
-								AllowSubscriptionFrom = false,
-								BareJid = e.FromBareJID,
-								FriendlyName = string.IsNullOrWhiteSpace(e.NickName) ? e.FromBareJID : e.NickName,
-								IsThing = false
-							};
-
-							await Database.Insert(Info);
-						}
-						else if (!Info.AllowSubscriptionFrom.HasValue || Info.AllowSubscriptionFrom.Value)
-						{
-							Info.AllowSubscriptionFrom = false;
-							await Database.Update(Info);
-						}
-
-						if (ReportOrBlock == ReportOrBlockAction.Report)
-						{
-							ReportTypePopupPage ReportTypePage = new(e.FromBareJID);
-
-							await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(ReportOrBlockPage);
-							ReportingReason? ReportType = await ReportTypePage.Result;
-
-							if (ReportType.HasValue)
-							{
-								TaskCompletionSource<bool> Result = new();
-
-								await this.abuseClient.BlockJID(e.FromBareJID, ReportType.Value, (sender2, e2) =>
-								{
-									Result.TrySetResult(e.Ok);
-									return Task.CompletedTask;
-								}, null);
-
-								await Result.Task;
-							}
-						}
-					}
-					break;
-
-				case PresenceRequestAction.Ignore:
-				default:
-					break;
-			}
-		}
-
-		private async Task XmppClient_OnPresenceUnsubscribed(object Sender, PresenceEventArgs e)
-		{
-			ContactInfo ContactInfo = await ContactInfo.FindByBareJid(e.FromBareJID);
-			if ((ContactInfo is not null) && ContactInfo.AllowSubscriptionFrom.HasValue && ContactInfo.AllowSubscriptionFrom.Value)
-			{
-				ContactInfo.AllowSubscriptionFrom = null;
-				await Database.Update(ContactInfo);
-			}
+			e.Decline();
+			return Task.CompletedTask;
 		}
 
 		#endregion
@@ -1240,160 +1053,6 @@ namespace IdApp.Services.Xmpp
 
 			return Task.CompletedTask;
 		}
-
-		#endregion
-
-		#region Presence
-
-		private async Task XmppClient_OnPresence(object Sender, PresenceEventArgs e)
-		{
-			try
-			{
-				Task T = this.OnPresence?.Invoke(this, e);
-				if (T is not null)
-					await T;
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		/// <summary>
-		/// Event raised when a new presence stanza has been received.
-		/// </summary>
-		public event PresenceEventHandlerAsync OnPresence;
-
-		/// <summary>
-		/// Requests subscription of presence information from a contact.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of contact.</param>
-		public void RequestPresenceSubscription(string BareJid)
-		{
-			this.xmppClient.RequestPresenceSubscription(BareJid);
-		}
-
-		/// <summary>
-		/// Requests subscription of presence information from a contact.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of contact.</param>
-		/// <param name="CustomXml">Custom XML to include in the subscription request.</param>
-		public void RequestPresenceSubscription(string BareJid, string CustomXml)
-		{
-			this.xmppClient.RequestPresenceSubscription(BareJid, CustomXml);
-		}
-
-		/// <summary>
-		/// Requests unssubscription of presence information from a contact.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of contact.</param>
-		public void RequestPresenceUnsubscription(string BareJid)
-		{
-			this.xmppClient.RequestPresenceUnsubscription(BareJid);
-		}
-
-		/// <summary>
-		/// Requests a previous presence subscription request revoked.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of contact.</param>
-		public void RequestRevokePresenceSubscription(string BareJid)
-		{
-			this.xmppClient.RequestRevokePresenceSubscription(BareJid);
-		}
-
-		#endregion
-
-		#region Roster
-
-		/// <summary>
-		/// Items in the roster.
-		/// </summary>
-		public RosterItem[] Roster => this.xmppClient?.Roster ?? new RosterItem[0];
-
-		/// <summary>
-		/// Gets a roster item.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of roster item.</param>
-		/// <returns>Roster item, if found, or null, if not available.</returns>
-		public RosterItem GetRosterItem(string BareJid)
-		{
-			return this.xmppClient?.GetRosterItem(BareJid);
-		}
-
-		/// <summary>
-		/// Adds an item to the roster. If an item with the same Bare JID is found in the roster, that item is updated.
-		/// </summary>
-		/// <param name="Item">Item to add.</param>
-		public void AddRosterItem(RosterItem Item)
-		{
-			this.xmppClient?.AddRosterItem(Item);
-		}
-
-		/// <summary>
-		/// Removes an item from the roster.
-		/// </summary>
-		/// <param name="BareJid">Bare JID of the roster item.</param>
-		public void RemoveRosterItem(string BareJid)
-		{
-			this.xmppClient?.RemoveRosterItem(BareJid);
-		}
-
-		private async Task XmppClient_OnRosterItemAdded(object Sender, RosterItem Item)
-		{
-			try
-			{
-				Task T = this.OnRosterItemAdded?.Invoke(this, Item);
-				if (T is not null)
-					await T;
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		/// <summary>
-		/// Event raised when a roster item has been added to the roster.
-		/// </summary>
-		public event RosterItemEventHandlerAsync OnRosterItemAdded;
-
-		private async Task XmppClient_OnRosterItemUpdated(object Sender, RosterItem Item)
-		{
-			try
-			{
-				Task T = this.OnRosterItemUpdated?.Invoke(this, Item);
-				if (T is not null)
-					await T;
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		/// <summary>
-		/// Event raised when a roster item has been updated in the roster.
-		/// </summary>
-		public event RosterItemEventHandlerAsync OnRosterItemUpdated;
-
-		private async Task XmppClient_OnRosterItemRemoved(object Sender, RosterItem Item)
-		{
-			try
-			{
-				Task T = this.OnRosterItemRemoved?.Invoke(this, Item);
-				if (T is not null)
-					await T;
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-		}
-
-		/// <summary>
-		/// Event raised when a roster item has been removed from the roster.
-		/// </summary>
-		public event RosterItemEventHandlerAsync OnRosterItemRemoved;
 
 		#endregion
 
