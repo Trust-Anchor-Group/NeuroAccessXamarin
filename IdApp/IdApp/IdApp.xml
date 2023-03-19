@@ -11241,11 +11241,6 @@
             The XMPP server's log Jid.
             </summary>
         </member>
-        <member name="P:IdApp.Services.Tag.ITagProfile.MucJid">
-            <summary>
-            The XMPP server's multi-user chat Jid.
-            </summary>
-        </member>
         <member name="P:IdApp.Services.Tag.ITagProfile.Step">
             <summary>
             This profile's current registration step.
@@ -11465,12 +11460,6 @@
             Used during XMPP service discovery. Sets the log id.
             </summary>
             <param name="logJid">The log id.</param>
-        </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.SetMucJid(System.String)">
-            <summary>
-            Used during XMPP service discovery. Sets the multi-user chat id.
-            </summary>
-            <param name="mucJid">The multi-user chat id.</param>
         </member>
         <member name="M:IdApp.Services.Tag.ITagProfile.ComputePinHash(System.String)">
             <summary>
@@ -11693,9 +11682,6 @@
         <member name="P:IdApp.Services.Tag.TagProfile.LogJid">
             <inheritdoc/>
         </member>
-        <member name="P:IdApp.Services.Tag.TagProfile.MucJid">
-            <inheritdoc/>
-        </member>
         <member name="P:IdApp.Services.Tag.TagProfile.Step">
             <inheritdoc/>
         </member>
@@ -11790,9 +11776,6 @@
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetLogJid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.SetMucJid(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.ComputePinHash(System.String)">
@@ -11917,11 +11900,6 @@
         <member name="P:IdApp.Services.TagConfiguration.LogJid">
             <summary>
             Log Jabber JID
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.TagConfiguration.MucJid">
-            <summary>
-            Multi user chat Jabber JID
             </summary>
         </member>
         <member name="P:IdApp.Services.TagConfiguration.PinHash">

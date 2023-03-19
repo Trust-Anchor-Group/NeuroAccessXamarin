@@ -388,13 +388,13 @@ namespace IdApp.Services.UI.Photos
 		}
 
 		private static Dictionary<string, bool> temporaryFiles = null;
-		private readonly static object synchObject = new object();
+		private readonly static object synchObject = new();
 
 		private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
 		{
 			lock (synchObject)
 			{
-				if (!(temporaryFiles is null))
+				if (temporaryFiles is not null)
 				{
 					foreach (string FileName in temporaryFiles.Keys)
 					{

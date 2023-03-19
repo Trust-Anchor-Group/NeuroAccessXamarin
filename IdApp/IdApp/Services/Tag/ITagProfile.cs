@@ -93,11 +93,6 @@ namespace IdApp.Services.Tag
 		string LogJid { get; }
 
 		/// <summary>
-		/// The XMPP server's multi-user chat Jid.
-		/// </summary>
-		string MucJid { get; }
-
-		/// <summary>
 		/// This profile's current registration step.
 		/// </summary>
 		RegistrationStep Step { get; }
@@ -316,12 +311,6 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		/// <param name="logJid">The log id.</param>
 		void SetLogJid(string logJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the multi-user chat id.
-		/// </summary>
-		/// <param name="mucJid">The multi-user chat id.</param>
-		void SetMucJid(string mucJid);
 
 		/// <summary>
 		/// Computes a hash of the specified PIN.

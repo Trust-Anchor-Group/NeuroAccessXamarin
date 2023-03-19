@@ -96,12 +96,6 @@ namespace IdApp.Services
 		public string LogJid { get; set; }
 
 		/// <summary>
-		/// Multi user chat Jabber JID
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string MucJid { get; set; }
-
-		/// <summary>
 		/// The hash of the user's pin.
 		/// </summary>
 		[DefaultValueStringEmpty]

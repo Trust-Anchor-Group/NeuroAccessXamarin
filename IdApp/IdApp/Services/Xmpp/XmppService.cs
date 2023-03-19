@@ -19,7 +19,6 @@ using Waher.Networking.XMPP.Abuse;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.HTTPX;
-using Waher.Networking.XMPP.MUC;
 using Waher.Networking.XMPP.PEP;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Persistence;
@@ -46,7 +45,6 @@ namespace IdApp.Services.Xmpp
 		private XmppClient xmppClient;
 		private ContractsClient contractsClient;
 		private HttpFileUploadClient fileUploadClient;
-		private MultiUserChatClient mucClient;
 		private AbuseClient abuseClient;
 		private PepClient pepClient;
 		private HttpxClient httpxClient;
@@ -180,12 +178,6 @@ namespace IdApp.Services.Xmpp
 						this.fileUploadClient = new HttpFileUploadClient(this.xmppClient, this.TagProfile.HttpFileUploadJid, this.TagProfile.HttpFileUploadMaxSize);
 					}
 
-					if (!string.IsNullOrWhiteSpace(this.TagProfile.MucJid))
-					{
-						Thread?.NewState("MUC");
-						this.mucClient = new MultiUserChatClient(this.xmppClient, this.TagProfile.MucJid);
-					}
-
 					Thread?.NewState("PEP");
 					this.pepClient = new PepClient(this.xmppClient);
 					this.ReregisterPepEventHandlers(this.pepClient);
@@ -239,9 +231,6 @@ namespace IdApp.Services.Xmpp
 			this.fileUploadClient?.Dispose();
 			this.fileUploadClient = null;
 
-			this.mucClient?.Dispose();
-			this.mucClient = null;
-
 			this.pepClient?.Dispose();
 			this.pepClient = null;
 
@@ -281,9 +270,6 @@ namespace IdApp.Services.Xmpp
 				return false;
 
 			if (this.fileUploadClient?.FileUploadJid != this.TagProfile.HttpFileUploadJid)
-				return false;
-
-			if (this.mucClient?.ComponentAddress != this.TagProfile.MucJid)
 				return false;
 
 			return true;
@@ -505,9 +491,6 @@ namespace IdApp.Services.Xmpp
 
 						if (this.fileUploadClient is null && !string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) && this.TagProfile.HttpFileUploadMaxSize.HasValue)
 							this.fileUploadClient = new HttpFileUploadClient(this.xmppClient, this.TagProfile.HttpFileUploadJid, this.TagProfile.HttpFileUploadMaxSize);
-
-						if (this.mucClient is null && !string.IsNullOrWhiteSpace(this.TagProfile.MucJid))
-							this.mucClient = new MultiUserChatClient(this.xmppClient, this.TagProfile.MucJid);
 					}
 
 					this.LogService.AddListener(this.xmppEventSink);
@@ -861,9 +844,6 @@ namespace IdApp.Services.Xmpp
 			if (string.IsNullOrWhiteSpace(this.TagProfile.LogJid))
 				return false;
 
-			if (string.IsNullOrWhiteSpace(this.TagProfile.MucJid))
-				return false;
-
 			return true;
 		}
 
@@ -884,9 +864,6 @@ namespace IdApp.Services.Xmpp
 
 				if (itemResponse.HasFeature(XmppEventSink.NamespaceEventLogging))
 					this.TagProfile.SetLogJid(Item.JID);
-
-				if (itemResponse.HasFeature(MultiUserChatClient.NamespaceMuc))
-					this.TagProfile.SetMucJid(Item.JID);
 			}
 		}
 

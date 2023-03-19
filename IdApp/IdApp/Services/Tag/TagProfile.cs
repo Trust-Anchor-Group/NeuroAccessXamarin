@@ -142,7 +142,6 @@ namespace IdApp.Services.Tag
 				HttpFileUploadJid = this.HttpFileUploadJid,
 				HttpFileUploadMaxSize = this.HttpFileUploadMaxSize,
 				LogJid = this.LogJid,
-				MucJid = this.MucJid,
 				PinHash = this.PinHash,
 				IsTest = this.IsTest,
 				TestOtpTimestamp = this.TestOtpTimestamp,
@@ -177,7 +176,6 @@ namespace IdApp.Services.Tag
 				this.HttpFileUploadJid = configuration.HttpFileUploadJid;
 				this.HttpFileUploadMaxSize = configuration.HttpFileUploadMaxSize;
 				this.LogJid = configuration.LogJid;
-				this.MucJid = configuration.MucJid;
 				this.PinHash = configuration.PinHash;
 				this.IsTest = configuration.IsTest;
 				this.TestOtpTimestamp = configuration.TestOtpTimestamp;
@@ -399,20 +397,6 @@ namespace IdApp.Services.Tag
 				{
 					this.logJid = value;
 					this.FlagAsDirty(nameof(this.LogJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public string MucJid
-		{
-			get => this.mucJid;
-			private set
-			{
-				if (!string.Equals(this.mucJid, value))
-				{
-					this.mucJid = value;
-					this.FlagAsDirty(nameof(this.MucJid));
 				}
 			}
 		}
@@ -781,12 +765,6 @@ namespace IdApp.Services.Tag
 		public void SetLogJid(string logJid)
 		{
 			this.LogJid = logJid;
-		}
-
-		/// <inheritdoc/>
-		public void SetMucJid(string mucJid)
-		{
-			this.MucJid = mucJid;
 		}
 
 		#endregion
