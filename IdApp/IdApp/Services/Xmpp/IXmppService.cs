@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml;
-using IdApp.Services.Push;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.PEP;
@@ -13,8 +12,6 @@ using IdApp.Pages.Registration.RegisterIdentity;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Persistence;
 using Waher.Runtime.Temporary;
-using Waher.Content;
-using Waher.Networking.XMPP.Push;
 
 namespace IdApp.Services.Xmpp
 {
@@ -179,48 +176,6 @@ namespace IdApp.Services.Xmpp
 		/// <exception cref="TimeoutException">If a timeout occurred.</exception>
 		/// <exception cref="XmppException">If an IQ error is returned.</exception>
 		Task<XmlElement> IqSetAsync(string To, string Xml);
-
-		#endregion
-
-		#region Push Notification
-
-		/// <summary>
-		/// If push notification is supported.
-		/// </summary>
-		bool SupportsPushNotification { get; }
-
-		/// <summary>
-		/// Registers a new token.
-		/// </summary>
-		/// <param name="TokenInformation">Token Information</param>
-		/// <returns>If token could be registered.</returns>
-		Task<bool> NewPushNotificationToken(TokenInformation TokenInformation);
-
-		/// <summary>
-		/// Reports a new push-notification token to the broker.
-		/// </summary>
-		/// <param name="Token">Token</param>
-		/// <param name="Service">Service used</param>
-		/// <param name="ClientType">Client type.</param>
-		Task ReportNewPushNotificationToken(string Token, PushMessagingService Service, ClientType ClientType);
-
-		/// <summary>
-		/// Clears configured push notification rules in the broker.
-		/// </summary>
-		Task ClearPushNotificationRules();
-
-		/// <summary>
-		/// Adds a push-notification rule in the broker.
-		/// </summary>
-		/// <param name="MessageType">Type of message</param>
-		/// <param name="LocalName">Local name of content element</param>
-		/// <param name="Namespace">Namespace of content element</param>
-		/// <param name="Channel">Push-notification channel</param>
-		/// <param name="MessageVariable">Variable to receive message stanza</param>
-		/// <param name="PatternMatchingScript">Pattern matching script</param>
-		/// <param name="ContentScript">Content script</param>
-		Task AddPushNotificationRule(MessageType MessageType, string LocalName, string Namespace, string Channel,
-			string MessageVariable, string PatternMatchingScript, string ContentScript);
 
 		#endregion
 

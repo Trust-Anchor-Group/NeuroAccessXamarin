@@ -10,7 +10,6 @@ using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
 using IdApp.Services.Network;
 using IdApp.Services.Nfc;
-using IdApp.Services.Push;
 using IdApp.Services.Settings;
 using IdApp.Services.Storage;
 using IdApp.Services.Tag;
@@ -42,7 +41,6 @@ using Waher.Networking.XMPP.HTTPX;
 using Waher.Networking.XMPP.P2P;
 using Waher.Networking.XMPP.P2P.E2E;
 using Waher.Networking.XMPP.PEP;
-using Waher.Networking.XMPP.Push;
 using Waher.Persistence;
 using Waher.Persistence.Files;
 using Waher.Persistence.Serialization;
@@ -256,7 +254,6 @@ namespace IdApp
 					typeof(Expression).Assembly,                // Indexes basic script functions
 					typeof(Graph).Assembly,                     // Indexes graph script functions
 					typeof(GraphEncoder).Assembly,              // Indexes content script functions
-					typeof(PushNotificationClient).Assembly,    // Indexes Push Notification client framework
 					typeof(XmppServerlessMessaging).Assembly,   // Indexes End-to-End encryption mechanisms
 					typeof(HttpxClient).Assembly,               // Support for HTTP over XMPP (httpx) URI Schme.
 					typeof(IThingReference).Assembly);          // Thing & sensor data library.
@@ -282,7 +279,6 @@ namespace IdApp
 			Types.InstantiateDefault<IXmppService>(false, appAssembly, this.startupProfiler);
 			Types.InstantiateDefault<IAttachmentCacheService>(false);
 			Types.InstantiateDefault<IContractOrchestratorService>(false);
-			Types.InstantiateDefault<IPushNotificationService>(false);
 			Types.InstantiateDefault<INfcService>(false);
 
 			this.services = new ServiceReferences();

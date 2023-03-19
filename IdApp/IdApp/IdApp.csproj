@@ -63,7 +63,6 @@
     <PackageReference Include="Waher.Networking.XMPP.P2P" Version="2.0.3" />
     <PackageReference Include="Waher.Networking.XMPP.PEP" Version="2.0.4" />
     <PackageReference Include="Waher.Networking.XMPP.PubSub" Version="2.0.4" />
-    <PackageReference Include="Waher.Networking.XMPP.Push" Version="2.0.0" />
     <PackageReference Include="Waher.Persistence" Version="1.9.0" />
     <PackageReference Include="Waher.Persistence.FilesLW" Version="1.10.0" />
     <PackageReference Include="Waher.Runtime.Inventory" Version="1.1.2" />

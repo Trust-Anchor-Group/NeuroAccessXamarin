@@ -11,7 +11,6 @@ using IdApp.Services.Storage;
 using IdApp.Services.Tag;
 using IdApp.Services.UI;
 using Xamarin.Forms;
-using IdApp.Services.Push;
 
 namespace IdApp.Services
 {
@@ -39,7 +38,6 @@ namespace IdApp.Services
         private ISettingsService settingsService;
         private IStorageService storageService;
         private INfcService nfcService;
-        private IPushNotificationService pushNotificationService;
 
         /// <summary>
         /// The dispatcher to use for alerts and accessing the main thread.
@@ -184,18 +182,5 @@ namespace IdApp.Services
                 return this.nfcService;
             }
         }
-
-		/// <summary>
-		/// Push Notification Service
-		/// </summary>
-		public IPushNotificationService PushNotificationService
-        {
-            get
-            {
-                this.pushNotificationService ??= App.Instantiate<IPushNotificationService>();
-                return this.pushNotificationService;
-            }
-        }
-
     }
 }

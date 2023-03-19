@@ -98,11 +98,6 @@ namespace IdApp.Services.Tag
 		string MucJid { get; }
 
 		/// <summary>
-		/// If Push Notification is supported by server.
-		/// </summary>
-		bool? SupportsPushNotification { get; }
-
-		/// <summary>
 		/// This profile's current registration step.
 		/// </summary>
 		RegistrationStep Step { get; }
@@ -327,12 +322,6 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		/// <param name="mucJid">The multi-user chat id.</param>
 		void SetMucJid(string mucJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the support for push notifications.
-		/// </summary>
-		/// <param name="supportsPushNotification">If broker supports push notification.</param>
-		void SetSupportsPushNotification(bool? supportsPushNotification);
 
 		/// <summary>
 		/// Computes a hash of the specified PIN.

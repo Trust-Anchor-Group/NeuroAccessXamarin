@@ -79,7 +79,6 @@ namespace IdApp.Services.Tag
 		private string mucJid;
 		private string pinHash;
 		private long? httpFileUploadMaxSize;
-		private bool? supportsPushNotification;
 		private bool isTest;
 		private DateTime? testOtpTimestamp;
 		private RegistrationStep step = RegistrationStep.ValidateContactInfo;
@@ -144,7 +143,6 @@ namespace IdApp.Services.Tag
 				HttpFileUploadMaxSize = this.HttpFileUploadMaxSize,
 				LogJid = this.LogJid,
 				MucJid = this.MucJid,
-				SupportsPushNotification = this.SupportsPushNotification,
 				PinHash = this.PinHash,
 				IsTest = this.IsTest,
 				TestOtpTimestamp = this.TestOtpTimestamp,
@@ -180,7 +178,6 @@ namespace IdApp.Services.Tag
 				this.HttpFileUploadMaxSize = configuration.HttpFileUploadMaxSize;
 				this.LogJid = configuration.LogJid;
 				this.MucJid = configuration.MucJid;
-				this.SupportsPushNotification = configuration.SupportsPushNotification;
 				this.PinHash = configuration.PinHash;
 				this.IsTest = configuration.IsTest;
 				this.TestOtpTimestamp = configuration.TestOtpTimestamp;
@@ -201,8 +198,7 @@ namespace IdApp.Services.Tag
 			return string.IsNullOrWhiteSpace(this.legalJid) ||
 				   string.IsNullOrWhiteSpace(this.httpFileUploadJid) ||
 				   string.IsNullOrWhiteSpace(this.logJid) ||
-				   string.IsNullOrWhiteSpace(this.mucJid) ||
-				   !this.supportsPushNotification.HasValue;
+				   string.IsNullOrWhiteSpace(this.mucJid);
 		}
 
 		/// <inheritdoc/>
@@ -417,20 +413,6 @@ namespace IdApp.Services.Tag
 				{
 					this.mucJid = value;
 					this.FlagAsDirty(nameof(this.MucJid));
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public bool? SupportsPushNotification
-		{
-			get => this.supportsPushNotification;
-			private set
-			{
-				if (this.supportsPushNotification != value)
-				{
-					this.supportsPushNotification = value;
-					this.FlagAsDirty(nameof(this.SupportsPushNotification));
 				}
 			}
 		}
@@ -807,12 +789,6 @@ namespace IdApp.Services.Tag
 			this.MucJid = mucJid;
 		}
 
-		/// <inheritdoc/>
-		public void SetSupportsPushNotification(bool? supportsPushNotification)
-		{
-			this.SupportsPushNotification = supportsPushNotification;
-		}
-
 		#endregion
 
 		/// <inheritdoc/>
@@ -854,7 +830,6 @@ namespace IdApp.Services.Tag
 			this.httpFileUploadJid = string.Empty;
 			this.logJid = string.Empty;
 			this.mucJid = string.Empty;
-			this.supportsPushNotification = null;
 			this.pinHash = string.Empty;
 			this.httpFileUploadMaxSize = null;
 			this.isTest = false;

@@ -10,7 +10,6 @@ using IdApp.Services.Settings;
 using IdApp.Services.Storage;
 using IdApp.Services.Tag;
 using IdApp.Services.UI;
-using IdApp.Services.Push;
 
 namespace IdApp.Services
 {
@@ -78,10 +77,5 @@ namespace IdApp.Services
 		/// Near-Field Communication (NFC) service.
 		/// </summary>
 		public INfcService NfcService { get; }
-
-		/// <summary>
-		/// Push Notification Service
-		/// </summary>
-		public IPushNotificationService PushNotificationService { get; }
 	}
 }

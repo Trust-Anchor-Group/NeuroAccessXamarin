@@ -102,12 +102,6 @@ namespace IdApp.Services
 		public string MucJid { get; set; }
 
 		/// <summary>
-		/// If Push Notification is supported by server.
-		/// </summary>
-		[DefaultValueNull]
-		public bool? SupportsPushNotification { get; set; }
-
-		/// <summary>
 		/// The hash of the user's pin.
 		/// </summary>
 		[DefaultValueStringEmpty]

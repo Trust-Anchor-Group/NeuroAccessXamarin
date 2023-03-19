@@ -1,8 +1,6 @@
 ﻿using IdApp.Extensions;
 using IdApp.Pages.Registration.RegisterIdentity;
-using IdApp.Services.Push;
 using IdApp.Services.Tag;
-using IdApp.Services.UI.Photos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +21,6 @@ using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.HTTPX;
 using Waher.Networking.XMPP.MUC;
 using Waher.Networking.XMPP.PEP;
-using Waher.Networking.XMPP.Push;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Persistence;
 using Waher.Runtime.Inventory;
@@ -50,7 +47,6 @@ namespace IdApp.Services.Xmpp
 		private ContractsClient contractsClient;
 		private HttpFileUploadClient fileUploadClient;
 		private MultiUserChatClient mucClient;
-		private PushNotificationClient pushNotificationClient;
 		private AbuseClient abuseClient;
 		private PepClient pepClient;
 		private HttpxClient httpxClient;
@@ -190,12 +186,6 @@ namespace IdApp.Services.Xmpp
 						this.mucClient = new MultiUserChatClient(this.xmppClient, this.TagProfile.MucJid);
 					}
 
-					if (this.TagProfile.SupportsPushNotification.HasValue && this.TagProfile.SupportsPushNotification.Value)
-					{
-						Thread?.NewState("Push");
-						this.pushNotificationClient = new PushNotificationClient(this.xmppClient);
-					}
-
 					Thread?.NewState("PEP");
 					this.pepClient = new PepClient(this.xmppClient);
 					this.ReregisterPepEventHandlers(this.pepClient);
@@ -252,9 +242,6 @@ namespace IdApp.Services.Xmpp
 			this.mucClient?.Dispose();
 			this.mucClient = null;
 
-			this.pushNotificationClient?.Dispose();
-			this.pushNotificationClient = null;
-
 			this.pepClient?.Dispose();
 			this.pepClient = null;
 
@@ -297,9 +284,6 @@ namespace IdApp.Services.Xmpp
 				return false;
 
 			if (this.mucClient?.ComponentAddress != this.TagProfile.MucJid)
-				return false;
-
-			if ((this.pushNotificationClient is null) ^ !(this.TagProfile.SupportsPushNotification.HasValue && this.TagProfile.SupportsPushNotification.Value))
 				return false;
 
 			return true;
@@ -524,14 +508,9 @@ namespace IdApp.Services.Xmpp
 
 						if (this.mucClient is null && !string.IsNullOrWhiteSpace(this.TagProfile.MucJid))
 							this.mucClient = new MultiUserChatClient(this.xmppClient, this.TagProfile.MucJid);
-
-						if (this.pushNotificationClient is null && this.TagProfile.SupportsPushNotification.HasValue && this.TagProfile.SupportsPushNotification.Value)
-							this.pushNotificationClient = new PushNotificationClient(this.xmppClient);
 					}
 
 					this.LogService.AddListener(this.xmppEventSink);
-
-					await this.PushNotificationService.CheckPushNotificationToken();
 
 					this.xmppThread?.Stop();
 					this.xmppThread = null;
@@ -868,8 +847,6 @@ namespace IdApp.Services.Xmpp
 			List<Task> Tasks = new();
 			object SynchObject = new();
 
-			Tasks.Add(this.CheckFeatures(Client, SynchObject));
-
 			foreach (Item Item in response.Items)
 				Tasks.Add(this.CheckComponent(Client, Item, SynchObject));
 
@@ -887,20 +864,7 @@ namespace IdApp.Services.Xmpp
 			if (string.IsNullOrWhiteSpace(this.TagProfile.MucJid))
 				return false;
 
-			if (!(this.TagProfile.SupportsPushNotification.HasValue && this.TagProfile.SupportsPushNotification.Value))
-				return false;
-
 			return true;
-		}
-
-		private async Task CheckFeatures(XmppClient Client, object SynchObject)
-		{
-			ServiceDiscoveryEventArgs e = await Client.ServiceDiscoveryAsync(string.Empty);
-
-			lock (SynchObject)
-			{
-				this.TagProfile.SetSupportsPushNotification(e.HasFeature(PushNotificationClient.MessagePushNamespace));
-			}
 		}
 
 		private async Task CheckComponent(XmppClient Client, Item Item, object SynchObject)
@@ -1052,70 +1016,6 @@ namespace IdApp.Services.Xmpp
 			});
 
 			return Task.CompletedTask;
-		}
-
-		#endregion
-
-		#region Push Notification
-
-		/// <summary>
-		/// If push notification is supported.
-		/// </summary>
-		public bool SupportsPushNotification => this.pushNotificationClient is not null;
-
-		/// <summary>
-		/// Registers a new token.
-		/// </summary>
-		/// <param name="TokenInformation">Token information.</param>
-		/// <returns>If token could be registered.</returns>
-		public async Task<bool> NewPushNotificationToken(TokenInformation TokenInformation)
-		{
-			// TODO: Check if started
-
-			if (this.pushNotificationClient is null || !this.IsOnline)
-				return false;
-			else
-			{
-				await this.ReportNewPushNotificationToken(TokenInformation.Token, TokenInformation.Service, TokenInformation.ClientType);
-
-				return true;
-			}
-		}
-
-		/// <summary>
-		/// Reports a new push-notification token to the broker.
-		/// </summary>
-		/// <param name="Token">Token</param>
-		/// <param name="Service">Service used</param>
-		/// <param name="ClientType">Client type.</param>
-		public Task ReportNewPushNotificationToken(string Token, PushMessagingService Service, ClientType ClientType)
-		{
-			return this.pushNotificationClient.NewTokenAsync(Token, Service, ClientType);
-		}
-
-		/// <summary>
-		/// Clears configured push notification rules in the broker.
-		/// </summary>
-		public Task ClearPushNotificationRules()
-		{
-			return this.pushNotificationClient.ClearRulesAsync();
-		}
-
-		/// <summary>
-		/// Adds a push-notification rule in the broker.
-		/// </summary>
-		/// <param name="MessageType">Type of message</param>
-		/// <param name="LocalName">Local name of content element</param>
-		/// <param name="Namespace">Namespace of content element</param>
-		/// <param name="Channel">Push-notification channel</param>
-		/// <param name="MessageVariable">Variable to receive message stanza</param>
-		/// <param name="PatternMatchingScript">Pattern matching script</param>
-		/// <param name="ContentScript">Content script</param>
-		public Task AddPushNotificationRule(Waher.Networking.XMPP.MessageType MessageType, string LocalName, string Namespace,
-			string Channel, string MessageVariable, string PatternMatchingScript, string ContentScript)
-		{
-			return this.pushNotificationClient.AddRuleAsync(MessageType, LocalName, Namespace, Channel, MessageVariable,
-				PatternMatchingScript, ContentScript);
 		}
 
 		#endregion

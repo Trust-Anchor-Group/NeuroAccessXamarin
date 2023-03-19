@@ -1220,17 +1220,6 @@
             Gets the ID of the device.
             </summary>
         </member>
-        <member name="T:IdApp.DeviceSpecific.IGetPushNotificationToken">
-            <summary>
-            Dependency interface for device-specific push notification tokens.
-            </summary>
-        </member>
-        <member name="M:IdApp.DeviceSpecific.IGetPushNotificationToken.GetToken">
-            <summary>
-            Gets a Push Notification token for the device.
-            </summary>
-            <returns>Token information.</returns>
-        </member>
         <member name="T:IdApp.DeviceSpecific.ISecureDisplay">
             <summary>
             Dependency interface for device-specific securing of display.
@@ -10450,11 +10439,6 @@
             Near-Field Communication (NFC) service.
             </summary>
         </member>
-        <member name="P:IdApp.Services.IServiceReferences.PushNotificationService">
-            <summary>
-            Push Notification Service
-            </summary>
-        </member>
         <member name="T:IdApp.Services.LoadableService">
             <inheritdoc/>
         </member>
@@ -10875,126 +10859,6 @@
             bypassing hacks that are Tesseract-specific.
             </summary>
         </member>
-        <member name="T:IdApp.Services.Push.IPushNotificationService">
-            <summary>
-            Interface for push notification services.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.IPushNotificationService.NewToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            New token received from push notification back-end.
-            </summary>
-            <param name="TokenInformation">Token information.</param>
-        </member>
-        <member name="M:IdApp.Services.Push.IPushNotificationService.TryGetToken(Waher.Networking.XMPP.Push.PushMessagingService,System.String@)">
-            <summary>
-            Tries to get a token from a push notification service.
-            </summary>
-            <param name="Source">Source of token</param>
-            <param name="Token">Token, if found.</param>
-            <returns>If a token was found for the corresponding source.</returns>
-        </member>
-        <member name="E:IdApp.Services.Push.IPushNotificationService.OnNewToken">
-            <summary>
-            Event raised when a new token is made available.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.IPushNotificationService.CheckPushNotificationToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            Checks if the Push Notification Token is current and registered properly.
-            </summary>
-            <param name="TokenInformation">Non null if we got it from the OnNewToken</param>
-        </member>
-        <member name="T:IdApp.Services.Push.PushNotificationService">
-            <summary>
-            Push notification service
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.PushNotificationService.#ctor">
-            <summary>
-            Push notification service
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.PushNotificationService.NewToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            New token received from push notification back-end.
-            </summary>
-            <param name="TokenInformation">Token information</param>
-        </member>
-        <member name="E:IdApp.Services.Push.PushNotificationService.OnNewToken">
-            <summary>
-            Event raised when a new token is made available.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.PushNotificationService.TryGetToken(Waher.Networking.XMPP.Push.PushMessagingService,System.String@)">
-            <summary>
-            Tries to get a token from a push notification service.
-            </summary>
-            <param name="Source">Source of token</param>
-            <param name="Token">Token, if found.</param>
-            <returns>If a token was found for the corresponding source.</returns>
-        </member>
-        <member name="M:IdApp.Services.Push.PushNotificationService.CheckPushNotificationToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            Checks if the Push Notification Token is current and registered properly.
-            </summary>
-            <param name="TokenInformation">Non null if we got it from the OnNewToken</param>
-        </member>
-        <member name="T:IdApp.Services.Push.TokenEventHandler">
-            <summary>
-            Delegate for token event handlers.
-            </summary>
-            <param name="Sender">Sender of event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="T:IdApp.Services.Push.TokenEventArgs">
-            <summary>
-            Event argumens for token-based events.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Push.TokenEventArgs.#ctor(Waher.Networking.XMPP.Push.PushMessagingService,System.String,Waher.Networking.XMPP.Push.ClientType)">
-            <summary>
-            Event argumens for token-based events.
-            </summary>
-            <param name="Source">Source of notification</param>
-            <param name="Token">Token</param>
-            <param name="ClientType">Client Type</param>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenEventArgs.Source">
-            <summary>
-            Source of notification
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenEventArgs.Token">
-            <summary>
-            Token
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenEventArgs.ClientType">
-            <summary>
-            Client Type
-            </summary>
-        </member>
-        <member name="T:IdApp.Services.Push.TokenInformation">
-            <summary>
-            Contains information about a push notification token.
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenInformation.Token">
-            <summary>
-            Token string
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenInformation.Service">
-            <summary>
-            Service issuing the token
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Push.TokenInformation.ClientType">
-            <summary>
-            Type of client
-            </summary>
-        </member>
         <member name="T:IdApp.Services.ServiceReferences">
             <summary>
             Abstract base class for (bindable) classes that reference services in the app.
@@ -11063,11 +10927,6 @@
         <member name="P:IdApp.Services.ServiceReferences.NfcService">
             <summary>
             Near-Field Communication (NFC) service.
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.ServiceReferences.PushNotificationService">
-            <summary>
-            Push Notification Service
             </summary>
         </member>
         <member name="T:IdApp.Services.Settings.ISettingsService">
@@ -11397,11 +11256,6 @@
             The XMPP server's multi-user chat Jid.
             </summary>
         </member>
-        <member name="P:IdApp.Services.Tag.ITagProfile.SupportsPushNotification">
-            <summary>
-            If Push Notification is supported by server.
-            </summary>
-        </member>
         <member name="P:IdApp.Services.Tag.ITagProfile.Step">
             <summary>
             This profile's current registration step.
@@ -11628,12 +11482,6 @@
             </summary>
             <param name="mucJid">The multi-user chat id.</param>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.SetSupportsPushNotification(System.Nullable{System.Boolean})">
-            <summary>
-            Used during XMPP service discovery. Sets the support for push notifications.
-            </summary>
-            <param name="supportsPushNotification">If broker supports push notification.</param>
-        </member>
         <member name="M:IdApp.Services.Tag.ITagProfile.ComputePinHash(System.String)">
             <summary>
             Computes a hash of the specified PIN.
@@ -11858,9 +11706,6 @@
         <member name="P:IdApp.Services.Tag.TagProfile.MucJid">
             <inheritdoc/>
         </member>
-        <member name="P:IdApp.Services.Tag.TagProfile.SupportsPushNotification">
-            <inheritdoc/>
-        </member>
         <member name="P:IdApp.Services.Tag.TagProfile.Step">
             <inheritdoc/>
         </member>
@@ -11958,9 +11803,6 @@
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetMucJid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.SetSupportsPushNotification(System.Nullable{System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.ComputePinHash(System.String)">
@@ -12090,11 +11932,6 @@
         <member name="P:IdApp.Services.TagConfiguration.MucJid">
             <summary>
             Multi user chat Jabber JID
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.TagConfiguration.SupportsPushNotification">
-            <summary>
-            If Push Notification is supported by server.
             </summary>
         </member>
         <member name="P:IdApp.Services.TagConfiguration.PinHash">
@@ -12749,43 +12586,6 @@
             <exception cref="T:System.TimeoutException">If a timeout occurred.</exception>
             <exception cref="T:Waher.Networking.XMPP.XmppException">If an IQ error is returned.</exception>
         </member>
-        <member name="P:IdApp.Services.Xmpp.IXmppService.SupportsPushNotification">
-            <summary>
-            If push notification is supported.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.NewPushNotificationToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            Registers a new token.
-            </summary>
-            <param name="TokenInformation">Token Information</param>
-            <returns>If token could be registered.</returns>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.ReportNewPushNotificationToken(System.String,Waher.Networking.XMPP.Push.PushMessagingService,Waher.Networking.XMPP.Push.ClientType)">
-            <summary>
-            Reports a new push-notification token to the broker.
-            </summary>
-            <param name="Token">Token</param>
-            <param name="Service">Service used</param>
-            <param name="ClientType">Client type.</param>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.ClearPushNotificationRules">
-            <summary>
-            Clears configured push notification rules in the broker.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.AddPushNotificationRule(Waher.Networking.XMPP.MessageType,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Adds a push-notification rule in the broker.
-            </summary>
-            <param name="MessageType">Type of message</param>
-            <param name="LocalName">Local name of content element</param>
-            <param name="Namespace">Namespace of content element</param>
-            <param name="Channel">Push-notification channel</param>
-            <param name="MessageVariable">Variable to receive message stanza</param>
-            <param name="PatternMatchingScript">Pattern matching script</param>
-            <param name="ContentScript">Content script</param>
-        </member>
         <member name="M:IdApp.Services.Xmpp.IXmppService.GetApiToken(System.Int32)">
             <summary>
             Gets a token for use with APIs that are either distributed or use different
@@ -13097,43 +12897,6 @@
             <returns>Response XML element.</returns>
             <exception cref="T:System.TimeoutException">If a timeout occurred.</exception>
             <exception cref="T:Waher.Networking.XMPP.XmppException">If an IQ error is returned.</exception>
-        </member>
-        <member name="P:IdApp.Services.Xmpp.XmppService.SupportsPushNotification">
-            <summary>
-            If push notification is supported.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.NewPushNotificationToken(IdApp.Services.Push.TokenInformation)">
-            <summary>
-            Registers a new token.
-            </summary>
-            <param name="TokenInformation">Token information.</param>
-            <returns>If token could be registered.</returns>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.ReportNewPushNotificationToken(System.String,Waher.Networking.XMPP.Push.PushMessagingService,Waher.Networking.XMPP.Push.ClientType)">
-            <summary>
-            Reports a new push-notification token to the broker.
-            </summary>
-            <param name="Token">Token</param>
-            <param name="Service">Service used</param>
-            <param name="ClientType">Client type.</param>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.ClearPushNotificationRules">
-            <summary>
-            Clears configured push notification rules in the broker.
-            </summary>
-        </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.AddPushNotificationRule(Waher.Networking.XMPP.MessageType,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Adds a push-notification rule in the broker.
-            </summary>
-            <param name="MessageType">Type of message</param>
-            <param name="LocalName">Local name of content element</param>
-            <param name="Namespace">Namespace of content element</param>
-            <param name="Channel">Push-notification channel</param>
-            <param name="MessageVariable">Variable to receive message stanza</param>
-            <param name="PatternMatchingScript">Pattern matching script</param>
-            <param name="ContentScript">Content script</param>
         </member>
         <member name="M:IdApp.Services.Xmpp.XmppService.GetApiToken(System.Int32)">
             <summary>

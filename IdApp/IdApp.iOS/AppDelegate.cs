@@ -3,14 +3,12 @@ using Firebase.CloudMessaging;
 using Foundation;
 using IdApp.Helpers;
 using IdApp.Services;
-using IdApp.Services.Push;
 using IdApp.Services.Xmpp;
 using System;
 using System.Threading.Tasks;
 using UIKit;
 using UserNotifications;
 using Waher.Events;
-using Waher.Networking.XMPP.Push;
 using Waher.Runtime.Inventory;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
@@ -345,79 +343,12 @@ namespace IdApp.iOS
 			};
 		}
 
-		[Export("messaging:didReceiveRegistrationToken:")]
-        public async void DidReceiveRegistrationToken(Messaging _, string NewToken)
-        {
-			try
-			{
-				IPushNotificationService PushService = Types.Instantiate<IPushNotificationService>(true);
-
-				if (PushService is not null)
-				{
-					TokenInformation TokenInformation = new()
-					{
-						Token = NewToken,
-						ClientType = ClientType.iOS,
-						Service = PushMessagingService.Firebase
-					};
-
-					await PushService.CheckPushNotificationToken(TokenInformation);
-				}
-			}
-			catch (Exception ex)
-			{
-				Log.Critical(ex);
-			}
-        }
-
         private void RemoveAllNotifications()
         {
             UNUserNotificationCenter UNCenter = UNUserNotificationCenter.Current;
             UNCenter.RemoveAllDeliveredNotifications();
             UNCenter.RemoveAllPendingNotificationRequests();
         }
-
-        /*
-        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        {
-            try
-            {
-                completionHandler(UIBackgroundFetchResult.NewData);
-            }
-            catch (Exception)
-            {
-                completionHandler(UIBackgroundFetchResult.NoData);
-            }
-        }
-        */
-        /*
-        public async Task StartLongRunningBackgroundTask()
-        {
-            var _backgroundTaskID = UIApplication.SharedApplication.BeginBackgroundTask(() => {
-                // this is called if task times out
-                //if (_backgroundTaskID != 0)
-                //{
-                //    UIApplication.SharedApplication.EndBackgroundTask(_backgroundTaskID);
-                //    _backgroundTaskID = 0;
-                //}
-            });
-
-            try
-            {
-                //var restService = FreshTinyIoCContainer.Current.Resolve<IRestClientService>();
-                //var result = await restService.GetDummyResult();
-                //var messagingService = FreshTinyIoCContainer.Current.Resolve<IMessagingService>();
-                //messagingService.Publish(new GotDataMessage { DataString = $"{result.foo} at {DateTime.Now:G}" });
-            }
-
-            catch (Exception ex)
-            {
-                //Debug.WriteLine(ex.Message);
-            }
-
-            UIApplication.SharedApplication.EndBackgroundTask(_backgroundTaskID);
-        }
-        */
     }
 
     public class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate
@@ -425,33 +356,5 @@ namespace IdApp.iOS
         public UserNotificationCenterDelegate()
         {
         }
-
-		/*
-        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
-        public override void WillPresentNotification(UNUserNotificationCenter Center, UNNotification Notification, Action<UNNotificationPresentationOptions> CompletionHandler)
-        {
-            this.ProcessNotification(Notification);
-
-            UNNotificationPresentationOptions options = UNNotificationPresentationOptions.None;
-            CompletionHandler(options);
-        }
-
-        [Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
-        public override void DidReceiveNotificationResponse(UNUserNotificationCenter Center, UNNotificationResponse Response, Action CompletionHandler)
-        {
-			this.ProcessNotification(Response.Notification);
-
-			CompletionHandler();
-		}
-
-        private void ProcessNotification(UNNotification Notification)
-        {
-            //Console.WriteLine(Notification.Request.Content.ToString());
-
-            //string Title = Notification.Request.Content.Title;
-            //string Message = Notification.Request.Content.Body;
-            //DependencyService.Get<INotificationManager>().ReceiveNotification(Title, Message);
-        }
-		*/
 	}
 }
