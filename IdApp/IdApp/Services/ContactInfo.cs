@@ -311,10 +311,6 @@ namespace IdApp.Services
 				}
 			}
 
-			RosterItem Item = XmppService.GetRosterItem(RemoteId);
-			if (Item is not null)
-				return Item.NameOrBareJid;
-
 			lock (identityCache)
 			{
 				if (identityCache.TryGetValue(RemoteId, out LegalIdentity Id))

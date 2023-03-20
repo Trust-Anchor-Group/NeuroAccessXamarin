@@ -77,30 +77,6 @@
                              Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
         </MenuItem.IconImageSource>
     </MenuItem>
-    <MenuItem Text="{x:Static resx:AppResources.Contacts}" Clicked="ContactsMenuItem_Clicked">
-        <MenuItem.IconImageSource>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.Contacts}"
-                             Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
-        </MenuItem.IconImageSource>
-    </MenuItem>
-    <MenuItem Text="{x:Static resx:AppResources.Things}" Clicked="ThingsMenuItem_Clicked">
-        <MenuItem.IconImageSource>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.Things}"
-                             Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
-        </MenuItem.IconImageSource>
-    </MenuItem>
-    <MenuItem Text="{x:Static resx:AppResources.Contracts}" Clicked="ContractsMenuItem_Clicked" IsEnabled="{Binding Path=IsConnected}">
-        <MenuItem.IconImageSource>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.Contract}"
-                             Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
-        </MenuItem.IconImageSource>
-    </MenuItem>
-    <MenuItem Text="{x:Static resx:AppResources.NewContract}" Clicked="NewContractMenuItem_Clicked" IsEnabled="{Binding Path=IsConnected}">
-        <MenuItem.IconImageSource>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.NewContract}"
-                             Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
-        </MenuItem.IconImageSource>
-    </MenuItem>
 	<MenuItem Text="{x:Static resx:AppResources.Calculator}" Clicked="Calculator_Clicked">
 		<MenuItem.IconImageSource>
 			<FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.Calculator}"
@@ -110,12 +86,6 @@
 	<MenuItem Text="{x:Static resx:AppResources.Security}" Clicked="Security_Clicked">
 		<MenuItem.IconImageSource>
 			<FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.UserShield}"
-                             Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
-		</MenuItem.IconImageSource>
-	</MenuItem>
-	<MenuItem Text="{x:Static resx:AppResources.Links}" Clicked="Links_Clicked">
-		<MenuItem.IconImageSource>
-			<FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="{x:Static resx:FontAwesome.Link}"
                              Color="{AppThemeBinding Light={StaticResource HeadingBackgroundLightTheme}, Dark={StaticResource ForegroundColorDarkTheme}}"/>
 		</MenuItem.IconImageSource>
 	</MenuItem>

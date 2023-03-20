@@ -1036,10 +1036,10 @@
     <value>Бумажник</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Добро пожаловать в приложение TAG Digital ID!</value>
+    <value>Добро пожаловать в приложение Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Перед подключением к сети TAG ID нам необходимо выбрать поставщика услуг для вас. Для этого нам нужно знать цель использования приложения. Выберите наиболее подходящий вариант ниже.</value>
+    <value>Перед подключением к сети Neuro-Access нам необходимо выбрать поставщика услуг для вас. Для этого нам нужно знать цель использования приложения. Выберите наиболее подходящий вариант ниже.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Проверка подлинности сетевого удостоверения</value>

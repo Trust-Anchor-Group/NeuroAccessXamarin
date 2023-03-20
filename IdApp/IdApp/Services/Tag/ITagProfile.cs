@@ -78,16 +78,6 @@ namespace IdApp.Services.Tag
 		string LegalJid { get; }
 
 		/// <summary>
-		/// The Thing Registry JID
-		/// </summary>
-		string RegistryJid { get; }
-
-		/// <summary>
-		/// The XMPP server's provisioning Jid.
-		/// </summary>
-		string ProvisioningJid { get; }
-
-		/// <summary>
 		/// The XMPP server's file upload Jid.
 		/// </summary>
 		string HttpFileUploadJid { get; }
@@ -101,26 +91,6 @@ namespace IdApp.Services.Tag
 		/// The XMPP server's log Jid.
 		/// </summary>
 		string LogJid { get; }
-
-		/// <summary>
-		/// The XMPP server's multi-user chat Jid.
-		/// </summary>
-		string MucJid { get; }
-
-		/// <summary>
-		/// The XMPP server's eDaler service JID.
-		/// </summary>
-		string EDalerJid { get; }
-
-		/// <summary>
-		/// The XMPP server's Neuro-Features service JID.
-		/// </summary>
-		string NeuroFeaturesJid { get; }
-
-		/// <summary>
-		/// If Push Notification is supported by server.
-		/// </summary>
-		bool? SupportsPushNotification { get; }
 
 		/// <summary>
 		/// This profile's current registration step.
@@ -330,18 +300,6 @@ namespace IdApp.Services.Tag
 		void SetLegalJid(string legalJid);
 
 		/// <summary>
-		/// Used during XMPP service discovery. Sets the provisioning id.
-		/// </summary>
-		/// <param name="provisioningJid"></param>
-		void SetProvisioningJid(string provisioningJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the registry id.
-		/// </summary>
-		/// <param name="registryJid"></param>
-		void SetRegistryJid(string registryJid);
-
-		/// <summary>
 		/// Used during XMPP service discovery. Sets the file upload parameters.
 		/// </summary>
 		/// <param name="httpFileUploadJid">The http file upload id.</param>
@@ -353,30 +311,6 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		/// <param name="logJid">The log id.</param>
 		void SetLogJid(string logJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the multi-user chat id.
-		/// </summary>
-		/// <param name="mucJid">The multi-user chat id.</param>
-		void SetMucJid(string mucJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the eDaler service JID.
-		/// </summary>
-		/// <param name="eDalerJid">The eDaler service JID.</param>
-		void SetEDalerJid(string eDalerJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the Neuro-Features service JID.
-		/// </summary>
-		/// <param name="neuroFeaturesJid">The Neuro-Features service JID.</param>
-		void SetNeuroFeaturesJid(string neuroFeaturesJid);
-
-		/// <summary>
-		/// Used during XMPP service discovery. Sets the support for push notifications.
-		/// </summary>
-		/// <param name="supportsPushNotification">If broker supports push notification.</param>
-		void SetSupportsPushNotification(bool? supportsPushNotification);
 
 		/// <summary>
 		/// Computes a hash of the specified PIN.

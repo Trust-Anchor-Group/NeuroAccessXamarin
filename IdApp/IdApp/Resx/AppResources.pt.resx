@@ -1036,10 +1036,10 @@
     <value>Carteira</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Bem-vindo ao TAG Digital ID App!</value>
+    <value>Bem-vindo ao Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Antes de nos conectarmos à rede TAG ID, precisamos selecionar um provedor de serviços para você. Para isso, precisamos saber o propósito de usar o aplicativo. Selecione a opção mais apropriada abaixo.</value>
+    <value>Antes de nos conectarmos à rede Neuro-Access, precisamos selecionar um provedor de serviços para você. Para isso, precisamos saber o propósito de usar o aplicativo. Selecione a opção mais apropriada abaixo.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Autenticando identidade de rede</value>

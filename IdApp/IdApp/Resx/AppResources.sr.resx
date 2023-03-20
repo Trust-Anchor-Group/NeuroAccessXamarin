@@ -1039,7 +1039,7 @@
     <value>Dobrodošli u TAG aplikaciju za digitalne ID-ove!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Pre povezivanja sa TAG ID mrežom, potrebno je da izaberemo dobavljača usluga za vas. Da bismo to uradili, moramo da znamo svrhu korišćenja aplikacije. Izaberite najprikladnije dole navedene opcije.</value>
+    <value>Pre povezivanja sa Neuro-Access mrežom, potrebno je da izaberemo dobavljača usluga za vas. Da bismo to uradili, moramo da znamo svrhu korišćenja aplikacije. Izaberite najprikladnije dole navedene opcije.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Potvrda identiteta mreže</value>

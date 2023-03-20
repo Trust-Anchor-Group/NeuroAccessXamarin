@@ -51,22 +51,6 @@ namespace IdApp.Controls.MainTabBar
 			this.CenterButton.SetBinding(Button.TextProperty, new Binding(nameof(this.CenterButtonText), source: this));
 			this.RightButton1.SetBinding(Button.TextProperty, new Binding(nameof(this.RightButton1Text), source: this));
 			this.RightButton2.SetBinding(Button.TextProperty, new Binding(nameof(this.RightButton2Text), source: this));
-
-			this.LeftButton1OverlayFrame.SetBinding(Frame.IsVisibleProperty,
-				new Binding(nameof(this.LeftButton1Overlay), source: this, converter: new GreaterThanZero()));
-			this.LeftButton1OverlayLabel.SetBinding(Label.TextProperty, new Binding(nameof(this.LeftButton1Overlay), source: this));
-
-			this.LeftButton2OverlayFrame.SetBinding(Frame.IsVisibleProperty,
-				new Binding(nameof(this.LeftButton2Overlay), source: this, converter: new GreaterThanZero()));
-			this.LeftButton2OverlayLabel.SetBinding(Label.TextProperty, new Binding(nameof(this.LeftButton2Overlay), source: this));
-
-			this.RightButton1OverlayFrame.SetBinding(Frame.IsVisibleProperty,
-				new Binding(nameof(this.RightButton1Overlay), source: this, converter: new GreaterThanZero()));
-			this.RightButton1OverlayLabel.SetBinding(Label.TextProperty, new Binding(nameof(this.RightButton1Overlay), source: this));
-
-			this.RightButton2OverlayFrame.SetBinding(Frame.IsVisibleProperty,
-				new Binding(nameof(this.RightButton2Overlay), source: this, converter: new GreaterThanZero()));
-			this.RightButton2OverlayLabel.SetBinding(Label.TextProperty, new Binding(nameof(this.RightButton2Overlay), source: this));
 		}
 
 		#region Properties
@@ -294,66 +278,6 @@ namespace IdApp.Controls.MainTabBar
 		{
 			get => (string)this.GetValue(RightButton2TextProperty);
 			set => this.SetValue(RightButton2TextProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="LeftButton1Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty LeftButton1OverlayProperty =
-			BindableProperty.Create(nameof(LeftButton1Overlay), typeof(int), typeof(MainTabBarView), default(int));
-
-		/// <summary>
-		/// Overlay on the first button
-		/// </summary>
-		public int LeftButton1Overlay
-		{
-			get => (int)this.GetValue(LeftButton1OverlayProperty);
-			set => this.SetValue(LeftButton1OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="LeftButton2Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty LeftButton2OverlayProperty =
-			BindableProperty.Create(nameof(LeftButton2Overlay), typeof(int), typeof(MainTabBarView), default(int));
-
-		/// <summary>
-		/// Overlay on the second button
-		/// </summary>
-		public int LeftButton2Overlay
-		{
-			get => (int)this.GetValue(LeftButton2OverlayProperty);
-			set => this.SetValue(LeftButton2OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="RightButton1Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty RightButton1OverlayProperty =
-			BindableProperty.Create(nameof(RightButton1Overlay), typeof(int), typeof(MainTabBarView), default(int));
-
-		/// <summary>
-		/// Overlay on the third button
-		/// </summary>
-		public int RightButton1Overlay
-		{
-			get => (int)this.GetValue(RightButton1OverlayProperty);
-			set => this.SetValue(RightButton1OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="RightButton2Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty RightButton2OverlayProperty =
-			BindableProperty.Create(nameof(RightButton2Overlay), typeof(int), typeof(MainTabBarView), default(int));
-
-		/// <summary>
-		/// Overlay on the fourth button
-		/// </summary>
-		public int RightButton2Overlay
-		{
-			get => (int)this.GetValue(RightButton2OverlayProperty);
-			set => this.SetValue(RightButton2OverlayProperty, value);
 		}
 
 		#endregion

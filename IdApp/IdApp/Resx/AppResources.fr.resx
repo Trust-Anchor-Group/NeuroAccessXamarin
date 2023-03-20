@@ -1036,10 +1036,10 @@
     <value>Portefeuille</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Bienvenue sur l’application TAG Digital ID !</value>
+    <value>Bienvenue sur Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Avant de nous connecter au réseau TAG ID, nous devons sélectionner un fournisseur de services pour vous. Pour ce faire, nous devons connaître le but de l’utilisation de l’application. Sélectionnez l’option la plus appropriée ci-dessous.</value>
+    <value>Avant de nous connecter au réseau Neuro-Access, nous devons sélectionner un fournisseur de services pour vous. Pour ce faire, nous devons connaître le but de l’utilisation de l’application. Sélectionnez l’option la plus appropriée ci-dessous.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Authentification de l’identité réseau</value>

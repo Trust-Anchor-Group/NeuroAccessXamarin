@@ -78,18 +78,6 @@ namespace IdApp.Services
 		public string LegalJid { get; set; }
 
 		/// <summary>
-		/// The Thing Registry JID
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string RegistryJid { get; set; }
-
-		/// <summary>
-		/// Provisioning Jabber Id
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string ProvisioningJid { get; set; }
-
-		/// <summary>
 		/// Http File Upload Jabber Id
 		/// </summary>
 		[DefaultValueStringEmpty]
@@ -106,30 +94,6 @@ namespace IdApp.Services
 		/// </summary>
 		[DefaultValueStringEmpty]
 		public string LogJid { get; set; }
-
-		/// <summary>
-		/// Multi user chat Jabber JID
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string MucJid { get; set; }
-
-		/// <summary>
-		/// eDaler Service JID
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string EDalerJid { get; set; }
-
-		/// <summary>
-		/// Neuro-Features Service JID
-		/// </summary>
-		[DefaultValueStringEmpty]
-		public string NeuroFeaturesJid { get; set; }
-
-		/// <summary>
-		/// If Push Notification is supported by server.
-		/// </summary>
-		[DefaultValueNull]
-		public bool? SupportsPushNotification { get; set; }
 
 		/// <summary>
 		/// The hash of the user's pin.
