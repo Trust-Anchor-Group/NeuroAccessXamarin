@@ -16,5 +16,5 @@ using System.Resources;
 [assembly: AssemblyTitle("Neuro-Access")]
 [assembly: AssemblyDescription("Neuro-Access")]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: System.Reflection.AssemblyVersion("1.6.59.0")]
-[assembly: System.Reflection.AssemblyFileVersion("1.6.59.0")]
+[assembly: System.Reflection.AssemblyVersion("1.6.60.0")]
+[assembly: System.Reflection.AssemblyFileVersion("1.6.60.0")]
