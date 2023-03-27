@@ -1,5 +1,4 @@
-﻿using EDaler;
-using IdApp.DeviceSpecific;
+﻿using IdApp.DeviceSpecific;
 using IdApp.Extensions;
 using IdApp.Pages;
 using IdApp.Resx;
@@ -11,17 +10,12 @@ using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
 using IdApp.Services.Network;
 using IdApp.Services.Nfc;
-using IdApp.Services.Notification;
-using IdApp.Services.Push;
 using IdApp.Services.Settings;
 using IdApp.Services.Storage;
 using IdApp.Services.Tag;
-using IdApp.Services.ThingRegistries;
 using IdApp.Services.UI;
 using IdApp.Services.UI.QR;
-using IdApp.Services.Wallet;
 using IdApp.Services.Xmpp;
-using NeuroFeatures;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -37,21 +31,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Waher.Content;
 using Waher.Content.Images;
-using Waher.Content.Markdown;
 using Waher.Content.Xml;
 using Waher.Events;
 using Waher.Networking.DNS;
 using Waher.Networking.XMPP;
-using Waher.Networking.XMPP.Concentrator;
 using Waher.Networking.XMPP.Contracts;
-using Waher.Networking.XMPP.Control;
 using Waher.Networking.XMPP.HTTPX;
 using Waher.Networking.XMPP.P2P;
 using Waher.Networking.XMPP.P2P.E2E;
-using Waher.Networking.XMPP.PEP;
-using Waher.Networking.XMPP.Provisioning;
-using Waher.Networking.XMPP.Push;
-using Waher.Networking.XMPP.Sensor;
 using Waher.Persistence;
 using Waher.Persistence.Files;
 using Waher.Persistence.Serialization;
@@ -62,10 +49,7 @@ using Waher.Runtime.Text;
 using Waher.Script;
 using Waher.Script.Content;
 using Waher.Script.Graphs;
-using Waher.Security.JWS;
-using Waher.Security.JWT;
 using Waher.Security.LoginMonitor;
-using Waher.Things;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -225,9 +209,6 @@ namespace IdApp
 			{
 				this.InitInstances(Thread);
 
-				Thread?.NewState("JWT");
-				await this.services.CryptoService.InitializeJwtFactory();
-
 				await this.PerformStartup(false, Thread, BackgroundStart);
 
 				Result.TrySetResult(true);
@@ -263,26 +244,14 @@ namespace IdApp
 					typeof(InternetContent).Assembly,           // Common Content-Types
 					typeof(ImageCodec).Assembly,                // Common Image Content-Types
 					typeof(XML).Assembly,                       // XML Content-Type
-					typeof(MarkdownDocument).Assembly,          // Markdown support
 					typeof(DnsResolver).Assembly,               // Serialization of DNS-related objects
 					typeof(XmppClient).Assembly,                // Serialization of general XMPP objects
 					typeof(ContractsClient).Assembly,           // Serialization of XMPP objects related to digital identities and smart contracts
-					typeof(ProvisioningClient).Assembly,        // Serialization of XMPP objects related to thing registries, provisioning and decision support.
-					typeof(SensorClient).Assembly,              // Serialization of XMPP objects related to sensors
-					typeof(ControlClient).Assembly,             // Serialization of XMPP objects related to actuators
-					typeof(ConcentratorClient).Assembly,        // Serialization of XMPP objects related to concentrators
-					typeof(PepClient).Assembly,                 // Serialization of XMPP objects related to personal eventing
 					typeof(Expression).Assembly,                // Indexes basic script functions
 					typeof(Graph).Assembly,                     // Indexes graph script functions
 					typeof(GraphEncoder).Assembly,              // Indexes content script functions
-					typeof(EDalerClient).Assembly,              // Indexes eDaler client framework
-					typeof(NeuroFeaturesClient).Assembly,       // Indexes Neuro-Features client framework
-					typeof(PushNotificationClient).Assembly,    // Indexes Push Notification client framework
 					typeof(XmppServerlessMessaging).Assembly,   // Indexes End-to-End encryption mechanisms
-					typeof(HttpxClient).Assembly,               // Support for HTTP over XMPP (httpx) URI Schme.
-					typeof(JwtFactory).Assembly,                // Generation of JWT tokens.
-					typeof(JwsAlgorithm).Assembly,              // Available JWS algorithms.
-					typeof(IThingReference).Assembly);          // Thing & sensor data library.
+					typeof(HttpxClient).Assembly);              // Support for HTTP over XMPP (httpx) URI Schme.
 			}
 
 			EndpointSecurity.SetCiphers(new Type[]
@@ -305,10 +274,6 @@ namespace IdApp
 			Types.InstantiateDefault<IXmppService>(false, appAssembly, this.startupProfiler);
 			Types.InstantiateDefault<IAttachmentCacheService>(false);
 			Types.InstantiateDefault<IContractOrchestratorService>(false);
-			Types.InstantiateDefault<IThingRegistryOrchestratorService>(false);
-			Types.InstantiateDefault<INeuroWalletOrchestratorService>(false);
-			Types.InstantiateDefault<INotificationService>(false);
-			Types.InstantiateDefault<IPushNotificationService>(false);
 			Types.InstantiateDefault<INfcService>(false);
 
 			this.services = new ServiceReferences();
@@ -506,11 +471,6 @@ namespace IdApp
 
 				Thread?.NewState("Orchestrators");
 				await this.services.ContractOrchestratorService.Load(isResuming, Token);
-				await this.services.ThingRegistryOrchestratorService.Load(isResuming, Token);
-				await this.services.NeuroWalletOrchestratorService.Load(isResuming, Token);
-
-				Thread?.NewState("Notifications");
-				await this.services.NotificationService.Load(isResuming, Token);
 			}
 			catch (OperationCanceledException)
 			{
@@ -604,12 +564,6 @@ namespace IdApp
 
 						if (this.services.ContractOrchestratorService is not null)
 							await this.services.ContractOrchestratorService.Unload();
-
-						if (this.services.ThingRegistryOrchestratorService is not null)
-							await this.services.ThingRegistryOrchestratorService.Unload();
-
-						if (this.services.NeuroWalletOrchestratorService is not null)
-							await this.services.NeuroWalletOrchestratorService.Unload();
 
 						if (this.services.XmppService is not null)
 							await this.services.XmppService.Unload();

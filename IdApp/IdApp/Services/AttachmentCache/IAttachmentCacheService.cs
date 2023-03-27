@@ -26,17 +26,5 @@ namespace IdApp.Services.AttachmentCache
         /// <param name="Data">Binary data of image</param>
         /// <param name="ContentType">Content-Type of data.</param>
         Task Add(string Url, string ParentId, bool Permanent, byte[] Data, string ContentType);
-
-        /// <summary>
-        /// Makes items in the cache, belonging to a given parent object, temporary.
-        /// </summary>
-		/// <param name="ParentId">Associated Legal or Contract ID (Parent ID)</param>
-        Task MakeTemporary(string ParentId);
-
-        /// <summary>
-        /// Makes items in the cache, belonging to a given parent object, permanent.
-        /// </summary>
-		/// <param name="ParentId">Associated Legal or Contract ID (Parent ID)</param>
-        Task MakePermanent(string ParentId);
     }
 }

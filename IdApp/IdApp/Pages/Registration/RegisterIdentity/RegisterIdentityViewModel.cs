@@ -861,18 +861,6 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 				return;
 			}
 
-			if (string.IsNullOrWhiteSpace(this.TagProfile.RegistryJid))
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["OperatorDoesNotSupportThingRegistries"]);
-				return;
-			}
-
-			if (string.IsNullOrWhiteSpace(this.TagProfile.ProvisioningJid))
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["OperatorDoesNotSupportProvisioningAndDecisionSupportForThings"]);
-				return;
-			}
-
 			if (!this.XmppService.IsOnline)
 			{
 				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["NotConnectedToTheOperator"]);

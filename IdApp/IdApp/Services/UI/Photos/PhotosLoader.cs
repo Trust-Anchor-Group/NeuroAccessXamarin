@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using IdApp.Extensions;
 using IdApp.Pages;
 using IdApp.Services.AttachmentCache;
 using SkiaSharp;
+using Waher.Content;
 using Waher.Content.Images;
 using Waher.Content.Images.Exif;
-using Waher.Content.Markdown.Model.Multimedia;
+using Waher.Events;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Runtime.Temporary;
 using Xamarin.Forms;
@@ -311,7 +314,7 @@ namespace IdApp.Services.UI.Photos
 
 			if (Data is not null)
 			{
-				string FileName = await ImageContent.GetTemporaryFile(Data);
+				string FileName = await GetTemporaryFile(Data);
 				int Width;
 				int Height;
 
@@ -337,5 +340,79 @@ namespace IdApp.Services.UI.Photos
 				return (null, 0, 0);
 		}
 
+		#region From Waher.Content.Markdown.Model.Multimedia.ImageContent, with permission
+
+		/// <summary>
+		/// Stores an image in binary form as a temporary file. Files will be deleted when application closes.
+		/// </summary>
+		/// <param name="BinaryImage">Binary image.</param>
+		/// <returns>Temporary file name.</returns>
+		public static Task<string> GetTemporaryFile(byte[] BinaryImage)
+		{
+			return GetTemporaryFile(BinaryImage, "tmp");
+		}
+
+		/// <summary>
+		/// Stores an image in binary form as a temporary file. Files will be deleted when application closes.
+		/// </summary>
+		/// <param name="BinaryImage">Binary image.</param>
+		/// <param name="FileExtension">File extension.</param>
+		/// <returns>Temporary file name.</returns>
+		public static async Task<string> GetTemporaryFile(byte[] BinaryImage, string FileExtension)
+		{
+			string FileName;
+
+			using (SHA256 H = SHA256.Create())
+			{
+				byte[] Digest = H.ComputeHash(BinaryImage);
+				FileName = Path.Combine(Path.GetTempPath(), "tmp" + Base64Url.Encode(Digest) + "." + FileExtension);
+			}
+
+			if (!File.Exists(FileName))
+			{
+				await Resources.WriteAllBytesAsync(FileName, BinaryImage);
+
+				lock (synchObject)
+				{
+					if (temporaryFiles is null)
+					{
+						temporaryFiles = new Dictionary<string, bool>();
+						Log.Terminating += CurrentDomain_ProcessExit;
+					}
+
+					temporaryFiles[FileName] = true;
+				}
+			}
+
+			return FileName;
+		}
+
+		private static Dictionary<string, bool> temporaryFiles = null;
+		private readonly static object synchObject = new();
+
+		private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+		{
+			lock (synchObject)
+			{
+				if (temporaryFiles is not null)
+				{
+					foreach (string FileName in temporaryFiles.Keys)
+					{
+						try
+						{
+							File.Delete(FileName);
+						}
+						catch (Exception)
+						{
+							// Ignore
+						}
+					}
+
+					temporaryFiles.Clear();
+				}
+			}
+		}
+
+		#endregion
 	}
 }

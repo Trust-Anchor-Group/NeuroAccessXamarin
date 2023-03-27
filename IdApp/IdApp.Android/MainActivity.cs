@@ -2,14 +2,11 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
-using Android.Gms.Common;
 using Android.Nfc;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Firebase;
 using IdApp.Android.Nfc;
-using IdApp.Helpers;
 using IdApp.Nfc;
 using IdApp.Services.Nfc;
 using System;
@@ -24,7 +21,7 @@ namespace IdApp.Android
 		Categories = new string[] { Intent.CategoryDefault }, DataMimeType = "*/*")]
 	[IntentFilter(new string[] { Intent.ActionView },
 		Categories = new string[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
-		DataSchemes = new string[] { "iotid", "iotdisco", "iotsc", "tagsign", "edaler", "nfeat", "obinfo", "xmpp", "tagidapp" })]
+		DataSchemes = new string[] { "iotid", "tagsign", "obinfo" })]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		private static NfcAdapter nfcAdapter = null;
@@ -65,63 +62,10 @@ namespace IdApp.Android
 
 			nfcAdapter = NfcAdapter.GetDefaultAdapter(this);
 
-			FirebaseApp.InitializeApp(this);
 			Xamarin.Essentials.Platform.Init(this, SavedInstanceState);
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 			Rg.Plugins.Popup.Popup.Init(this);
 			FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
-
-			int Result = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-			if (Result == ConnectionResult.Success)
-			{
-				if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-				{
-					NotificationChannel MessagesChannel = new("Messages", "Instant Messages", NotificationImportance.High)
-					{
-						Description = "Channel for incoming Instant Message notifications"
-					};
-
-					NotificationChannel PetitionsChannel = new("Petitions", "Petitions sent by other users", NotificationImportance.High)
-					{
-						Description = "Channel for incoming Contract or Identity Peititions, such as Review or Signature Requests"
-					};
-
-					NotificationChannel IdentitiesChannel = new("Identities", "Identity events", NotificationImportance.High)
-					{
-						Description = "Channel for events relating to the digital identity"
-					};
-
-					NotificationChannel ContractsChannel = new("Contracts", "Contract events", NotificationImportance.High)
-					{
-						Description = "Channel for events relating to smart contracts"
-					};
-
-					NotificationChannel EDalerChannel = new("eDaler", "eDaler events", NotificationImportance.High)
-					{
-						Description = "Channel for events relating to the eDaler wallet balance"
-					};
-
-					NotificationChannel TokensChannel = new("Tokens", "Token events", NotificationImportance.High)
-					{
-						Description = "Channel for events relating to Neuro-Feature tokens"
-					};
-
-					NotificationManager NotificationManager = (NotificationManager)this.GetSystemService(NotificationService);
-					NotificationManager.CreateNotificationChannels(new List<NotificationChannel>()
-					{
-						MessagesChannel, PetitionsChannel, IdentitiesChannel, ContractsChannel, EDalerChannel, TokensChannel
-					});
-				}
-			}
-			else
-			{
-				string Msg = "Unable to access Google Play Services. Push notification is disabled.";
-
-				if (GoogleApiAvailability.Instance.IsUserResolvableError(Result))
-					Msg += " Error reported: " + GoogleApiAvailability.Instance.GetErrorString(Result);
-
-				Waher.Events.Log.Error(Msg);
-			}
 
 			global::Xamarin.Forms.Forms.Init(this, SavedInstanceState);
 
@@ -132,7 +76,6 @@ namespace IdApp.Android
 
 				FFImageLoading.Config.Configuration Configuration = FFImageLoading.Config.Configuration.Default;
 				Configuration.DiskCacheDuration = TimeSpan.FromDays(1);
-				Configuration.DownloadCache = new AesDownloadCache(Configuration);
 				FFImageLoading.ImageService.Instance.Initialize(Configuration);
 
 				// Uncomment this to debug loading images from neuron (ensures that they are not loaded from cache).
@@ -163,8 +106,6 @@ namespace IdApp.Android
 				PendingIntent PendingIntent = PendingIntent.GetActivity(this, 0, Intent, PendingIntentFlags.Mutable);
 				nfcAdapter.EnableForegroundDispatch(this, PendingIntent, null, null);
 			}
-
-			this.RemoveAllNotifications();
 		}
 
 		protected override void OnPause()
@@ -257,12 +198,6 @@ namespace IdApp.Android
 		public override void OnBackPressed()
 		{
 			Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
-		}
-
-		private void RemoveAllNotifications()
-		{
-			NotificationManager Manager = (NotificationManager)this.GetSystemService(Context.NotificationService);
-			Manager.CancelAll();
 		}
 	}
 }

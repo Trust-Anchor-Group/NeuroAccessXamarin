@@ -60,24 +60,9 @@ namespace IdApp
         public static class UriSchemes
         {
 			/// <summary>
-			/// The App's URI Scheme (tagidapp)
-			/// </summary>
-			public const string UriSchemeTagIdApp = "tagidapp";
-
-			/// <summary>
 			/// The IoT ID URI Scheme (iotid)
 			/// </summary>
 			public const string UriSchemeIotId = "iotid";
-
-            /// <summary>
-            /// The IoT Discovery URI Scheme (iotdisco)
-            /// </summary>
-            public const string UriSchemeIotDisco = "iotdisco";
-
-            /// <summary>
-            /// The IoT Smart Contract URI Scheme (iotsc)
-            /// </summary>
-            public const string UriSchemeIotSc = "iotsc";
 
             /// <summary>
             /// TAG Signature (Quick-Login) URI Scheme (tagsign)
@@ -85,29 +70,9 @@ namespace IdApp
             public const string UriSchemeTagSign = "tagsign";
 
             /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeEDaler = "edaler";
-
-            /// <summary>
-            /// eDaler URI Scheme (edaler)
-            /// </summary>
-            public const string UriSchemeNeuroFeature = "nfeat";
-
-            /// <summary>
             /// Onboarding URI Scheme (obinfo)
             /// </summary>
             public const string UriSchemeOnboarding = "obinfo";
-
-            /// <summary>
-            /// XMPP URI Scheme (xmpp)
-            /// </summary>
-            public const string UriSchemeXmpp = "xmpp";
-
-			/// <summary>
-			/// AES-256-encrypted data.
-			/// </summary>
-			public const string Aes256 = "aes256";
 
             /// <summary>
             /// Gets the predefined scheme from an IoT Code
@@ -128,14 +93,8 @@ namespace IdApp
 				return Url switch
 				{
 					UriSchemeIotId or
-                    UriSchemeIotDisco or
-                    UriSchemeIotSc or
                     UriSchemeTagSign or
-                    UriSchemeEDaler or
-                    UriSchemeNeuroFeature or
-                    UriSchemeOnboarding or
-                    UriSchemeXmpp or
-					UriSchemeTagIdApp => Url,
+                    UriSchemeOnboarding => Url,
 
 					_ => null,
 				};
@@ -153,16 +112,6 @@ namespace IdApp
             }
 
             /// <summary>
-            /// Generates a IoT Scan Uri form the specified id.
-            /// </summary>
-            /// <param name="id">The Id to use when generating the Uri.</param>
-            /// <returns>Smart Contract URI</returns>
-            public static string CreateSmartContractUri(string id)
-            {
-                return UriSchemeIotSc + ":" + id;
-            }
-
-            /// <summary>
             /// Generates a IoT ID Uri form the specified id.
             /// </summary>
             /// <param name="id">The Id to use when generating the Uri.</param>
@@ -170,16 +119,6 @@ namespace IdApp
             public static string CreateIdUri(string id)
             {
                 return UriSchemeIotId + ":" + id;
-            }
-
-            /// <summary>
-            /// Generates a Neuro-Feature ID Uri form the specified id.
-            /// </summary>
-            /// <param name="id">The Id to use when generating the Uri.</param>
-            /// <returns>Neuro-Feature URI</returns>
-            public static string CreateTokenUri(string id)
-            {
-                return UriSchemeNeuroFeature + ":" + id;
             }
 
             /// <summary>
@@ -219,12 +158,12 @@ namespace IdApp
         public static class Domains
 		{
             /// <summary>
-            /// TAG ID domain.
+            /// Neuro-Access domain.
             /// </summary>
             public const string IdDomain = "id.tagroot.io";
 
             /// <summary>
-            /// TAG ID onboarding domain.
+            /// Neuro-Access onboarding domain.
             /// </summary>
             public const string OnboardingDomain = "onboarding.id.tagroot.io";
         }
@@ -368,16 +307,6 @@ namespace IdApp
         public static class MessagingCenter
         {
 			/// <summary>
-			/// Request to focus the chat editor control
-			/// </summary>
-			public const string ChatEditorFocus = "ChatEditorFocus";
-
-			/// <summary>
-			/// Request to unfocus the chat editor control
-			/// </summary>
-			public const string ChatEditorUnfocus = "ChatEditorUnfocus";
-
-			/// <summary>
 			/// Keyboard appears event
 			/// </summary>
 			public const string KeyboardAppears = "KeyboardAppears";
@@ -388,94 +317,6 @@ namespace IdApp
             public const string KeyboardDisappears = "KeyboardDisappears";
         }
 
-        /// <summary>
-        /// Size constants.
-        /// </summary>
-        public static class BatchSizes
-		{
-            /// <summary>
-            /// Number of messages to load in a single batch.
-            /// </summary>
-            public const int MessageBatchSize = 30;
-
-            /// <summary>
-            /// Number of tokens to load in a single batch.
-            /// </summary>
-            public const int TokenBatchSize = 10;
-
-            /// <summary>
-            /// Number of account events to load in a single batch.
-            /// </summary>
-            public const int AccountEventBatchSize = 10;
-
-            /// <summary>
-            /// Number of devices to load in a single batch.
-            /// </summary>
-            public const int DeviceBatchSize = 100;
-		}
-
-        /// <summary>
-        /// Contract templates
-        /// </summary>
-        public static class ContractTemplates
-        {
-            /// <summary>
-            /// Contract template for creating a demo token
-            /// </summary>
-            public const string CreateDemoTokenTemplate = "2a6d69dc-cae9-bb6e-4015-a272cdb645ec@legal.lab.tagroot.io";
-
-            /// <summary>
-            /// Contract template for transferring a token from a seller to a buyer
-            /// </summary>
-            public const string TransferTokenTemplate = "2a6d6b09-cae9-bb7e-4015-a272cd9cd5b9@legal.lab.tagroot.io";
-
-			/// <summary>
-			/// Contract template for consigning the token to an auctioneer with the purpose of selling it.
-			/// </summary>
-			public const string TokenConsignmentTemplate = "2a6d86d3-cae9-be05-4015-a272cd0cbbb9@legal.lab.tagroot.io";
-		}
-
-		/// <summary>
-		/// Push chennels
-		/// </summary>
-		public static class PushChannels
-		{
-			/// <summary>
-			/// Messages channel
-			/// </summary>
-			public const string Messages = "Messages";
-
-			/// <summary>
-			/// Petitions channel
-			/// </summary>
-			public const string Petitions = "Petitions";
-
-			/// <summary>
-			/// Identities channel
-			/// </summary>
-			public const string Identities = "Identities";
-
-			/// <summary>
-			/// Contracts channel
-			/// </summary>
-			public const string Contracts = "Contracts";
-
-			/// <summary>
-			/// eDaler channel
-			/// </summary>
-			public const string EDaler = "eDaler";
-
-			/// <summary>
-			/// Tokens channel
-			/// </summary>
-			public const string Tokens = "Tokens";
-
-			/// <summary>
-			/// Provisioning channel
-			/// </summary>
-			public const string Provisioning = "Provisioning";
-		}
-
 		/// <summary>
 		/// Names of Effects.
 		/// </summary>
@@ -484,7 +325,7 @@ namespace IdApp
 			/// <summary>
 			/// ResolutionGroupName used for resolving Effects.
 			/// </summary>
-			public const string ResolutionGroupName = "com.tag.IdApp";
+			public const string ResolutionGroupName = "com.tag.NeuroAccess";
 
 			/// <summary>
 			/// PasswordMaskTogglerEffect.
@@ -552,12 +393,12 @@ namespace IdApp
 			/// <summary>
 			/// Resource where Android App can be downloaded.
 			/// </summary>
-			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.IdApp";
+			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.NeuroAccess";
 
 			/// <summary>
 			/// Resource where iPhone App can be downloaded.
 			/// </summary>
-			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-id/id1580610247";
+			public const string IPhoneApp = "https://apps.apple.com/se/app/trust-anchor-access/id1580610247";
 		}
 
 	}

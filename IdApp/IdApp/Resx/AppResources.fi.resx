@@ -1036,10 +1036,10 @@
     <value>Lompakko</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Tervetuloa TAG Digital ID -sovellukseen!</value>
+    <value>Tervetuloa Neuro-Access-sovellukseen!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Ennen kuin muodostamme yhteyden TAG ID -verkkoon, meidän on valittava sinulle palveluntarjoaja. Tätä varten meidän on tiedettävä sovelluksen käytön tarkoitus. Valitse sopivin vaihtoehto alta.</value>
+    <value>Ennen kuin muodostamme yhteyden Neuro-Access -verkkoon, meidän on valittava sinulle palveluntarjoaja. Tätä varten meidän on tiedettävä sovelluksen käytön tarkoitus. Valitse sopivin vaihtoehto alta.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Verkkoidentiteetin todentaminen</value>

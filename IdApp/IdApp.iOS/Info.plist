@@ -17,19 +17,19 @@
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>TAG ID</string>
+	<string>Neuro-Access</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.trustanchorgroup.neuroid</string>
+	<string>com.trustanchorgroup.NeuroAccess</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>TAG Demo</string>
 	<key>NSCameraUsageDescription</key>
-	<string>TAG ID needs access to the camera to take photos for your digital ID, and when you want it to scan QR codes.</string>
+	<string>Neuro-Access needs access to the camera to take photos for your digital ID, and when you want it to scan QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>TAG ID needs access to the photo gallery for you to be able to select a profile photo for your ID, get QR codes from other apps, or share images with contacts in chats.</string>
+	<string>Neuro-Access needs access to the photo gallery for you to be able to select a profile photo for your ID, get QR codes from other apps, or share images with contacts in chats.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>TAG ID needs to be able to add photos to your galleries, if you want to save photos you take for later use.</string>
+	<string>Neuro-Access needs to be able to add photos to your galleries, if you want to save photos you take for later use.</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
@@ -62,18 +62,12 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>TAG ID</string>
+			<string>Neuro-Access</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>iotid</string>
-				<string>iotdisco</string>
-				<string>iotsc</string>
 				<string>tagsign</string>
-				<string>edaler</string>
-				<string>nfeat</string>
 				<string>obinfo</string>
-				<string>xmpp</string>
-				<string>tagidapp</string>
 			</array>
 		</dict>
 	</array>

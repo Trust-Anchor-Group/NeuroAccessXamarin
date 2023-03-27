@@ -20,25 +20,24 @@
             </Grid.RowDefinitions>
             <mainTabBar:MainTabBarView x:Name="MainTabBar"
                                        Grid.Row="1"
-
-									   LeftButton1Text="{x:Static resx:FontAwesome.Contacts}"
-                                       LeftButton1Command="{Binding Path=ViewMyContactsCommand}"
-									   LeftButton1Overlay="{Binding Path=Left1Overlay}"
-									   
-                                       LeftButton2Text="{x:Static resx:FontAwesome.Things}"
-                                       LeftButton2Command="{Binding Path=ViewMyThingsCommand}"
-									   LeftButton2Overlay="{Binding Path=Left2Overlay}"
-
 									   CenterButtonText="{x:Static resx:FontAwesome.ScanQr}"
                                        CenterButtonCommand="{Binding Path=ScanQrCodeCommand}"
 
-									   RightButton1Text="{x:Static resx:FontAwesome.Paragraph}"
-									   RightButton1Command="{Binding Path=ViewContractsCommand}"
-									   RightButton1Overlay="{Binding Path=Right1Overlay}"
+									   LeftButton1Command="{Binding ViewMyIdentityCommand}"
+									   LeftButton1Text="{x:Static resx:FontAwesome.User}"
+									   LeftButton1FontFamily="{StaticResource FontAwesomeSolid}"
 
-									   RightButton2Text="{x:Static resx:FontAwesome.Wallet}"
-                                       RightButton2Command="{Binding Path=ViewWalletCommand}"
-									   RightButton2Overlay="{Binding Path=Right2Overlay}"/>
+									   LeftButton2Command="{Binding CalculatorCommand}"
+									   LeftButton2Text="{x:Static resx:FontAwesome.Calculator}"
+									   LeftButton2FontFamily="{StaticResource FontAwesomeSolid}"
+
+									   RightButton1Command="{Binding AboutCommand}"
+									   RightButton1Text="{x:Static resx:FontAwesome.QuestionCircle}"
+									   RightButton1FontFamily="{StaticResource FontAwesomeSolid}"
+
+									   RightButton2Command="{Binding ExitCommand}"
+									   RightButton2Text="{x:Static resx:FontAwesome.Exit}"
+									   RightButton2FontFamily="{StaticResource FontAwesomeSolid}"/>
             <Grid Grid.Row="0" Margin="{StaticResource DefaultMargin}" VerticalOptions="StartAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

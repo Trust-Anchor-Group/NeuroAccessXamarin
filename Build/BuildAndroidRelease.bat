@@ -82,4 +82,4 @@ goto End
 :End
 
 
-REM C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin\jarsigner.exe -keystore "D:\work\Keystore\Trust Anchor Group AB\Trust Anchor Group AB.keystore" -storepass qa0HYlEX8V5pAq5hVbTX9qiKz8pBv1omk7PQa_8ttbk -keypass Password -digestalg SHA-256 -sigalg SHA256withRSA -signedjar bin\Release\com.tag.IdApp-Signed.aab obj\Release\110\android\bin\com.tag.IdApp.aab  "TAGDemo Cert"
+REM C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin\jarsigner.exe -keystore "D:\work\Keystore\Trust Anchor Group AB\Trust Anchor Group AB.keystore" -storepass qa0HYlEX8V5pAq5hVbTX9qiKz8pBv1omk7PQa_8ttbk -keypass Password -digestalg SHA-256 -sigalg SHA256withRSA -signedjar bin\Release\com.tag.NeuroAccess-Signed.aab obj\Release\110\android\bin\com.tag.NeuroAccess.aab  "TAGDemo Cert"

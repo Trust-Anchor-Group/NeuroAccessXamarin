@@ -1036,10 +1036,10 @@
     <value>Wallet</value>
   </data>
   <data name="WelcomeToTagHeading" xml:space="preserve">
-    <value>Welcome to TAG Digital ID App!</value>
+    <value>Welcome to Neuro-Access!</value>
   </data>
   <data name="WelcomeToTagSubheading" xml:space="preserve">
-    <value>Before connecting to the TAG ID network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below.</value>
+    <value>Before connecting to the Neuro-Access network, we need to select a service provider for you. To do this, we need to know the purpose for using the app. Select the most appropriate option below.</value>
   </data>
   <data name="XmppState_Authenticating" xml:space="preserve">
     <value>Authenticating network identity</value>

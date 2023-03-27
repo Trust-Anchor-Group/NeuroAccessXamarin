@@ -1,10 +1,9 @@
 ﻿using IdApp.DeviceSpecific;
 using IdApp.Extensions;
-using IdApp.Pages.Contacts.MyContacts;
-using IdApp.Pages.Contracts.MyContracts;
 using IdApp.Pages.Identity.ViewIdentity;
+using IdApp.Pages.Main.Calculator;
+using IdApp.Pages.Main.Shell;
 using IdApp.Services.Data.Countries;
-using IdApp.Services.Notification;
 using IdApp.Services.UI.Photos;
 using System;
 using System.IO;
@@ -40,13 +39,12 @@ namespace IdApp.Pages.Main.Main
 			this.photosLoader = new PhotosLoader();
 
 			this.ViewMyIdentityCommand = new Command(async () => await this.ViewMyIdentity(), () => this.IsConnected);
-			this.ViewMyContactsCommand = new Command(async () => await this.ViewMyContacts(), () => this.IsConnected);
-			this.ViewMyThingsCommand = new Command(async () => await this.ViewMyThings(), () => this.IsConnected);
 			this.ScanQrCodeCommand = new Command(async () => await this.ScanQrCode());
-			this.ViewContractsCommand = new Command(async () => await this.ViewContracts(), () => this.IsConnected);
-			this.ViewWalletCommand = new Command(async () => await this.ViewWallet(), () => this.IsConnected);
 			this.SharePhotoCommand = new Command(async () => await this.SharePhoto());
 			this.ShareQRCommand = new Command(async () => await this.ShareQR());
+			this.CalculatorCommand = new Command(async () => await this.Calculator());
+			this.AboutCommand = new Command(() => this.About());
+			this.ExitCommand = new Command(() => this.Exit());
 		}
 
 		/// <inheritdoc />
@@ -58,7 +56,6 @@ namespace IdApp.Pages.Main.Main
 			this.SetConnectionStateAndText(this.XmppService.State);
 			this.XmppService.ConnectionStateChanged += this.Contracts_ConnectionStateChanged;
 			this.NetworkService.ConnectivityChanged += this.NetworkService_ConnectivityChanged;
-			this.NotificationService.OnNewNotification += this.NotificationService_OnNewNotification;
 		}
 
 		/// <inheritdoc />
@@ -67,22 +64,12 @@ namespace IdApp.Pages.Main.Main
 			this.photosLoader.CancelLoadPhotos();
 			this.XmppService.ConnectionStateChanged -= this.Contracts_ConnectionStateChanged;
 			this.NetworkService.ConnectivityChanged -= this.NetworkService_ConnectivityChanged;
-			this.NotificationService.OnNewNotification -= this.NotificationService_OnNewNotification;
 
 			return base.OnDispose();
 		}
 
-		/// <inheritdoc />
-		protected override Task OnAppearing()
-		{
-			this.AssignOverlays();
-			return base.OnAppearing();
-		}
-
 		private void AssignProperties()
 		{
-			this.AssignOverlays();
-
 			if (this.TagProfile?.LegalIdentity is not null)
 			{
 				string FirstName = this.TagProfile.LegalIdentity[Constants.XmppProperties.FirstName];
@@ -134,14 +121,6 @@ namespace IdApp.Pages.Main.Main
 			}
 		}
 
-		private void AssignOverlays()
-		{
-			this.Left1Overlay = this.NotificationService.NrNotificationsContacts;
-			this.Left2Overlay = this.NotificationService.NrNotificationsThings;
-			this.Right1Overlay = this.NotificationService.NrNotificationsContracts;
-			this.Right2Overlay = this.NotificationService.NrNotificationsWallet;
-		}
-
 		private async Task LoadProfilePhoto(Attachment FirstAttachment)
 		{
 			try
@@ -173,31 +152,6 @@ namespace IdApp.Pages.Main.Main
 			}
 		}
 
-		private void NotificationService_OnNewNotification(object Sender, NotificationEventArgs e)
-		{
-			this.UiSerializer.BeginInvokeOnMainThread(() =>
-			{
-				switch (e.Event.Button)
-				{
-					case EventButton.Contacts:
-						this.Left1Overlay++;
-						break;
-
-					case EventButton.Things:
-						this.Left2Overlay++;
-						break;
-
-					case EventButton.Contracts:
-						this.Right1Overlay++;
-						break;
-
-					case EventButton.Wallet:
-						this.Right2Overlay++;
-						break;
-				}
-			});	
-		}
-
 		#region Properties
 
 		/// <summary>
@@ -216,36 +170,6 @@ namespace IdApp.Pages.Main.Main
 		}
 
 		/// <summary>
-		/// See <see cref="ViewMyContactsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewMyContactsCommandProperty =
-			BindableProperty.Create(nameof(ViewMyContactsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing the user's own contracts.
-		/// </summary>
-		public ICommand ViewMyContactsCommand
-		{
-			get => (ICommand)this.GetValue(ViewMyContactsCommandProperty);
-			set => this.SetValue(ViewMyContactsCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewMyThingsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewMyThingsCommandProperty =
-			BindableProperty.Create(nameof(ViewMyThingsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing the user's own contracts.
-		/// </summary>
-		public ICommand ViewMyThingsCommand
-		{
-			get => (ICommand)this.GetValue(ViewMyThingsCommandProperty);
-			set => this.SetValue(ViewMyThingsCommandProperty, value);
-		}
-
-		/// <summary>
 		/// See <see cref="ScanQrCodeCommand"/>
 		/// </summary>
 		public static readonly BindableProperty ScanQrCodeCommandProperty =
@@ -258,36 +182,6 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ScanQrCodeCommandProperty);
 			set => this.SetValue(ScanQrCodeCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewContractsCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewContractsCommandProperty =
-			BindableProperty.Create(nameof(ViewContractsCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing a user's contracts.
-		/// </summary>
-		public ICommand ViewContractsCommand
-		{
-			get => (ICommand)this.GetValue(ViewContractsCommandProperty);
-			set => this.SetValue(ViewContractsCommandProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ViewWalletCommand"/>
-		/// </summary>
-		public static readonly BindableProperty ViewWalletCommandProperty =
-			BindableProperty.Create(nameof(ViewWalletCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
-
-		/// <summary>
-		/// The command to bind to for viewing a user's wallet.
-		/// </summary>
-		public ICommand ViewWalletCommand
-		{
-			get => (ICommand)this.GetValue(ViewWalletCommandProperty);
-			set => this.SetValue(ViewWalletCommandProperty, value);
 		}
 
 		/// <summary>
@@ -318,6 +212,51 @@ namespace IdApp.Pages.Main.Main
 		{
 			get => (ICommand)this.GetValue(ShareQRCommandProperty);
 			set => this.SetValue(ShareQRCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="CalculatorCommand"/>
+		/// </summary>
+		public static readonly BindableProperty CalculatorCommandProperty =
+			BindableProperty.Create(nameof(CalculatorCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for viewing the calculator.
+		/// </summary>
+		public ICommand CalculatorCommand
+		{
+			get => (ICommand)this.GetValue(CalculatorCommandProperty);
+			set => this.SetValue(CalculatorCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="AboutCommand"/>
+		/// </summary>
+		public static readonly BindableProperty AboutCommandProperty =
+			BindableProperty.Create(nameof(AboutCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for viewing information about the app.
+		/// </summary>
+		public ICommand AboutCommand
+		{
+			get => (ICommand)this.GetValue(AboutCommandProperty);
+			set => this.SetValue(AboutCommandProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="ExitCommand"/>
+		/// </summary>
+		public static readonly BindableProperty ExitCommandProperty =
+			BindableProperty.Create(nameof(ExitCommand), typeof(ICommand), typeof(MainViewModel), default(ICommand));
+
+		/// <summary>
+		/// The command to bind to for existing the app.
+		/// </summary>
+		public ICommand ExitCommand
+		{
+			get => (ICommand)this.GetValue(ExitCommandProperty);
+			set => this.SetValue(ExitCommandProperty, value);
 		}
 
 		/// <summary>
@@ -542,66 +481,6 @@ namespace IdApp.Pages.Main.Main
 			set => this.SetValue(ConnectionErrorsTextProperty, value);
 		}
 
-		/// <summary>
-		/// See <see cref="Left1Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty Left1OverlayProperty =
-			BindableProperty.Create(nameof(Left1Overlay), typeof(int), typeof(MainViewModel), default(int));
-
-		/// <summary>
-		/// Integer overlay of button Left1
-		/// </summary>
-		public int Left1Overlay
-		{
-			get => (int)this.GetValue(Left1OverlayProperty);
-			set => this.SetValue(Left1OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="Left2Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty Left2OverlayProperty =
-			BindableProperty.Create(nameof(Left2Overlay), typeof(int), typeof(MainViewModel), default(int));
-
-		/// <summary>
-		/// Integer overlay of button Left2
-		/// </summary>
-		public int Left2Overlay
-		{
-			get => (int)this.GetValue(Left2OverlayProperty);
-			set => this.SetValue(Left2OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="Right1Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty Right1OverlayProperty =
-			BindableProperty.Create(nameof(Right1Overlay), typeof(int), typeof(MainViewModel), default(int));
-
-		/// <summary>
-		/// Integer overlay of button Right1
-		/// </summary>
-		public int Right1Overlay
-		{
-			get => (int)this.GetValue(Right1OverlayProperty);
-			set => this.SetValue(Right1OverlayProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="Right2Overlay"/>
-		/// </summary>
-		public static readonly BindableProperty Right2OverlayProperty =
-			BindableProperty.Create(nameof(Right2Overlay), typeof(int), typeof(MainViewModel), default(int));
-
-		/// <summary>
-		/// Integer overlay of button Right2
-		/// </summary>
-		public int Right2Overlay
-		{
-			get => (int)this.GetValue(Right2OverlayProperty);
-			set => this.SetValue(Right2OverlayProperty, value);
-		}
-
 		#endregion
 
 		private async Task ViewMyIdentity()
@@ -610,27 +489,6 @@ namespace IdApp.Pages.Main.Main
 				return;
 
 			await this.NavigationService.GoToAsync(nameof(ViewIdentityPage));
-		}
-
-		private async Task ViewMyContacts()
-		{
-			await this.NavigationService.GoToAsync(nameof(MyContactsPage),
-				new ContactListNavigationArgs(LocalizationResourceManager.Current["ContactsDescription"], SelectContactAction.ViewIdentity));
-		}
-
-		private async Task ViewMyThings()
-		{
-			await this.NavigationService.GoToAsync(nameof(Things.MyThings.MyThingsPage));
-		}
-
-		private async Task ViewContracts()
-		{
-			await this.NavigationService.GoToAsync(nameof(MyContractsPage), new MyContractsNavigationArgs(ContractsListMode.Contracts));
-		}
-
-		private async Task ViewWallet()
-		{
-			await this.NeuroWalletOrchestratorService.OpenWallet();
 		}
 
 		private async Task ScanQrCode()
@@ -709,8 +567,7 @@ namespace IdApp.Pages.Main.Main
 					this.ConnectionErrorsText = string.Empty;
 
 				this.HasConnectionErrors = !string.IsNullOrWhiteSpace(this.ConnectionErrorsText);
-				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ViewMyContactsCommand, this.ViewMyThingsCommand,
-					this.ScanQrCodeCommand, this.ViewContractsCommand, this.ViewWalletCommand);
+				this.EvaluateCommands(this.ViewMyIdentityCommand, this.ScanQrCodeCommand);
 			}
 			catch (Exception ex)
 			{
@@ -779,6 +636,24 @@ namespace IdApp.Pages.Main.Main
 					}
 				}
 			}
+		}
+
+		private async Task Calculator()
+		{
+			await this.NavigationService.GoToAsync(nameof(CalculatorPage), new CalculatorNavigationArgs(null));
+		}
+
+		private void About()
+		{
+			AppShell.ShowAbout(this.UiSerializer);
+		}
+
+		private void Exit()
+		{
+			this.UiSerializer.BeginInvokeOnMainThread(async () =>
+			{
+				await App.Stop();
+			});
 		}
 
 		#region ILinkableView

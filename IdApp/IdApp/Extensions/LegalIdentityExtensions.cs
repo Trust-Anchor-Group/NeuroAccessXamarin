@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Waher.Networking.XMPP.Contracts;
 
 namespace IdApp.Extensions
