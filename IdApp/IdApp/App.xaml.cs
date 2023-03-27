@@ -70,7 +70,6 @@ namespace IdApp
 		private static DateTime savedStartTime = DateTime.MinValue;
 		private static bool displayedPinPopup = false;
 		private static int startupCounter = 0;
-		private static bool? isTest = null;
 		private readonly LoginAuditor loginAuditor;
 		private Timer autoSaveTimer;
 		private IServiceReferences services;
@@ -314,33 +313,9 @@ namespace IdApp
 		public static T Instantiate<T>()
 		{
 			if (!defaultInstantiated)
-			{
-				if (IsTest)
-					defaultInstantiated = true;
-				else
-					defaultInstantiated = defaultInstantiatedSource.Task.Result;
-			}
+				defaultInstantiated = defaultInstantiatedSource.Task.Result;
 
 			return Types.Instantiate<T>(false);
-		}
-
-		/// <summary>
-		/// If the environment is run from a unit test.
-		/// </summary>
-		internal static bool IsTest
-		{
-			get
-			{
-				if (!isTest.HasValue)
-				{
-					string Namespace = typeof(App).Namespace;
-					string[] SubNamespaces = Types.GetSubNamespaces(Namespace);
-
-					isTest = Array.IndexOf(SubNamespaces, Namespace + ".Test") >= 0;
-				}
-
-				return isTest.Value;
-			}
 		}
 
 		internal static async Task WaitForServiceSetup()
