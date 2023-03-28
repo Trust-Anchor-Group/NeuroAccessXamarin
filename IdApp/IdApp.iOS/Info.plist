@@ -23,7 +23,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>TAG Demo</string>
+	<string>Neuro Access</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Neuro-Access needs access to the camera to take photos for your digital ID, and when you want it to scan QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
