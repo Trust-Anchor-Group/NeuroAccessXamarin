@@ -17,10 +17,10 @@ set zipalign="C:\Program Files (x86)\Android\android-sdk\build-tools\32.0.0\zipa
 REM Path to JarSigner
 set jarsigner="C:\Program Files (x86)\Android\android-sdk\build-tools\32.0.0\apksigner.bat"
 REM Path to APK file
-set apkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.Tag.IdApp.aab
+set apkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.NeuroAccess.aab
 
 REM Path to signed and aligned APK file
-set alignedApkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.Tag.IdApp_signed_aligned.aab
+set alignedApkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.NeuroAccess_signed_aligned.aab
 
 REM Jar Signer specifics
 set jarsignerparams=sign --min-sdk-version 21 --ks %keystore% --ks-pass pass:%keystorepassword% %apkPath%
