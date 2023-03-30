@@ -5949,9 +5949,6 @@
         <member name="M:IdApp.Popups.VerifyCode.VerifyCodePage.OnAppearing">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Popups.VerifyCode.VerifyCodePage.OnBackgroundClicked">
-            <inheritdoc/>
-        </member>
         <member name="T:IdApp.Resx.AppResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
