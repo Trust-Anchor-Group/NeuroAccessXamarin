@@ -1233,7 +1233,25 @@ namespace IdApp.Services.Xmpp
 		public async Task PetitionIdentity(CaseInsensitiveString LegalId, string PetitionId, string Purpose)
 		{
 			await this.ContractsClient.AuthorizeAccessToIdAsync(this.TagProfile.LegalIdentity.Id, LegalId, true);
+
+			this.StartPetition(PetitionId);
 			await this.ContractsClient.PetitionIdentityAsync(LegalId, PetitionId, Purpose);
+		}
+
+		private void StartPetition(string PetitionId)
+		{
+			lock (this.currentPetitions)
+			{
+				this.currentPetitions[PetitionId] = true;
+			}
+		}
+
+		private bool EndPetition(string PetitionId)
+		{
+			lock (this.currentPetitions)
+			{
+				return this.currentPetitions.Remove(PetitionId);
+			}
 		}
 
 		/// <summary>
@@ -1298,6 +1316,7 @@ namespace IdApp.Services.Xmpp
 		{
 			try
 			{
+				this.EndPetition(e.PetitionId);
 				this.PetitionedIdentityResponseReceived?.Invoke(this, e);
 			}
 			catch (Exception ex)
@@ -1396,6 +1415,8 @@ namespace IdApp.Services.Xmpp
 		public async Task PetitionPeerReviewId(CaseInsensitiveString LegalId, LegalIdentity Identity, string PetitionId, string Purpose)
 		{
 			await this.ContractsClient.AuthorizeAccessToIdAsync(Identity.Id, LegalId, true);
+
+			this.StartPetition(PetitionId);
 			await this.ContractsClient.PetitionPeerReviewIDAsync(LegalId, Identity, PetitionId, Purpose);
 		}
 
@@ -1438,6 +1459,7 @@ namespace IdApp.Services.Xmpp
 		{
 			try
 			{
+				this.EndPetition(e.PetitionId);
 				this.PetitionedPeerReviewIdResponseReceived?.Invoke(this, e);
 			}
 			catch (Exception ex)
@@ -1445,6 +1467,44 @@ namespace IdApp.Services.Xmpp
 				this.LogService.LogException(ex);
 				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], ex.Message);
 			}
+		}
+
+		/// <summary>
+		/// Gets available service providers for buying eDaler.
+		/// </summary>
+		/// <returns>Available service providers for peer review of identity applications.</returns>
+		public async Task<ServiceProviderWithLegalId[]> GetServiceProvidersForPeerReviewAsync()
+		{
+			return await this.ContractsClient.GetPeerReviewIdServiceProvidersAsync();
+		}
+
+		/// <summary>
+		/// Selects a peer-review service as default, for the account, when sending a peer-review request to the
+		/// Legal Identity of the Trust Provider hosting the account.
+		/// </summary>
+		/// <param name="ServiceId">Service ID</param>
+		/// <param name="ServiceProvider">Service Provider</param>
+		public async Task SelectPeerReviewService(string ServiceId, string ServiceProvider)
+		{
+			await this.ContractsClient.SelectPeerReviewServiceAsync(ServiceProvider, ServiceId);
+		}
+
+		private readonly Dictionary<string, bool> currentPetitions = new();
+
+		private async Task ContractsClient_PetitionClientUrlReceived(object Sender, PetitionClientUrlEventArgs e)
+		{
+			lock (this.currentPetitions)
+			{
+				if (!this.currentPetitions.ContainsKey(e.PetitionId))
+				{
+					this.LogService.LogWarning("Client URL message for a petition is ignored. Petition ID not recognized.",
+						new KeyValuePair<string, object>("PetitionId", e.PetitionId),
+						new KeyValuePair<string, object>("ClientUrl", e.ClientUrl));
+					return;
+				}
+			}
+
+			await App.OpenUrlAsync(e.ClientUrl);
 		}
 
 		#endregion
@@ -1518,6 +1578,7 @@ namespace IdApp.Services.Xmpp
 		{
 			try
 			{
+				this.EndPetition(e.PetitionId);
 				this.SignaturePetitionResponseReceived?.Invoke(this, e);
 			}
 			catch (Exception ex)
