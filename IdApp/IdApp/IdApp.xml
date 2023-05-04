@@ -5427,6 +5427,16 @@
             The command to bind to for sending a phone message code verification request.
             </summary>
         </member>
+        <member name="T:IdApp.Pages.Registration.ValidateIdentity.RequestFromPeer">
+            <summary>
+            Represents representing a peer review from a peer, by scanning their QR-code.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.ValidateIdentity.RequestFromPeer.#ctor">
+            <summary>
+            Represents representing a peer review from a peer, by scanning their QR-code.
+            </summary>
+        </member>
         <member name="T:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityView">
             <summary>
             A view to display the 'validate identity' during the registration process.
@@ -5458,9 +5468,9 @@
             The list of photos associated with this legal identity.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.InviteReviewerCommand">
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.RequestReviewCommand">
             <summary>
-            The command to bind to for inviting a reviewer to approve the user's identity.
+            The command to bind to for requesting a review of the user's identity.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ContinueCommand">
@@ -5752,6 +5762,220 @@
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Pages.ShellBasePage.OnDisappearing">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel">
+            <summary>
+            Service Provider information model, including related notification information.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.#ctor(Waher.Networking.XMPP.Contracts.IServiceProvider)">
+            <summary>
+            Contact Information model, including related notification information.
+            </summary>
+            <param name="ServiceProvider">Contact information.</param>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.ServiceProvider">
+            <summary>
+            Underlying service provider
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.Id">
+            <summary>
+            Service ID
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.Name">
+            <summary>
+            Displayable name
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.HasIcon">
+            <summary>
+            If service provider has an icon
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.IconUrl">
+            <summary>
+            Icon URL
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.ShowImage">
+            <summary>
+            If an image should be displayed.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.ShowText">
+            <summary>
+            If text should be displayed.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.IconUrlSource">
+            <summary>
+            Icon URL Source
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.IconWidth">
+            <summary>
+            Icon Width
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProviderModel.IconHeight">
+            <summary>
+            Icon Height
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel">
+            <summary>
+            The view model to bind to for when displaying a list of service providers.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.#ctor(IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel"/> class.
+            </summary>
+            <param name="e">Navigation arguments.</param>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnInitialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnAppearing">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.TitleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.Title"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.Title">
+            <summary>
+            Title to show the user.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.DescriptionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.Description"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.Description">
+            <summary>
+            Description to show the user.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.ServiceProviders">
+            <summary>
+            Holds a list of service providers
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.SelectedServiceProviderProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.SelectedServiceProvider"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.SelectedServiceProvider">
+            <summary>
+            The currently selected contact, if any.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.BackCommand">
+            <summary>
+            The command to bind to for returning to previous view.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs">
+            <summary>
+            Holds navigation parameters specific to the eDaler wallet.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.#ctor(Waher.Networking.XMPP.Contracts.IServiceProvider[],System.String,System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs"/> class.
+            </summary>
+            <param name="ServiceProviders">Service Providers</param>
+            <param name="Title">Title to show the user.</param>
+            <param name="Description">Descriptive text to show the user.</param>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.ServiceProviders">
+            <summary>
+            Available service providers.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.Title">
+            <summary>
+            Title to show the user.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.Description">
+            <summary>
+            Descriptive text to show the user.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.Selected">
+            <summary>
+            Task completion source, waiting for a response from the user.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.WaitForServiceProviderSelection">
+            <summary>
+            Waits for the service provider to be selected; null is returned if the user goes back.
+            </summary>
+            <returns>Selected service provider, or null if user cancels, by going back.</returns>
+        </member>
+        <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage">
+            <summary>
+            A page that allows the user to view its tokens.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage.#ctor(IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs)">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage"/> class.
+            </summary>
+            <param name="e">Navigation arguments.</param>
+        </member>
+        <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector">
+            <summary>
+            Data Template Selector, based on Service information.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector.ImageOnlyTemplate">
+            <summary>
+            Template for services that will only display an image.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector.TextOnlyTemplate">
+            <summary>
+            Template for services that will only display text.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector.ImageAndTextTemplate">
+            <summary>
+            Template for services that will display both image and texts.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector.DefaultTemplate">
+            <summary>
+            Template to use for other items.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceTemplateSelector.OnSelectTemplate(System.Object,Xamarin.Forms.BindableObject)">
             <inheritdoc/>
         </member>
         <member name="T:IdApp.Pages.XmppViewModel">
@@ -7220,11 +7444,6 @@
               Looks up a localized string similar to You have been invited to create an account on {0}. Press OK, and enter the name of the account you wish to create..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.InvitePeerToReview">
-            <summary>
-              Looks up a localized string similar to Invite peer to review.
-            </summary>
-        </member>
         <member name="P:IdApp.Resx.AppResources.IosApp">
             <summary>
               Looks up a localized string similar to iOS App.
@@ -8300,6 +8519,16 @@
               Looks up a localized string similar to Requesting payment of {0} {1}..
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.RequestReview">
+            <summary>
+              Looks up a localized string similar to Request review.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.RequestReviewFromAPeer">
+            <summary>
+              Looks up a localized string similar to Request another user to review your application..
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.RequestSignature">
             <summary>
               Looks up a localized string similar to Request signature.
@@ -8438,6 +8667,11 @@
         <member name="P:IdApp.Resx.AppResources.SelectServiceProviderBuyEDaler">
             <summary>
               Looks up a localized string similar to Select the Service Provider you want to use to buy eDaler..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.SelectServiceProviderPeerReview">
+            <summary>
+              Looks up a localized string similar to Select where to send the review request..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.SelectServiceProviderSellEDaler">
@@ -8867,7 +9101,7 @@
         </member>
         <member name="P:IdApp.Resx.AppResources.TheSpecifiedCodeIsNotALegalIdentity">
             <summary>
-              Looks up a localized string similar to The specified code is not a legal identity.
+              Looks up a localized string similar to You need to scan a different type of QR Code, one that represents a legal identity.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.Thing">
@@ -8940,6 +9174,16 @@
               Looks up a localized string similar to Token Added.
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.TokenCreationTemplates">
+            <summary>
+              Looks up a localized string similar to Token Templates.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.TokenCreationTemplatesInfoText">
+            <summary>
+              Looks up a localized string similar to Below is a list of token templates that you have used or can use to create new tokens. Click on a template to create a new contract based on that template. Once the contract has been signed and approved, the corresponding token or tokens will be created..
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.TokenDetails">
             <summary>
               Looks up a localized string similar to Token Details.
@@ -9003,6 +9247,11 @@
         <member name="P:IdApp.Resx.AppResources.ToUser">
             <summary>
               Looks up a localized string similar to To user, regardless of source.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.ToUser2">
+            <summary>
+              Looks up a localized string similar to To User.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.TransactionAccepted">
@@ -9526,6 +9775,11 @@
             A left arrow with a circle around it
             </summary>
         </member>
+        <member name="F:IdApp.Resx.FontAwesome.Microphone">
+            <summary>
+            The microphone icon
+            </summary>
+        </member>
         <member name="F:IdApp.Resx.FontAwesome.Camera">
             <summary>
             The camer icon
@@ -9716,9 +9970,9 @@
             The camera icon
             </summary>
         </member>
-        <member name="F:IdApp.Resx.Svgs.Trash">
+        <member name="F:IdApp.Resx.Svgs.TrashCan">
             <summary>
-            The trash icon
+            The trash-can icon
             </summary>
         </member>
         <member name="F:IdApp.Resx.Svgs.Xmark">
@@ -9729,6 +9983,16 @@
         <member name="F:IdApp.Resx.Svgs.Check">
             <summary>
             The check icon
+            </summary>
+        </member>
+        <member name="F:IdApp.Resx.Svgs.Trash">
+            <summary>
+            The trash icon
+            </summary>
+        </member>
+        <member name="F:IdApp.Resx.Svgs.QrCodePerson">
+            <summary>
+            A QR-Code with a person icon
             </summary>
         </member>
         <member name="T:IdApp.Services.AttachmentCache.AttachmentCacheService">
@@ -12673,6 +12937,20 @@
             An event that fires when a petitioned peer review response is received.
             </summary>
         </member>
+        <member name="M:IdApp.Services.Xmpp.IXmppService.GetServiceProvidersForPeerReviewAsync">
+            <summary>
+            Gets available service providers for buying eDaler.
+            </summary>
+            <returns>Available service providers for peer review of identity applications.</returns>
+        </member>
+        <member name="M:IdApp.Services.Xmpp.IXmppService.SelectPeerReviewService(System.String,System.String)">
+            <summary>
+            Selects a peer-review service as default, for the account, when sending a peer-review request to the
+            Legal Identity of the Trust Provider hosting the account.
+            </summary>
+            <param name="ServiceId">Service ID</param>
+            <param name="ServiceProvider">Service Provider</param>
+        </member>
         <member name="M:IdApp.Services.Xmpp.IXmppService.Sign(System.Byte[],Waher.Networking.XMPP.Contracts.SignWith)">
             <summary>
             Signs binary data with the corresponding private key.
@@ -12981,6 +13259,20 @@
             <summary>
             An event that fires when a petitioned peer review response is received.
             </summary>
+        </member>
+        <member name="M:IdApp.Services.Xmpp.XmppService.GetServiceProvidersForPeerReviewAsync">
+            <summary>
+            Gets available service providers for buying eDaler.
+            </summary>
+            <returns>Available service providers for peer review of identity applications.</returns>
+        </member>
+        <member name="M:IdApp.Services.Xmpp.XmppService.SelectPeerReviewService(System.String,System.String)">
+            <summary>
+            Selects a peer-review service as default, for the account, when sending a peer-review request to the
+            Legal Identity of the Trust Provider hosting the account.
+            </summary>
+            <param name="ServiceId">Service ID</param>
+            <param name="ServiceProvider">Service Provider</param>
         </member>
         <member name="M:IdApp.Services.Xmpp.XmppService.Sign(System.Byte[],Waher.Networking.XMPP.Contracts.SignWith)">
             <summary>
