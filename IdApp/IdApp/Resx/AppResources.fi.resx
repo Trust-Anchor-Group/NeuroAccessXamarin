@@ -1167,18 +1167,6 @@
   <data name="WelcomeToTagValidatePhoneNr" xml:space="preserve">
     <value>Meidän on myös vahvistettava matkapuhelinnumerosi. Kirjoita matkapuhelinnumerosi alle käyttäen kansainvälistä puhelinnumeromuotoa, ilman välilyöntejä.</value>
   </data>
-  <data name="PurposeEducationalOrExperimental" xml:space="preserve">
-    <value>Opetus- tai kokeellinen käyttö.</value>
-  </data>
-  <data name="PurposeWorkEducationalOrExperimental" xml:space="preserve">
-    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä koulutus-, kokeilu- tai testitarkoituksiin. Tämän vaihtoehdon käytöstä ei aiheudu kustannuksia. Tili voidaan poistaa, kun sitä ei enää käytetä. Ei ole mitään takeita siitä, että valittu koulutus- tai kokeilupalvelujen tarjoaja jatkaa toimintaansa pitkiä aikoja.</value>
-  </data>
-  <data name="PurposeWorkOrPersonal" xml:space="preserve">
-    <value>Työ- tai henkilökohtainen käyttö.</value>
-  </data>
-  <data name="PurposeWorkOrPersonalDescription" xml:space="preserve">
-    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä työ- tai henkilökohtaisiin tarkoituksiin. Voit käyttää sovellusta kolmen kuukauden ajan ilmaiseksi. Tämän ajanjakson jälkeen tietyistä toiminnoista voi aiheutua kustannuksia.</value>
-  </data>
   <data name="SelectPurpose" xml:space="preserve">
     <value>Valitse tarkoitus</value>
   </data>
@@ -2258,5 +2246,77 @@
   </data>
   <data name="UnableToOpenLink" xml:space="preserve">
     <value>Linkkiä ei voi avata:</value>
+  </data>
+  <data name="OrgAddress" xml:space="preserve">
+    <value>Organisaation osoite</value>
+  </data>
+  <data name="OrgAddress2" xml:space="preserve">
+    <value>Organisaation osoite (rivi 2)</value>
+  </data>
+  <data name="OrgArea" xml:space="preserve">
+    <value>Organisaation alue</value>
+  </data>
+  <data name="OrgCity" xml:space="preserve">
+    <value>Organisaation kaupunki</value>
+  </data>
+  <data name="OrgCountry" xml:space="preserve">
+    <value>Organisaation maa</value>
+  </data>
+  <data name="OrgDepartment" xml:space="preserve">
+    <value>Osasto</value>
+  </data>
+  <data name="OrgName" xml:space="preserve">
+    <value>Organisaation nimi</value>
+  </data>
+  <data name="OrgNumber" xml:space="preserve">
+    <value>Organisaation numero</value>
+  </data>
+  <data name="OrgRegion" xml:space="preserve">
+    <value>Organisaation alue</value>
+  </data>
+  <data name="OrgRole" xml:space="preserve">
+    <value>Rooli</value>
+  </data>
+  <data name="OrgZipCode" xml:space="preserve">
+    <value>Organisaation postinumero</value>
+  </data>
+  <data name="PurposeEducational" xml:space="preserve">
+    <value>Opetuskäyttö.</value>
+  </data>
+  <data name="PurposeEducationalDescription" xml:space="preserve">
+    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä opetustarkoituksiin. Sovelluksen avulla voit allekirjoittaa tai käyttää resursseja yksityishenkilönä joko opettajana tai opiskelijana. Tilin kesto voi olla rajoitettu. Tili voidaan myös poistaa, kun sitä ei enää käytetä. Pyydä lisätietoja palveluntarjoajalta.</value>
+  </data>
+  <data name="PurposeExperimental" xml:space="preserve">
+    <value>Kokeellinen käyttö.</value>
+  </data>
+  <data name="PurposeExperimentalDescription" xml:space="preserve">
+    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä kokeellisiin tarkoituksiin. Voit käyttää sovellusta resurssien allekirjoittamiseen tai käyttämiseen yksityishenkilönä tavoitteenasi oppia tekniikka ja mihin tarkoituksiin sitä voidaan käyttää. Tilin kesto voi olla rajoitettu. Tili voidaan myös poistaa, kun sitä ei enää käytetä. Pyydä lisätietoja palveluntarjoajalta.</value>
+  </data>
+  <data name="PurposePersonal" xml:space="preserve">
+    <value>Henkilökohtainen käyttö.</value>
+  </data>
+  <data name="PurposePersonalDescription" xml:space="preserve">
+    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä henkilökohtaisiin tarkoituksiin. Voit käyttää sovellusta resurssien allekirjoittamiseen tai käyttämiseen yksityishenkilönä. Tietyistä toiminnoista voi aiheutua kustannuksia valitsemastasi palveluntarjoajasta riippuen. Pyydä lisätietoja palveluntarjoajalta.</value>
+  </data>
+  <data name="PurposeWork" xml:space="preserve">
+    <value>Työkäyttö.</value>
+  </data>
+  <data name="PurposeWorkDescription" xml:space="preserve">
+    <value>Tämän vaihtoehdon avulla voit käyttää Tag ID:tä työtarkoituksiin. Tähän sisältyy työ, joka ei ole voittoa tavoitteleva organisaatioissa. Sovelluksen avulla voit allekirjoittaa tai käyttää resursseja organisaation edustajana. Tietyistä toiminnoista voi aiheutua kustannuksia valitsemastasi palveluntarjoajasta riippuen. Pyydä lisätietoja palveluntarjoajalta.</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgCountry" xml:space="preserve">
+    <value>Sinun on annettava organisaation maa</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgDepartment" xml:space="preserve">
+    <value>Sinun on tarjottava osasto</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgName" xml:space="preserve">
+    <value>Sinun on annettava organisaation nimi</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgNumber" xml:space="preserve">
+    <value>Sinun on annettava organisaationumero</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgRole" xml:space="preserve">
+    <value>Sinun on annettava rooli</value>
   </data>
 </root>

@@ -96,12 +96,12 @@ namespace IdApp
 		public static new App Current => (App)Application.Current;
 
 		///<inheritdoc/>
-		public App() : this(false)
+		public App(Assembly DeviceAssembly) : this(false, DeviceAssembly)
 		{
 		}
 
 		///<inheritdoc/>
-		public App(bool BackgroundStart)
+		public App(bool BackgroundStart, Assembly DeviceAssembly)
 		{
 			App PreviousInstance = Instance;
 			Instance = this;
@@ -127,7 +127,7 @@ namespace IdApp
 
 				this.loginAuditor = new LoginAuditor(Constants.Pin.LogAuditorObjectID, LoginIntervals);
 				this.startupCancellation = new CancellationTokenSource();
-				this.initCompleted = this.Init(BackgroundStart);
+				this.initCompleted = this.Init(BackgroundStart, DeviceAssembly);
 			}
 			else
 			{
@@ -192,21 +192,22 @@ namespace IdApp
 			LocalizationResourceManager.Current.Init(AppResources.ResourceManager, SelectedInfo);
 		}
 
-		private Task<bool> Init(bool BackgroundStart)
+		private Task<bool> Init(bool BackgroundStart, Assembly DeviceAssembly)
 		{
 			ProfilerThread Thread = this.startupProfiler?.CreateThread("Init", ProfilerThreadType.Sequential);
 			Thread?.Start();
 
 			TaskCompletionSource<bool> Result = new();
-			Task.Run(async () => await this.InitInParallel(Thread, Result, BackgroundStart));
+			Task.Run(async () => await this.InitInParallel(Thread, Result, BackgroundStart, DeviceAssembly));
 			return Result.Task;
 		}
 
-		private async Task InitInParallel(ProfilerThread Thread, TaskCompletionSource<bool> Result, bool BackgroundStart)
+		private async Task InitInParallel(ProfilerThread Thread, TaskCompletionSource<bool> Result, bool BackgroundStart,
+			Assembly DeviceAssembly)
 		{
 			try
 			{
-				this.InitInstances(Thread);
+				this.InitInstances(Thread, DeviceAssembly);
 
 				await this.PerformStartup(false, Thread, BackgroundStart);
 
@@ -225,7 +226,7 @@ namespace IdApp
 			Thread?.Stop();
 		}
 
-		private void InitInstances(ProfilerThread Thread)
+		private void InitInstances(ProfilerThread Thread, Assembly DeviceAssembly)
 		{
 			Thread?.NewState("Types");
 
@@ -236,6 +237,7 @@ namespace IdApp
 				// Define the scope and reach of Runtime.Inventory (Script, Serialization, Persistence, IoC, etc.):
 				Types.Initialize(
 					appAssembly,                                // Allows for objects defined in this assembly, to be instantiated and persisted.
+					DeviceAssembly,								// Device-specific assembly.
 					typeof(Database).Assembly,                  // Indexes default attributes
 					typeof(ObjectSerializer).Assembly,          // Indexes general serializers
 					typeof(FilesProvider).Assembly,             // Indexes special serializers
@@ -287,7 +289,18 @@ namespace IdApp
 				if (Types.GetType(type.FullName) is null)
 					return null;    // Type not managed by Runtime.Inventory. Xamarin.Forms resolves this using its default mechanism.
 
-				return Types.Instantiate(true, type);
+				if (type.Assembly == DeviceAssembly && Types.GetDefaultConstructor(type) is null)
+					return null;
+
+				try
+				{
+					return Types.Instantiate(true, type);
+				}
+				catch (Exception ex)
+				{
+					this.services.LogService.LogException(ex);
+					return null;
+				}
 			});
 
 			secureDisplay = DependencyService.Get<ISecureDisplay>();
@@ -752,7 +765,7 @@ namespace IdApp
 				{
 					List<KeyValuePair<string, object>> Tags = new()
 					{
-						new KeyValuePair<string, object>("JID", this.services?.XmppService?.BareJid)
+						new KeyValuePair<string, object>(Constants.XmppProperties.Jid, this.services?.XmppService?.BareJid)
 					};
 
 					KeyValuePair<string, object>[] Tags2 = this.services?.TagProfile?.LegalIdentity?.GetTags();

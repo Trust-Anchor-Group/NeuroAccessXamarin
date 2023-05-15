@@ -19,10 +19,10 @@
             Gets the current application, type casted to <see cref="T:IdApp.App"/>.
             </summary>
         </member>
-        <member name="M:IdApp.App.#ctor">
+        <member name="M:IdApp.App.#ctor(System.Reflection.Assembly)">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.App.#ctor(System.Boolean)">
+        <member name="M:IdApp.App.#ctor(System.Boolean,System.Reflection.Assembly)">
             <inheritdoc/>
         </member>
         <member name="P:IdApp.App.IsOnboarded">
@@ -442,7 +442,7 @@
         </member>
         <member name="F:IdApp.Constants.XmppProperties.PersonalNumber">
             <summary>
-            /Personal number
+            Personal number
             </summary>
         </member>
         <member name="F:IdApp.Constants.XmppProperties.Address">
@@ -472,12 +472,67 @@
         </member>
         <member name="F:IdApp.Constants.XmppProperties.Region">
             <summary>
-             Region
+            Region
             </summary>
         </member>
         <member name="F:IdApp.Constants.XmppProperties.Country">
             <summary>
             Country
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgName">
+            <summary>
+            Organization name
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgNumber">
+            <summary>
+            Organization number
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgAddress">
+            <summary>
+            Organization Address line 1
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgAddress2">
+            <summary>
+            Organization Address line 2
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgArea">
+            <summary>
+            Organization Area
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgCity">
+            <summary>
+            Organization City
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgZipCode">
+            <summary>
+            Organization Zip Code
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgRegion">
+            <summary>
+            Organization Region
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgCountry">
+            <summary>
+            Organization Country
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgDepartment">
+            <summary>
+            Organization Department
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.OrgRole">
+            <summary>
+            Organization Role
             </summary>
         </member>
         <member name="F:IdApp.Constants.XmppProperties.DeviceId">
@@ -498,6 +553,116 @@
         <member name="F:IdApp.Constants.XmppProperties.EMail">
             <summary>
             e-Mail address
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Apartment">
+            <summary>
+            Apartment
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Room">
+            <summary>
+            Room
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Building">
+            <summary>
+            Building
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Altitude">
+            <summary>
+            Altitude
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Longitude">
+            <summary>
+            Longitude
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Latitude">
+            <summary>
+            Latitude
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Class">
+            <summary>
+            Class
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Key">
+            <summary>
+            Key
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Manufacturer">
+            <summary>
+            Manufacturer
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.MeterLocation">
+            <summary>
+            Meter Location
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.MeterNumber">
+            <summary>
+            MeterNumber
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Model">
+            <summary>
+            Model
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.ProductInformation">
+            <summary>
+            Product Information
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Registry">
+            <summary>
+            Registry
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.SerialNumber">
+            <summary>
+            Serial Number
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.StreetName">
+            <summary>
+            Street Name
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.StreetNumber">
+            <summary>
+            Street Number
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Version">
+            <summary>
+            Version
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.SourceId">
+            <summary>
+            Source ID
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.Partition">
+            <summary>
+            Partition
+            </summary>
+        </member>
+        <member name="F:IdApp.Constants.XmppProperties.NodeId">
+            <summary>
+            Node ID
             </summary>
         </member>
         <member name="T:IdApp.Constants.Intervals">
@@ -937,6 +1102,7 @@
             Gets or sets the value indicating if the current <see cref="T:IdApp.Controls.TemplatedSwitch.TemplatedSwitch"/> is toggled.
             </summary>
         </member>
+<<<<<<< HEAD
         <member name="T:IdApp.Converters.EqualsOne">
             <summary>
             Is true if an integer property is equal to one.
@@ -949,6 +1115,146 @@
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Converters.EqualsOne.ProvideValue(System.IServiceProvider)">
+=======
+        <member name="T:IdApp.Converters.BinaryToBase64">
+            <summary>
+            Converts binary data to base64-encoded strings.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BinaryToBase64.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BinaryToBase64.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BinaryToBase64.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.BooleanToBoldFont">
+            <summary>
+            Converts a boolean value to a bold font (if true), or regular font (if false).
+            </summary>
+        </member>
+        <member name="P:IdApp.Converters.BooleanToBoldFont.Invert">
+            <summary>
+            Set to true if the conversion should be inverted or not.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToBoldFont.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToBoldFont.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToBoldFont.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.BooleanToChar">
+            <summary>
+            Converts a boolean value to a unicode character.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToChar.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToChar.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToChar.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.BooleanToColor">
+            <summary>
+            Converts a boolean value to a color ("AlertColor"), or <see cref="P:Xamarin.Forms.Color.Default"/> (if false).
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToColor.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToColor.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToColor.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.BooleanToTextType">
+            <summary>
+            Converts a boolean value to a <see cref="T:Xamarin.Forms.TextType"/> value, which is <c>Html</c> if <c>true</c>, or <c>Text</c> if <c>false</c>.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToTextType.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToTextType.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToTextType.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.BooleanToYesNo">
+            <summary>
+            Converts a boolean value to either Yes or No
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToYesNo.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToYesNo.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.BooleanToYesNo.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.ContractStateToColor">
+            <summary>
+            Converts a contract state to a color.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.ContractStateToColor.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.ContractStateToColor.ToColor(Waher.Networking.XMPP.Contracts.ContractState)">
+            <summary>
+            Converts a contract state to a representative color.
+            </summary>
+            <param name="State">Contract State</param>
+            <returns>Color</returns>
+        </member>
+        <member name="M:IdApp.Converters.ContractStateToColor.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.ContractStateToColor.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.DateTimeToString">
+            <summary>
+            Converts a <see cref="T:System.DateTime"/> value to a <see cref="T:System.String"/> value. If the value is
+            <see cref="F:System.DateTime.MinValue"/> or <see cref="F:System.DateTime.MaxValue"/>, the empty string is returned.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.DateTimeToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.DateTimeToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.DateTimeToString.ProvideValue(System.IServiceProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Converters.DateToString">
+            <summary>
+            Converts the date part of a <see cref="T:System.DateTime"/> value to a <see cref="T:System.String"/> value. If the value is
+            <see cref="F:System.DateTime.MinValue"/> or <see cref="F:System.DateTime.MaxValue"/>, the empty string is returned.
+            </summary>
+        </member>
+        <member name="M:IdApp.Converters.DateToString.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.DateToString.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Converters.DateToString.ProvideValue(System.IServiceProvider)">
+>>>>>>> tagid_develop
             <inheritdoc/>
         </member>
         <member name="T:IdApp.Converters.EqualsParameter">
@@ -976,20 +1282,6 @@
             <summary>
             Returns an instance of <see cref="T:IdApp.Converters.EqualsParameter"/> class.
             </summary>
-        </member>
-        <member name="T:IdApp.Converters.EqualsZero">
-            <summary>
-            Is true if an integer property is equal to zero.
-            </summary>
-        </member>
-        <member name="M:IdApp.Converters.EqualsZero.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.EqualsZero.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Converters.EqualsZero.ProvideValue(System.IServiceProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:IdApp.Converters.GreaterThanZero">
             <summary>
@@ -1924,6 +2216,1720 @@
             <typeparam name="T">The viewmodel type.</typeparam>
             <returns>View model</returns>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="T:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs">
+            <summary>
+            Holds navigation parameters specific to views displaying a client signature.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs.#ctor(Waher.Networking.XMPP.Contracts.ClientSignature,Waher.Networking.XMPP.Contracts.LegalIdentity)">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs"/> class.
+            </summary>
+            <param name="signature">The signature to display.</param>
+            <param name="identity">The legal identity to display.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs.Signature">
+            <summary>
+            The signature to display.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureNavigationArgs.Identity">
+            <summary>
+            The legal identity to display.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.ClientSignature.ClientSignaturePage">
+            <summary>
+            A page that displays a client signature.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.ClientSignature.ClientSignaturePage.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.ClientSignature.ClientSignaturePage"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel">
+            <summary>
+            The view model to bind to for when displaying client signatures.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OnInitialize">
+            <inheritdoc/>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CreatedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Created"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Created">
+            <summary>
+            The Created date of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.UpdatedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Updated"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Updated">
+            <summary>
+             The Updated timestamp of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LegalIdProperty">
+            <summary>
+            <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LegalId"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LegalId">
+            <summary>
+            The Legal id of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.StateProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.State"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.State">
+            <summary>
+            The current state of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.FromProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.From"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.From">
+            <summary>
+            The from date of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.ToProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.To"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.To">
+            <summary>
+            The to date of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.FirstNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.FirstName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.FirstName">
+            <summary>
+            The legal identity's first name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.MiddleNamesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.MiddleNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.MiddleNames">
+            <summary>
+            The legal identity's middle names property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LastNamesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LastNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.LastNames">
+            <summary>
+            The legal identity's last names property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PersonalNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PersonalNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PersonalNumber">
+            <summary>
+            The legal identity's personal number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.AddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Address"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Address">
+            <summary>
+            The legal identity's address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Address2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Address2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Address2">
+            <summary>
+            The legal identity's address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.ZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.ZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.ZipCode">
+            <summary>
+            The legal identity's zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.AreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Area"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Area">
+            <summary>
+            The legal identity's Area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.City"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.City">
+            <summary>
+            The legal identity's city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.RegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Region"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Region">
+            <summary>
+            The legal identity's region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CountryCode">
+            <summary>
+            The legal identity's country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.CountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Country"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Country">
+            <summary>
+            The legal identity's country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsApprovedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsApproved"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsApproved">
+            <summary>
+            Determines whether the identity is approved or not.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.RoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Role"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Role">
+            <summary>
+            The role of the signature
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.TimestampProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Timestamp"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Timestamp">
+            <summary>
+            The signature's timestamp.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsTransferableProperty">
+            <summary>
+            <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsTransferable"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsTransferable">
+            <summary>
+            Determines whether the signature is transferable or not.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.BareJidProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.BareJid"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.BareJid">
+            <summary>
+            Gets or sets the Bare Jid of the signature.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PhoneNrProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PhoneNr"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.PhoneNr">
+            <summary>
+            Gets or sets the Bare Jid of the signature.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.EMailProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.EMail"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.EMail">
+            <summary>
+            Gets or sets the Bare Jid of the signature.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.SignatureProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Signature"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Signature">
+            <summary>
+            The signature in plain text.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.IsLinkable">
+            <summary>
+            If the current view is linkable.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.EncodeAppLinks">
+            <summary>
+            If App links should be encoded with the link.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Link">
+            <summary>
+            Link to the current view
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Title">
+            <summary>
+            Title of the current view
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.HasMedia">
+            <summary>
+            If linkable view has media associated with link.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.Media">
+            <summary>
+            Encoded media, if available.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.ClientSignature.ClientSignatureViewModel.MediaContentType">
+            <summary>
+            Content-Type of associated media.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector">
+            <summary>
+            Data Template Selector, based on Item Type.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector.HeaderTemplate">
+            <summary>
+            Template to use for contract header
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector.ContractTemplate">
+            <summary>
+            Template to use for contracts
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector.EventTemplate">
+            <summary>
+            Template to use for standalone notification events.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector.DefaultTemplate">
+            <summary>
+            Template to use for other items.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ItemTypeTemplateSelector.OnSelectTemplate(System.Object,Xamarin.Forms.BindableObject)">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ContractsListMode">
+            <summary>
+            What list of contracts to display
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.ContractsListMode.Contracts">
+            <summary>
+            Contracts that has been created or signed by the account
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.ContractsListMode.ContractTemplates">
+            <summary>
+            Contract templates that have been used to create new contracts by the account
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.ContractsListMode.TokenCreationTemplates">
+            <summary>
+            Contract templates for creating new tokens
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.SelectContractAction">
+            <summary>
+            Actions to take when a contact has been selected.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.SelectContractAction.ViewContract">
+            <summary>
+            View the identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.SelectContractAction.Select">
+            <summary>
+            Embed link to ID in chat
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs">
+            <summary>
+            Holds navigation parameters specific to views displaying a list of contacts.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.#ctor(IdApp.Pages.Contracts.MyContracts.ContractsListMode)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs"/> class.
+            </summary>
+            <param name="Mode">What list of contracts to display.</param>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.#ctor(IdApp.Pages.Contracts.MyContracts.ContractsListMode,System.Threading.Tasks.TaskCompletionSource{Waher.Networking.XMPP.Contracts.Contract})">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs"/> class.
+            </summary>
+            <param name="Mode">What list of contracts to display.</param>
+            <param name="Selection">Selection source, where selected item will be stored, or null if cancelled.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.Action">
+            <summary>
+            Action to take when a contact has been selected.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.Mode">
+            <summary>
+            What list of contracts to display.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsNavigationArgs.Selection">
+            <summary>
+            Selection source, if selecting identity.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.MyContractsPage">
+            <summary>
+            A page that displays a list of the current user's contracts.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsPage.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.MyContractsPage"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel">
+            <summary>
+            The view model to bind to when displaying 'my' contracts.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.OnInitialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.OnAppearing">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.TitleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Title"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Title">
+            <summary>
+            Gets or sets the title for the view displaying contracts.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.DescriptionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Description"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Description">
+            <summary>
+            Gets or sets the introductory text for the view displaying contracts.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.ActionProperty">
+            <summary>
+            <see cref="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Action"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Action">
+            <summary>
+            The action to take when contact has been selected.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.ShowContractsMissingProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.ShowContractsMissing"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.ShowContractsMissing">
+            <summary>
+            Gets or sets whether to show a contracts missing alert or not.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.Categories">
+            <summary>
+            Holds the list of contracts to display, ordered by category.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.AddOrRemoveContracts(IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel,System.Boolean)">
+            <summary>
+            Add or remove the contracts from the collection
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.MyContractsViewModel.ContractSelected(System.String)">
+            <summary>
+            Add or remove the contracts from the collection
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel">
+            <summary>
+            The data model for a contract category containing a set of contracts of the same category.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.#ctor(System.String,System.Collections.Generic.ICollection{IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel})">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel"/> class.
+            </summary>
+            <param name="Category">Contract category</param>
+            <param name="Contracts">Contracts in category.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.Category">
+            <summary>
+            Displayable category for the contracts.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.Contracts">
+            <summary>
+            Displayable category for the contracts.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.NrContracts">
+            <summary>
+            Number of contracts in category.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.Expanded">
+            <summary>
+            If the group is expanded or not.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractCategoryModel.Symbol">
+            <summary>
+            Symbol used for the category.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel">
+            <summary>
+            The data model for a contract.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Create(System.String,System.DateTime,Waher.Networking.XMPP.Contracts.Contract,IdApp.Services.IServiceReferences,IdApp.Services.Notification.NotificationEvent[],IdApp.Services.IServiceReferences)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel"/> class.
+            </summary>
+            <param name="ContractId">The contract id.</param>
+            <param name="Timestamp">The timestamp to show with the contract reference.</param>
+            <param name="Contract">Contract</param>
+            <param name="Ref">Service References</param>
+            <param name="Events">Notification events associated with contract.</param>
+            <param name="ServiceReferences">Service references.</param>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.GetName(Waher.Networking.XMPP.Contracts.Contract,IdApp.Services.IServiceReferences)">
+            <summary>
+            Gets a displayable name for a contract.
+            </summary>
+            <param name="Contract">Contract</param>
+            <param name="Ref">Service References</param>
+            <returns>Displayable Name</returns>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.GetCategory(Waher.Networking.XMPP.Contracts.Contract)">
+            <summary>
+            Gets the category of a contract
+            </summary>
+            <param name="Contract">Contract</param>
+            <returns>Contract Category</returns>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.ContractId">
+            <summary>
+            The contract id.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.UniqueName">
+            <inheritdoc/>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Timestamp">
+            <summary>
+            The created timestamp of the contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Contract">
+            <summary>
+            A reference to the contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Name">
+            <summary>
+            Displayable name for the contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.NameOrCategory">
+            <summary>
+            Name, or category if no name.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Category">
+            <summary>
+            Displayable category for the contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.HasEvents">
+            <summary>
+            If the contract has associated notification events.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.NrEvents">
+            <summary>
+            Number of notification events associated with the contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.Events">
+            <summary>
+            Notification events.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.OnPropertyChanged(System.String)">
+            <summary>
+            Called when a property has changed.
+            </summary>
+            <param name="PropertyName">Name of property</param>
+        </member>
+        <member name="E:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.NotificationsUpdated(IdApp.Services.Notification.NotificationEvent[])">
+            <summary>
+            Method called when notifications for the item have been updated.
+            </summary>
+            <param name="Events">Updated set of events.</param>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.AddEvent(IdApp.Services.Notification.NotificationEvent)">
+            <summary>
+            Adds a notification event.
+            </summary>
+            <param name="Event">Notification event.</param>
+            <returns>If event was added (true), or if it was ignored because the event was already in the list of events (false).</returns>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel.RemoveEvent(IdApp.Services.Notification.NotificationEvent)">
+            <summary>
+            Removes a notification event.
+            </summary>
+            <param name="Event">Notification event.</param>
+            <returns>If the event was found and removed.</returns>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel">
+            <summary>
+            The data model for a notification event that is not associate with a referenced contract.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.#ctor(System.DateTime,System.String,System.String,IdApp.Services.Notification.NotificationEvent,IdApp.Services.IServiceReferences)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel"/> class.
+            </summary>
+            <param name="Received">When event was received.</param>
+            <param name="Icon">Icon of event.</param>
+            <param name="Description">Description of event.</param>
+            <param name="Event">Notification event object.</param>
+            <param name="References">Service references.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.Received">
+            <summary>
+            When event was received.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.Icon">
+            <summary>
+            Icon of event.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.Description">
+            <summary>
+            Description of event.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.Event">
+            <summary>
+            Notification event object.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.UniqueName">
+            <summary>
+            Unique name used to compare items.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.ClickedCommand">
+            <summary>
+            Command executed when the token has been clicked or tapped.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.EventModel.Clicked">
+            <summary>
+            Opens the notification event.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel">
+            <summary>
+            The data model for a contract category header containing a collection of contracts of the same category.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.#ctor(System.String,System.Collections.Generic.ICollection{IdApp.Pages.Contracts.MyContracts.ObjectModels.ContractModel},System.Int32)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel"/> class.
+            </summary>
+            <param name="Category">Contract category</param>
+            <param name="Contracts">Contracts in category.</param>
+            <param name="NrEvents">Number of events</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.Category">
+            <summary>
+            Displayable category name for the contracts.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.UniqueName">
+            <inheritdoc/>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.NrEvents">
+            <summary>
+            Number of events.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.HasEvents">
+            <summary>
+            If the category contains contracts with events.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.Contracts">
+            <summary>
+            The category's contracts.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.NrContracts">
+            <summary>
+            Number of contracts in category.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.Expanded">
+            <summary>
+            If the group is expanded or not.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.MyContracts.ObjectModels.HeaderModel.Symbol">
+            <summary>
+            Symbol used for the category.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs">
+            <summary>
+            Holds navigation parameters specific to views displaying a new contract.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.#ctor(System.Collections.Generic.Dictionary{Waher.Persistence.CaseInsensitiveString,System.Object})">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs"/> class.
+            </summary>
+            <param name="ParameterValues">Parameter values to set in new contract.</param>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.#ctor(Waher.Networking.XMPP.Contracts.Contract,System.Collections.Generic.Dictionary{Waher.Persistence.CaseInsensitiveString,System.Object})">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs"/> class.
+            </summary>
+            <param name="Template">The contract to use as template.</param>
+            <param name="ParameterValues">Parameter values to set in new contract.</param>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.#ctor(Waher.Networking.XMPP.Contracts.Contract,System.Boolean,System.Collections.Generic.Dictionary{Waher.Persistence.CaseInsensitiveString,System.Object})">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs"/> class.
+            </summary>
+            <param name="Template">The contract to use as template.</param>
+            <param name="SetVisibility">If visibility should be set by default.</param>
+            <param name="ParameterValues">Parameter values to set in new contract.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.Template">
+            <summary>
+            The contract to use as template.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.SetVisibility">
+            <summary>
+            If visibility should be set by default.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.ParameterValues">
+            <summary>
+            Parameter values to set in new contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.SuppressedProposalLegalIds">
+            <summary>
+            Any legal IDs to whom proposals should not be sent. May be null if no proposals should be suppressed.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractNavigationArgs.SuppressProposal(Waher.Persistence.CaseInsensitiveString)">
+            <summary>
+            Suppresses a proposal for a given Legal ID.
+            </summary>
+            <param name="LegalId">Legal ID to whom a proposal should not be sent.</param>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.NewContract.NewContractPage">
+            <summary>
+            A page that allows the user to create a new contract.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractPage.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractPage"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.NewContract.NewContractViewModel">
+            <summary>
+            The view model to bind to when displaying a new contract view or page.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractViewModel.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.NewContractViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractViewModel.OnInitialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractViewModel.DoSaveState">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.NewContractViewModel.DoRestoreState">
+            <inheritdoc/>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ProposeCommand">
+            <summary>
+            The Propose action which creates a new contract.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.IsTemplateProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.IsTemplate"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.IsTemplate">
+            <summary>
+            Gets or sets whether this contract is a template or not.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ContractVisibilityItems">
+            <summary>
+            A list of valid visibility items to choose from for this contract.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedContractVisibilityItemProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedContractVisibilityItem"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedContractVisibilityItem">
+            <summary>
+            The selected contract visibility item, if any.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.VisibilityIsEnabledProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.VisibilityIsEnabled"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.VisibilityIsEnabled">
+            <summary>
+            Gets or sets whether the visibility items should be shown to the user or not.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.AvailableRoles">
+            <summary>
+            The different roles available to choose from when creating a contract.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.SelectedRole">
+            <summary>
+            The role selected for the contract, if any.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.RolesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Roles"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Roles">
+            <summary>
+            Holds Xaml code for visually representing a contract's roles.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ParametersProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Parameters"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Parameters">
+            <summary>
+            Holds Xaml code for visually representing a contract's parameters.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HumanReadableTextProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HumanReadableText"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HumanReadableText">
+            <summary>
+            Holds Xaml code for visually representing a contract's human readable text section.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasRolesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasRoles"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasRoles">
+            <summary>
+            Gets or sets whether the contract has roles.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasParametersProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasParameters"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasParameters">
+            <summary>
+            Gets or sets whether the contract has parameters.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ParametersOkProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ParametersOk"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.ParametersOk">
+            <summary>
+            Gets or sets whether the contract has parameters.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasHumanReadableTextProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasHumanReadableText"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasHumanReadableText">
+            <summary>
+            Gets or sets whether the contract is comprised of human readable text.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.NewContract.NewContractViewModel.CanAddPartsProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.CanAddParts"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.CanAddParts">
+            <summary>
+            Gets or sets whether a user can add parts to a contract.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.IsLinkable">
+            <summary>
+            If the current view is linkable.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.EncodeAppLinks">
+            <summary>
+            If App links should be encoded with the link.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Link">
+            <summary>
+            Link to the current view
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Title">
+            <summary>
+            Title of the current view
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.HasMedia">
+            <summary>
+            If linkable view has media associated with link.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.Media">
+            <summary>
+            Encoded media, if available.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.NewContractViewModel.MediaContentType">
+            <summary>
+            Content-Type of associated media.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel">
+            <summary>
+            The data model for contract visibility.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel.#ctor(Waher.Networking.XMPP.Contracts.ContractVisibility,System.String)">
+            <summary>
+            Create an instance of the <see cref="T:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel"/> class.
+            </summary>
+            <param name="visibility">The contract visibility.</param>
+            <param name="name">The contract name.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel.Visibility">
+            <summary>
+            The contract visibility.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel.Name">
+            <summary>
+            The contract name.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel.ToString">
+            <summary>
+            Returns the string representation, i.e. name, of this <see cref="T:IdApp.Pages.Contracts.NewContract.ObjectModel.ContractVisibilityModel"/>.
+            </summary>
+            <returns>String representation</returns>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.NewContract.ObjectModel.ParameterInfo">
+            <summary>
+            Contains information about a parameter.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.NewContract.ObjectModel.ParameterInfo.#ctor(Waher.Networking.XMPP.Contracts.Parameter,Xamarin.Forms.View)">
+            <summary>
+            Contains information about a parameter.
+            </summary>
+            <param name="Parameter">Contract parameter.</param>
+            <param name="Control">Generated control.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.ObjectModel.ParameterInfo.Parameter">
+            <summary>
+            Contract parameter.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.NewContract.ObjectModel.ParameterInfo.Control">
+            <summary>
+            Generated control.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs">
+            <summary>
+            Holds navigation parameters specific to views displaying a contract petition request.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.#ctor">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.#ctor(Waher.Networking.XMPP.Contracts.LegalIdentity,System.String,Waher.Networking.XMPP.Contracts.Contract,System.String,System.String)">
+            <summary>
+            Creates an instance of the <see cref="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs"/> class.
+            </summary>
+            <param name="requestorIdentity">The identity of the requestor</param>
+            <param name="requestorFullJid">The identity of the requestor</param>
+            <param name="requestedContract">The identity of the requestor</param>
+            <param name="petitionId">The petition id.</param>
+            <param name="purpose">The purpose of the petition.</param>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.RequestorIdentity">
+            <summary>
+            The identity of the requestor.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.RequestorFullJid">
+            <summary>
+            The identity of the requestor.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.RequestedContract">
+            <summary>
+            The identity of the requestor.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.PetitionId">
+            <summary>
+            The petition id.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractNavigationArgs.Purpose">
+            <summary>
+            The purpose of the petition.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractPage">
+            <summary>
+            A page to display when the user is asked to petition a contract.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractPage.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractPage"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractPage.OnDisappearingAsync">
+            <inheritdoc/>
+        </member>
+        <member name="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel">
+            <summary>
+            The view model to bind to when displaying petitioning of a contract in a view or page.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OnInitialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.AcceptCommand">
+            <summary>
+            The command to bind to for accepting the petition
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.DeclineCommand">
+            <summary>
+            The command to bind to for declining the petition
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.IgnoreCommand">
+            <summary>
+            The command to bind to for ignoring the petition
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Photos">
+            <summary>
+            The list of photos related to the contract being petitioned.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.RequestedContract">
+            <summary>
+            The contract to display.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.RequestorIdentity">
+            <summary>
+            Requestor Identity object
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CreatedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Created"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Created">
+            <summary>
+            Created date of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.UpdatedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Updated"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Updated">
+            <summary>
+            Updated date of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LegalIdProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LegalId"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LegalId">
+            <summary>
+            Legal id of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.StateProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.State"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.State">
+            <summary>
+            Current state of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FromProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.From"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.From">
+            <summary>
+            From date (validity range) of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.ToProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.To"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.To">
+            <summary>
+            To date (validity range) of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstName">
+            <summary>
+            First name of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.MiddleNamesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.MiddleNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.MiddleNames">
+            <summary>
+            Middle name(s) of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LastNamesProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LastNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.LastNames">
+            <summary>
+            Last name(s) of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PersonalNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PersonalNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PersonalNumber">
+            <summary>
+            Personal number of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.AddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Address"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Address">
+            <summary>
+            Address of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Address2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Address2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Address2">
+            <summary>
+            Address (line 2) of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.ZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.ZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.ZipCode">
+            <summary>
+            Zip code of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.AreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Area"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Area">
+            <summary>
+            Area of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.City"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.City">
+            <summary>
+            City of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.RegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Region"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Region">
+            <summary>
+            Region of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CountryCode">
+            <summary>
+            Country code of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.CountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Country"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Country">
+            <summary>
+            Country of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PhoneNrProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PhoneNr"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PhoneNr">
+            <summary>
+            PhoneNr of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.EMailProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.EMail"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.EMail">
+            <summary>
+            EMail of the contract
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.IsApprovedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.IsApproved"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.IsApproved">
+            <summary>
+            Is the contract approved?
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.PurposeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Purpose"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.Purpose">
+            <summary>
+            What's the purpose of the petition?
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoSourceProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoSource"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoSource">
+            <summary>
+            Image source of the first photo in the identity of the requestor.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoRotationProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoRotation"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionContract.PetitionContractViewModel.FirstPhotoRotation">
+            <summary>
+            Rotation of the first photo in the identity of the requestor.
+            </summary>
+        </member>
+>>>>>>> tagid_develop
         <member name="T:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureNavigationArgs">
             <summary>
             Holds navigation parameters specific to views displaying a petition of a signature.
@@ -2207,6 +4213,146 @@
         <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.Country">
             <summary>
             Country of the identity
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Contracts.PetitionSignature.PetitionSignatureViewModel.PhoneNrProperty">
@@ -2526,6 +4672,146 @@
         <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.Country">
             <summary>
             Country of the identity
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Identity.PetitionIdentity.PetitionIdentityViewModel.PhoneNrProperty">
@@ -3009,6 +5295,146 @@
             Country code of the identity
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.PhoneNrProperty">
             <summary>
             See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.PhoneNr"/>
@@ -3199,6 +5625,116 @@
             Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.CountryCode"/> property is checked (when being reviewed)
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNameIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNameIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNameIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgName"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartmentIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartmentIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartmentIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartment"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRoleIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRoleIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRoleIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRole"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumberIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumberIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumberIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumber"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddressIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddressIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddressIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2IsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddressIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2IsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCodeIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCodeIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCodeIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCode"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAreaIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAreaIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAreaIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgArea"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCityIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCityIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCityIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCity"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegionIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegionIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegionIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegion"/> property is checked (when being reviewed)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCodeIsCheckedProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCodeIsChecked"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCodeIsChecked">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountryCode"/> property is checked (when being reviewed)
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.CarefulReviewIsCheckedProperty">
             <summary>
             See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.CarefulReviewIsChecked"/>
@@ -3327,6 +5863,116 @@
         <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewCountry">
             <summary>
             Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.Country"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgName">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgName"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgDepartment">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgDepartment"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRole">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRole"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgNumber">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgNumber"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddress">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAddress2">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgAddress2"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCity">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCity"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgZipCode">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgZipCode"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgArea">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgArea"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgRegion">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgRegion"/> property is for review.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.IsForReviewOrgCountry">
+            <summary>
+            Gets or sets whether the <see cref="P:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.OrgCountry"/> property is for review.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Identity.ViewIdentity.ViewIdentityViewModel.FirstPhotoSourceProperty">
@@ -4903,6 +7549,61 @@
             Country
             </summary>
         </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgName">
+            <summary>
+            Organization name
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgNumber">
+            <summary>
+            Organization number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgAddress">
+            <summary>
+            Organization Address, line 1
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgAddress2">
+            <summary>
+            Organization Address, line 2
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgZipCode">
+            <summary>
+            Organization Zip code (postal code)
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgArea">
+            <summary>
+            Organization Area
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgCity">
+            <summary>
+            Organization City
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgRegion">
+            <summary>
+            Organization Region
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgCountry">
+            <summary>
+            Organization Country
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgDepartment">
+            <summary>
+            Organization Department
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.OrgRole">
+            <summary>
+            Organization Role
+            </summary>
+        </member>
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.PhoneNr">
             <summary>
             Phone Number
@@ -4961,6 +7662,11 @@
             True if the user choose the educational or experimental purpose.
             </summary>
         </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.Purpose">
+            <summary>
+            Purpose for using the app.
+            </summary>
+        </member>
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.RegisterCommand">
             <summary>
             The command to bind to for performing the 'register' action.
@@ -4984,6 +7690,16 @@
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.RemovePhotoCommand">
             <summary>
             The command to bind to for removing the currently selected photo.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ShowOrganizationProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ShowOrganization"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ShowOrganization">
+            <summary>
+            Gets or sets whether the user has selected a photo for their account or not.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.HasPhotoProperty">
@@ -5023,12 +7739,22 @@
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedCountryProperty">
             <summary>
-            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.HasPhoto"/>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedCountry"/>
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedCountry">
             <summary>
             The user selected country from the list of <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.Countries"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedOrgCountryProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedOrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedOrgCountry">
+            <summary>
+            The user selected organization country from the list of <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.Countries"/>.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.FirstNameProperty">
@@ -5061,6 +7787,16 @@
             The user's last name(s)
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgNameProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgName">
+            <summary>
+            The organization name
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.PersonalNumberProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.PersonalNumber"/>
@@ -5079,6 +7815,16 @@
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.PersonalNumberPlaceholder">
             <summary>
             The personal number placeholder, used as a guide to the user to enter the correct format, which depends on the <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.SelectedCountry"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgNumberProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgNumber">
+            <summary>
+            The organization number
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.AddressProperty">
@@ -5101,6 +7847,26 @@
             The user's address, line 2.
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddressProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddress">
+            <summary>
+            The organization address, line 1.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddress2Property">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAddress2">
+            <summary>
+            The organization address, line 2.
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ZipCodeProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ZipCode"/>
@@ -5109,6 +7875,16 @@
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.ZipCode">
             <summary>
             The user's zip code
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgZipCodeProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgZipCode">
+            <summary>
+            The organization zip code
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.AreaProperty">
@@ -5121,6 +7897,16 @@
             The user's area
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgAreaProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgArea">
+            <summary>
+            The organization area
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.CityProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.City"/>
@@ -5131,6 +7917,16 @@
             The user's city
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgCityProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgCity">
+            <summary>
+            The organization city
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.RegionProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.Region"/>
@@ -5139,6 +7935,36 @@
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.Region">
             <summary>
             The user's region
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRegionProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRegion">
+            <summary>
+            The organization region
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgDepartmentProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgDepartment">
+            <summary>
+            The organization department
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRoleProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OrgRole">
+            <summary>
+            The organization role
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.DeviceIdProperty">
@@ -5444,21 +8270,6 @@
             Creates a new instance of the <see cref="T:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoView"/> class.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.Registration.ValidateContactInfo.PurposeUse">
-            <summary>
-            For what purpose the app will be used
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.PurposeUse.WorkOrPersonal">
-            <summary>
-            For work or personal use
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.PurposeUse.EducationalOrExperimental">
-            <summary>
-            For educational or experimental use
-            </summary>
-        </member>
         <member name="T:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel">
             <summary>
             The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
@@ -5498,14 +8309,54 @@
             Holds the list of purposes to display.
             </summary>
         </member>
-        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PurposeProperty">
+        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PurposeNrProperty">
             <summary>
-            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.Purpose"/>
+            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PurposeNr"/>
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.Purpose">
+        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PurposeNr">
             <summary>
-            Phone number
+            Purpose number (zero-based)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsPersonalPurposeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsPersonalPurpose"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsPersonalPurpose">
+            <summary>
+            If purpose is personal use.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsWorkPurposeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsWorkPurpose"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsWorkPurpose">
+            <summary>
+            If purpose is personal use.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsEducationalPurposeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsEducationalPurpose"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsEducationalPurpose">
+            <summary>
+            If purpose is personal use.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsExperimentalPurposeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsExperimentalPurpose"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.IsExperimentalPurpose">
+            <summary>
+            If purpose is personal use.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PurposeRequiredProperty">
@@ -5576,7 +8427,7 @@
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.EMailValidated">
             <summary>
-            If Phone number is valid or not
+            If e-Mail is valid or not
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PhoneNrValidatedProperty">
@@ -5596,7 +8447,7 @@
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.EMailVerificationCode">
             <summary>
-            Phone number
+            E-mail verification code
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PhoneNrVerificationCodeProperty">
@@ -5606,7 +8457,7 @@
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.PhoneNrVerificationCode">
             <summary>
-            Phone number
+            Phone number verification code
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.EmailButtonEnabled">
@@ -5631,12 +8482,12 @@
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.VerifyEmailCodeButtonEnabled">
             <summary>
-            If Phone number is valid or not
+            If verify e-mail code button is enabled.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.VerifyPhoneCodeButtonEnabled">
             <summary>
-            If Phone number is valid or not
+            If verify phone number code button is enabled.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.ValidateContactInfo.ValidateContactInfoViewModel.VerifyEmailCodeButtonLabel">
@@ -5927,6 +8778,146 @@
         <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CountryCode">
             <summary>
             Gets or sets the user's country.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgName">
+            <summary>
+            The legal identity's organization name property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgNumber">
+            <summary>
+            The legal identity's organization number property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgDepartmentProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgDepartment"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgDepartment">
+            <summary>
+            The legal identity's organization department property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRoleProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRole"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRole">
+            <summary>
+            The legal identity's organization role property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddressProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddress"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddress">
+            <summary>
+            The legal identity's organization address property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddress2Property">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddress2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAddress2">
+            <summary>
+            The legal identity's organization address line 2 property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgZipCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgZipCode">
+            <summary>
+            The legal identity's organization zip code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgAreaProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgArea"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgArea">
+            <summary>
+            The legal identity's organization area property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCityProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCity"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCity">
+            <summary>
+            The legal identity's organization city property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRegionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRegion"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRegion">
+            <summary>
+            The legal identity's organization region property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountryCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountryCode">
+            <summary>
+            The legal identity's organization country code property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountryProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountry"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgCountry">
+            <summary>
+            The legal identity's organization country property
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.HasOrgProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.HasOrg"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.HasOrg">
+            <summary>
+            If organization information is available.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRowHeightProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRowHeight"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OrgRowHeight">
+            <summary>
+            If organization information is available.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PhoneNrProperty">
@@ -8065,6 +11056,61 @@
               Looks up a localized string similar to Ordinal.
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.OrgAddress">
+            <summary>
+              Looks up a localized string similar to Organization Address.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgAddress2">
+            <summary>
+              Looks up a localized string similar to Organization Address (row 2).
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgArea">
+            <summary>
+              Looks up a localized string similar to Organization Area.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgCity">
+            <summary>
+              Looks up a localized string similar to Organization City.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgCountry">
+            <summary>
+              Looks up a localized string similar to Organization Country.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgDepartment">
+            <summary>
+              Looks up a localized string similar to Department.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgName">
+            <summary>
+              Looks up a localized string similar to Organization Name.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgNumber">
+            <summary>
+              Looks up a localized string similar to Organization Number.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgRegion">
+            <summary>
+              Looks up a localized string similar to Organization Region.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgRole">
+            <summary>
+              Looks up a localized string similar to Role.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.OrgZipCode">
+            <summary>
+              Looks up a localized string similar to Organization Zip or Postal Code.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.Other">
             <summary>
               Looks up a localized string similar to Other.
@@ -8550,9 +11596,34 @@
               Looks up a localized string similar to Purpose.
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.PurposeEducationalOrExperimental">
+        <member name="P:IdApp.Resx.AppResources.PurposeEducational">
             <summary>
-              Looks up a localized string similar to Educational or experimental use..
+              Looks up a localized string similar to Educational use..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PurposeEducationalDescription">
+            <summary>
+              Looks up a localized string similar to This option allows you to use Tag ID for educational purposes. You can use the app to sign or access resources as a private person, either as an educator, or as a student. The account may be limited in time. The account may also be removed when no longer used. Check with the service provider for more information..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PurposeExperimental">
+            <summary>
+              Looks up a localized string similar to Experimental use..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PurposeExperimentalDescription">
+            <summary>
+              Looks up a localized string similar to This option allows you to use Tag ID for experimental purposes. You can use the app to sign or access resources as a private person, with the goal of learning the technology and for what purposes it can be used. The account may be limited in time. The account may also be removed when no longer used. Check with the service provider for more information..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PurposePersonal">
+            <summary>
+              Looks up a localized string similar to Personal use..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PurposePersonalDescription">
+            <summary>
+              Looks up a localized string similar to This option allows you to use Tag ID for personal purposes. You can use the app to sign or access resources as a private person. Certain operations may incur costs, depending on the service provider you choose. Check with the service provider for more information..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.PurposeReviewContract">
@@ -8565,19 +11636,14 @@
               Looks up a localized string similar to Reviewing token where you are part..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.PurposeWorkEducationalOrExperimental">
+        <member name="P:IdApp.Resx.AppResources.PurposeWork">
             <summary>
-              Looks up a localized string similar to This option allows you to use Tag ID for educational, experimental or test purposes. There are no costs incurred when using this option. The account may be removed when no longer used. There is no guarantee the educational or experimental service provider selected will continue operation for extended periods of time..
+              Looks up a localized string similar to Work use..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.PurposeWorkOrPersonal">
+        <member name="P:IdApp.Resx.AppResources.PurposeWorkDescription">
             <summary>
-              Looks up a localized string similar to Work or personal use..
-            </summary>
-        </member>
-        <member name="P:IdApp.Resx.AppResources.PurposeWorkOrPersonalDescription">
-            <summary>
-              Looks up a localized string similar to This option allows you to use Tag ID for work or personal purposes. You can use the app for three months at no cost. After this time period, certain operations may incur costs..
+              Looks up a localized string similar to This option allows you to use Tag ID for work purposes. This includes work not for profit in organizations. You can use the app to sign or access resources as a representative of an organization. Certain operations may incur costs, depending on the service provider you choose. Check with the service provider for more information..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.Qrcode">
@@ -9968,6 +13034,31 @@
         <member name="P:IdApp.Resx.AppResources.YouNeedToProvideALastName">
             <summary>
               Looks up a localized string similar to You need to provide at least one last name.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAnOrgCountry">
+            <summary>
+              Looks up a localized string similar to You need to provide an organization country.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAnOrgDepartment">
+            <summary>
+              Looks up a localized string similar to You need to provide a department.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAnOrgName">
+            <summary>
+              Looks up a localized string similar to You need to provide an organization name.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAnOrgNumber">
+            <summary>
+              Looks up a localized string similar to You need to provide an organization number.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAnOrgRole">
+            <summary>
+              Looks up a localized string similar to You need to provide a role.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.YouNeedToProvideAPersonalNumber">
@@ -11727,6 +14818,11 @@
             Returns <c>true</c> if the user choose the educational or experimental purpose.
             </summary>
         </member>
+        <member name="P:IdApp.Services.Tag.ITagProfile.Purpose">
+            <summary>
+            Purpose for using the app.
+            </summary>
+        </member>
         <member name="P:IdApp.Services.Tag.ITagProfile.TestOtpTimestamp">
             <summary>
             Returns a timestamp if the user used a Test OTP Code.
@@ -11876,10 +14972,12 @@
             Revert Step 5.
             </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.SetIsTest(System.Boolean)">
+        <member name="M:IdApp.Services.Tag.ITagProfile.SetPurpose(System.Boolean,IdApp.Services.Tag.PurposeUse)">
             <summary>
             Step 1 - Set if the user choose the educational or experimental purpose.
             </summary>
+            <param name="IsTest">If app is in test mode.</param>
+            <param name="Purpose">Purpose for using the app</param>
         </member>
         <member name="M:IdApp.Services.Tag.ITagProfile.SetTestOtpTimestamp(System.Nullable{System.DateTime})">
             <summary>
@@ -12045,6 +15143,31 @@
             Profile is completed.
             </summary>
         </member>
+        <member name="T:IdApp.Services.Tag.PurposeUse">
+            <summary>
+            For what purpose the app will be used
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.PurposeUse.Personal">
+            <summary>
+            For personal use
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.PurposeUse.Work">
+            <summary>
+            For use at work
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.PurposeUse.Educational">
+            <summary>
+            For educational use
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.PurposeUse.Experimental">
+            <summary>
+            For experimental use
+            </summary>
+        </member>
         <member name="T:IdApp.Services.Tag.TagProfile">
             <inheritdoc/>
         </member>
@@ -12156,6 +15279,11 @@
         <member name="P:IdApp.Services.Tag.TagProfile.IsTest">
             <inheritdoc/>
         </member>
+        <member name="P:IdApp.Services.Tag.TagProfile.Purpose">
+            <summary>
+            Purpose for using the app.
+            </summary>
+        </member>
         <member name="P:IdApp.Services.Tag.TagProfile.TestOtpTimestamp">
             <inheritdoc/>
         </member>
@@ -12219,7 +15347,7 @@
         <member name="M:IdApp.Services.Tag.TagProfile.RevertPinStep">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.SetIsTest(System.Boolean)">
+        <member name="M:IdApp.Services.Tag.TagProfile.SetPurpose(System.Boolean,IdApp.Services.Tag.PurposeUse)">
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetTestOtpTimestamp(System.Nullable{System.DateTime})">
@@ -12371,6 +15499,11 @@
         <member name="P:IdApp.Services.TagConfiguration.IsTest">
             <summary>
             Set to true if the user choose the educational or experimental purpose.
+            </summary>
+        </member>
+        <member name="P:IdApp.Services.TagConfiguration.Purpose">
+            <summary>
+            Purpose for using the app
             </summary>
         </member>
         <member name="P:IdApp.Services.TagConfiguration.TestOtpTimestamp">

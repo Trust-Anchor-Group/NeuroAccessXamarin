@@ -49,6 +49,32 @@ namespace IdApp.Services.Tag
 		Complete = 5
 	}
 
+	/// <summary>
+	/// For what purpose the app will be used
+	/// </summary>
+	public enum PurposeUse
+	{
+		/// <summary>
+		/// For personal use
+		/// </summary>
+		Personal = 0,
+
+		/// <summary>
+		/// For use at work
+		/// </summary>
+		Work = 1,
+
+		/// <summary>
+		/// For educational use
+		/// </summary>
+		Educational = 2,
+
+		/// <summary>
+		/// For experimental use
+		/// </summary>
+		Experimental = 3
+	}
+
 	/// <inheritdoc/>
 	[Singleton]
 	public class TagProfile : ITagProfile
@@ -80,6 +106,7 @@ namespace IdApp.Services.Tag
 		private string pinHash;
 		private long? httpFileUploadMaxSize;
 		private bool isTest;
+		private PurposeUse purpose;
 		private DateTime? testOtpTimestamp;
 		private RegistrationStep step = RegistrationStep.ValidateContactInfo;
 		private bool suppressPropertyChangedEvents;
@@ -126,7 +153,7 @@ namespace IdApp.Services.Tag
 		/// <returns>Configuration object</returns>
 		public TagConfiguration ToConfiguration()
 		{
-			TagConfiguration clone = new()
+			TagConfiguration Clone = new()
 			{
 				ObjectId = this.objectId,
 				Domain = this.Domain,
@@ -144,12 +171,13 @@ namespace IdApp.Services.Tag
 				LogJid = this.LogJid,
 				PinHash = this.PinHash,
 				IsTest = this.IsTest,
+				Purpose = this.Purpose,
 				TestOtpTimestamp = this.TestOtpTimestamp,
 				LegalIdentity = this.LegalIdentity,
 				Step = this.Step
 			};
 
-			return clone;
+			return Clone;
 		}
 
 		/// <summary>
@@ -178,6 +206,7 @@ namespace IdApp.Services.Tag
 				this.LogJid = configuration.LogJid;
 				this.PinHash = configuration.PinHash;
 				this.IsTest = configuration.IsTest;
+				this.Purpose = configuration.Purpose;
 				this.TestOtpTimestamp = configuration.TestOtpTimestamp;
 				this.LegalIdentity = configuration.LegalIdentity;
 
@@ -453,6 +482,22 @@ namespace IdApp.Services.Tag
 				{
 					this.isTest = value;
 					this.FlagAsDirty(nameof(this.IsTest));
+				}
+			}
+		}
+
+		/// <summary>
+		/// Purpose for using the app.
+		/// </summary>
+		public PurposeUse Purpose
+		{
+			get => this.purpose;
+			private set
+			{
+				if (this.purpose != value)
+				{
+					this.purpose = value;
+					this.FlagAsDirty(nameof(this.Purpose));
 				}
 			}
 		}
@@ -737,9 +782,10 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public void SetIsTest(bool isTest)
+		public void SetPurpose(bool IsTest, PurposeUse Purpose)
 		{
-			this.IsTest = isTest;
+			this.IsTest = IsTest;
+			this.Purpose = Purpose;
 		}
 
 		/// <inheritdoc/>

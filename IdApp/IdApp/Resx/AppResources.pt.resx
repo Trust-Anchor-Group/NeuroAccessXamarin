@@ -1167,18 +1167,6 @@
   <data name="WelcomeToTagValidatePhoneNr" xml:space="preserve">
     <value>Também precisamos validar seu número de telefone celular. Digite seu número de telefone celular abaixo, usando o formato de número de telefone internacional, sem espaços.</value>
   </data>
-  <data name="PurposeEducationalOrExperimental" xml:space="preserve">
-    <value>Uso educacional ou experimental.</value>
-  </data>
-  <data name="PurposeWorkEducationalOrExperimental" xml:space="preserve">
-    <value>Esta opção permite que você use o Tag ID para fins educacionais, experimentais ou de teste. Não há custos incorridos ao usar esta opção. A conta pode ser removida quando não for mais usada. Não há garantia de que o prestador de serviços educacionais ou experimentais selecionado continuará a operar por longos períodos de tempo.</value>
-  </data>
-  <data name="PurposeWorkOrPersonal" xml:space="preserve">
-    <value>Trabalho ou uso pessoal.</value>
-  </data>
-  <data name="PurposeWorkOrPersonalDescription" xml:space="preserve">
-    <value>Esta opção permite que você use o Tag ID para fins de trabalho ou pessoais. Você pode usar o aplicativo por três meses sem nenhum custo. Após esse período, certas operações podem incorrer em custos.</value>
-  </data>
   <data name="SelectPurpose" xml:space="preserve">
     <value>Selecionar propósito</value>
   </data>
@@ -2258,5 +2246,77 @@
   </data>
   <data name="UnableToOpenLink" xml:space="preserve">
     <value>Não é possível abrir o link:</value>
+  </data>
+  <data name="OrgAddress" xml:space="preserve">
+    <value>Endereço da Organização</value>
+  </data>
+  <data name="OrgAddress2" xml:space="preserve">
+    <value>Endereço da Organização (linha 2)</value>
+  </data>
+  <data name="OrgArea" xml:space="preserve">
+    <value>Área da Organização</value>
+  </data>
+  <data name="OrgCity" xml:space="preserve">
+    <value>Cidade Organização</value>
+  </data>
+  <data name="OrgCountry" xml:space="preserve">
+    <value>País da Organização</value>
+  </data>
+  <data name="OrgDepartment" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="OrgName" xml:space="preserve">
+    <value>Nome da Organização</value>
+  </data>
+  <data name="OrgNumber" xml:space="preserve">
+    <value>Número da Organização</value>
+  </data>
+  <data name="OrgRegion" xml:space="preserve">
+    <value>Região da Organização</value>
+  </data>
+  <data name="OrgRole" xml:space="preserve">
+    <value>Papel</value>
+  </data>
+  <data name="OrgZipCode" xml:space="preserve">
+    <value>Organização CEP ou Código Postal</value>
+  </data>
+  <data name="PurposeEducational" xml:space="preserve">
+    <value>Uso educacional.</value>
+  </data>
+  <data name="PurposeEducationalDescription" xml:space="preserve">
+    <value>Essa opção permite que você use o Tag ID para fins educacionais. Você pode usar o aplicativo para assinar ou acessar recursos como uma pessoa particular, como educador ou como aluno. A conta pode ser limitada no tempo. A conta também pode ser removida quando não for mais usada. Consulte o provedor de serviços para obter mais informações.</value>
+  </data>
+  <data name="PurposeExperimental" xml:space="preserve">
+    <value>Uso experimental.</value>
+  </data>
+  <data name="PurposeExperimentalDescription" xml:space="preserve">
+    <value>Essa opção permite que você use o ID da tag para fins experimentais. Você pode usar o aplicativo para assinar ou acessar recursos como uma pessoa privada, com o objetivo de aprender a tecnologia e para quais fins ela pode ser usada. A conta pode ser limitada no tempo. A conta também pode ser removida quando não for mais usada. Consulte o provedor de serviços para obter mais informações.</value>
+  </data>
+  <data name="PurposePersonal" xml:space="preserve">
+    <value>Uso pessoal.</value>
+  </data>
+  <data name="PurposePersonalDescription" xml:space="preserve">
+    <value>Essa opção permite que você use o ID da tag para fins pessoais. Você pode usar o aplicativo para assinar ou acessar recursos como uma pessoa particular. Certas operações podem incorrer em custos, dependendo do provedor de serviços escolhido. Consulte o provedor de serviços para obter mais informações.</value>
+  </data>
+  <data name="PurposeWork" xml:space="preserve">
+    <value>Uso do trabalho.</value>
+  </data>
+  <data name="PurposeWorkDescription" xml:space="preserve">
+    <value>Essa opção permite que você use o ID da tag para fins de trabalho. Isso inclui o trabalho sem fins lucrativos nas organizações. Você pode usar o aplicativo para assinar ou acessar recursos como representante de uma organização. Certas operações podem incorrer em custos, dependendo do provedor de serviços escolhido. Consulte o provedor de serviços para obter mais informações.</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgCountry" xml:space="preserve">
+    <value>Você precisa fornecer um país da organização</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgDepartment" xml:space="preserve">
+    <value>Você precisa fornecer um departamento</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgName" xml:space="preserve">
+    <value>Você precisa fornecer um nome de organização</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgNumber" xml:space="preserve">
+    <value>Você precisa fornecer um número de organização</value>
+  </data>
+  <data name="YouNeedToProvideAnOrgRole" xml:space="preserve">
+    <value>Você precisa fornecer uma função</value>
   </data>
 </root>

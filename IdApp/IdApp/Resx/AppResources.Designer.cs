@@ -2977,6 +2977,105 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization Address.
+        /// </summary>
+        internal static string OrgAddress {
+            get {
+                return ResourceManager.GetString("OrgAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Address (row 2).
+        /// </summary>
+        internal static string OrgAddress2 {
+            get {
+                return ResourceManager.GetString("OrgAddress2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Area.
+        /// </summary>
+        internal static string OrgArea {
+            get {
+                return ResourceManager.GetString("OrgArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization City.
+        /// </summary>
+        internal static string OrgCity {
+            get {
+                return ResourceManager.GetString("OrgCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Country.
+        /// </summary>
+        internal static string OrgCountry {
+            get {
+                return ResourceManager.GetString("OrgCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string OrgDepartment {
+            get {
+                return ResourceManager.GetString("OrgDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Name.
+        /// </summary>
+        internal static string OrgName {
+            get {
+                return ResourceManager.GetString("OrgName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Number.
+        /// </summary>
+        internal static string OrgNumber {
+            get {
+                return ResourceManager.GetString("OrgNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Region.
+        /// </summary>
+        internal static string OrgRegion {
+            get {
+                return ResourceManager.GetString("OrgRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        internal static string OrgRole {
+            get {
+                return ResourceManager.GetString("OrgRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Zip or Postal Code.
+        /// </summary>
+        internal static string OrgZipCode {
+            get {
+                return ResourceManager.GetString("OrgZipCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string Other {
@@ -3850,11 +3949,56 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Educational or experimental use..
+        ///   Looks up a localized string similar to Educational use..
         /// </summary>
-        internal static string PurposeEducationalOrExperimental {
+        internal static string PurposeEducational {
             get {
-                return ResourceManager.GetString("PurposeEducationalOrExperimental", resourceCulture);
+                return ResourceManager.GetString("PurposeEducational", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option allows you to use Tag ID for educational purposes. You can use the app to sign or access resources as a private person, either as an educator, or as a student. The account may be limited in time. The account may also be removed when no longer used. Check with the service provider for more information..
+        /// </summary>
+        internal static string PurposeEducationalDescription {
+            get {
+                return ResourceManager.GetString("PurposeEducationalDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experimental use..
+        /// </summary>
+        internal static string PurposeExperimental {
+            get {
+                return ResourceManager.GetString("PurposeExperimental", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option allows you to use Tag ID for experimental purposes. You can use the app to sign or access resources as a private person, with the goal of learning the technology and for what purposes it can be used. The account may be limited in time. The account may also be removed when no longer used. Check with the service provider for more information..
+        /// </summary>
+        internal static string PurposeExperimentalDescription {
+            get {
+                return ResourceManager.GetString("PurposeExperimentalDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal use..
+        /// </summary>
+        internal static string PurposePersonal {
+            get {
+                return ResourceManager.GetString("PurposePersonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option allows you to use Tag ID for personal purposes. You can use the app to sign or access resources as a private person. Certain operations may incur costs, depending on the service provider you choose. Check with the service provider for more information..
+        /// </summary>
+        internal static string PurposePersonalDescription {
+            get {
+                return ResourceManager.GetString("PurposePersonalDescription", resourceCulture);
             }
         }
         
@@ -3877,29 +4021,20 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This option allows you to use Tag ID for educational, experimental or test purposes. There are no costs incurred when using this option. The account may be removed when no longer used. There is no guarantee the educational or experimental service provider selected will continue operation for extended periods of time..
+        ///   Looks up a localized string similar to Work use..
         /// </summary>
-        internal static string PurposeWorkEducationalOrExperimental {
+        internal static string PurposeWork {
             get {
-                return ResourceManager.GetString("PurposeWorkEducationalOrExperimental", resourceCulture);
+                return ResourceManager.GetString("PurposeWork", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work or personal use..
+        ///   Looks up a localized string similar to This option allows you to use Tag ID for work purposes. This includes work not for profit in organizations. You can use the app to sign or access resources as a representative of an organization. Certain operations may incur costs, depending on the service provider you choose. Check with the service provider for more information..
         /// </summary>
-        internal static string PurposeWorkOrPersonal {
+        internal static string PurposeWorkDescription {
             get {
-                return ResourceManager.GetString("PurposeWorkOrPersonal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This option allows you to use Tag ID for work or personal purposes. You can use the app for three months at no cost. After this time period, certain operations may incur costs..
-        /// </summary>
-        internal static string PurposeWorkOrPersonalDescription {
-            get {
-                return ResourceManager.GetString("PurposeWorkOrPersonalDescription", resourceCulture);
+                return ResourceManager.GetString("PurposeWorkDescription", resourceCulture);
             }
         }
         
@@ -6402,6 +6537,51 @@ namespace IdApp.Resx {
         internal static string YouNeedToProvideALastName {
             get {
                 return ResourceManager.GetString("YouNeedToProvideALastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to provide an organization country.
+        /// </summary>
+        internal static string YouNeedToProvideAnOrgCountry {
+            get {
+                return ResourceManager.GetString("YouNeedToProvideAnOrgCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to provide a department.
+        /// </summary>
+        internal static string YouNeedToProvideAnOrgDepartment {
+            get {
+                return ResourceManager.GetString("YouNeedToProvideAnOrgDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to provide an organization name.
+        /// </summary>
+        internal static string YouNeedToProvideAnOrgName {
+            get {
+                return ResourceManager.GetString("YouNeedToProvideAnOrgName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to provide an organization number.
+        /// </summary>
+        internal static string YouNeedToProvideAnOrgNumber {
+            get {
+                return ResourceManager.GetString("YouNeedToProvideAnOrgNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to provide a role.
+        /// </summary>
+        internal static string YouNeedToProvideAnOrgRole {
+            get {
+                return ResourceManager.GetString("YouNeedToProvideAnOrgRole", resourceCulture);
             }
         }
         
