@@ -1,5 +1,4 @@
 ﻿using IdApp.Services;
-using IdApp.Services.Notification.Identities;
 using System;
 using System.Threading.Tasks;
 using Waher.Runtime.Inventory;
@@ -36,7 +35,6 @@ namespace IdApp.Links
 		public async Task<bool> TryOpenLink(Uri Link)
 		{
 			ServiceReferences Services = new();
-			Services.NotificationService.ExpectEvent<RequestSignatureNotificationEvent>(DateTime.Now.AddMinutes(1));
 
 			string request = Constants.UriSchemes.RemoveScheme(Link.OriginalString);
 			await Services.ContractOrchestratorService.TagSignature(request);

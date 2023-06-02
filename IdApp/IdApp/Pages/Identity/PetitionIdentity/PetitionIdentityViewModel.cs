@@ -81,6 +81,8 @@ namespace IdApp.Pages.Identity.PetitionIdentity
             }
 
             this.AssignProperties();
+            this.EvaluateAllCommands();
+
             this.ReloadPhotos();
         }
 
@@ -112,6 +114,10 @@ namespace IdApp.Pages.Identity.PetitionIdentity
             this.photosLoader.CancelLoadPhotos();
 
             await base.OnDispose();
+        }
+
+        private void EvaluateAllCommands()
+        {
         }
 
         /// <summary>
@@ -844,6 +850,5 @@ namespace IdApp.Pages.Identity.PetitionIdentity
             }
             this.Purpose = this.purpose;
         }
-
     }
 }

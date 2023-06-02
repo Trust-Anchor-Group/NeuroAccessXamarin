@@ -1,5 +1,4 @@
 ﻿using IdApp.Services;
-using IdApp.Services.Notification.Identities;
 using System;
 using System.Threading.Tasks;
 using Waher.Runtime.Inventory;
@@ -37,7 +36,6 @@ namespace IdApp.Links
 		public async Task<bool> TryOpenLink(Uri Link)
 		{
 			ServiceReferences Services = new();
-			Services.NotificationService.ExpectEvent<IdentityResponseNotificationEvent>(DateTime.Now.AddMinutes(1));
 
 			string LegalId = Constants.UriSchemes.RemoveScheme(Link.OriginalString);
 			await Services.ContractOrchestratorService.OpenLegalIdentity(LegalId, LocalizationResourceManager.Current["ScannedQrCode"]);

@@ -177,13 +177,17 @@
                     <!-- -->
 					<Button Grid.Row="33" Grid.Column="0" Grid.ColumnSpan="2" x:Name="IgnoreButton" Text="{x:Static resx:AppResources.Ignore}" Command="{Binding Path=IgnoreCommand}" Margin="0,6,0,0"/>
 					<!-- -->
-					<Button Grid.Row="34" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.AddContact}" 
+					<!--
+					<Button Grid.Row="34" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.AddContact}"
                             Command="{Binding Path=AddContactCommand}" IsVisible="{Binding Path=ThirdPartyInContacts, Converter={converters:LogicalNot}}"
                             IsEnabled="{Binding Path=IsBusy, Converter={converters:LogicalNot}}" Margin="0,6,0,12"/>
+					-->
 					<!-- -->
-					<Button Grid.Row="35" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.RemoveContact}" 
+					<!--
+					<Button Grid.Row="35" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppResources.RemoveContact}"
                             Command="{Binding Path=RemoveContactCommand}" IsVisible="{Binding Path=ThirdPartyInContacts}"
                             IsEnabled="{Binding Path=IsBusy, Converter={converters:LogicalNot}}" Margin="0,6,0,12"/>
+					-->
                 </Grid>
             </StackLayout>
         </ScrollView>
