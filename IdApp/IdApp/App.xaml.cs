@@ -171,23 +171,35 @@ namespace IdApp
 		/// </remarks>
 		public static bool IsOnboarded => Shell.Current is not null;
 
+		/// <summary>
+		/// Selected language.
+		/// </summary>
+		public static string SelectedLanguage
+		{
+			get
+			{
+				string Language = Preferences.Get("user_selected_language", null);
+
+				if (Language is null)
+				{
+					List<string> SupportedLanguages = new() { "en", "sv", "es", "fr", "de", "da", "no", "fi", "sr", "pt", "ro", "ru" };
+					string LanguageName = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+					string SupportedLanguage = SupportedLanguages.FirstOrDefault(el => el == LanguageName);
+					Language = string.IsNullOrEmpty(SupportedLanguage) ? "en" : LanguageName;
+
+					Preferences.Set("user_selected_language", Language);
+				}
+
+				return Language;
+			}
+		}
+
 		private void InitLocalizationResource()
 		{
-			List<string> SupportedLanguages = new() { "en", "sv", "es", "fr", "de", "da", "no", "fi", "sr", "pt", "ro", "ru" };
-
-			string SelectedLanguage = Preferences.Get("user_selected_language", null);
-
-			if (SelectedLanguage is null)
-			{
-				string LanguageName = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-				string SupportedLanguage = SupportedLanguages.FirstOrDefault(el => el == LanguageName);
-				SelectedLanguage = string.IsNullOrEmpty(SupportedLanguage) ? "en" : LanguageName;
-
-				Preferences.Set("user_selected_language", SelectedLanguage);
-			}
+			string Language = SelectedLanguage;
 
 			CultureInfo[] Infos = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
-			CultureInfo SelectedInfo = Infos.First(el => el.Name == SelectedLanguage);
+			CultureInfo SelectedInfo = Infos.First(el => el.Name == Language);
 
 			LocalizationResourceManager.Current.Init(AppResources.ResourceManager, SelectedInfo);
 		}
@@ -661,7 +673,7 @@ namespace IdApp
 			// NavigationPage is used to allow non modal navigation. Scan QR code page is pushed not modally to allow the user to dismiss it
 			// on iOS (on iOS this page doesn't have any other means of going back without actually entering valid data).
 
-			Pages.Registration.Registration.RegistrationPage Page = await Pages.Registration.Registration.RegistrationPage.Create();
+			Pages.Registration.Registration.RegistrationPage Page = new Pages.Registration.Registration.RegistrationPage();
 
 			await this.SetMainPageAsync(new NavigationBasePage(Page));
 		}

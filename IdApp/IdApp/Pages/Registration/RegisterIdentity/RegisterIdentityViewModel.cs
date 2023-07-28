@@ -64,7 +64,6 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 
 			this.Title = LocalizationResourceManager.Current["PersonalLegalInformation"];
 			this.PersonalNumberPlaceholder = LocalizationResourceManager.Current["PersonalNumber"];
-			this.ShowOrganization = this.TagProfile.Purpose == PurposeUse.Work;
 
 			this.localPhotoFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), profilePhotoFileName);
 			this.photosLoader = new PhotosLoader();
@@ -86,6 +85,14 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 			this.XmppService.ConnectionStateChanged -= this.XmppService_ConnectionStateChanged;
 
 			await base.OnDispose();
+		}
+
+		/// <inheritdoc />
+		public override Task DoAssignProperties()
+		{
+			this.ShowOrganization = this.TagProfile.Purpose == PurposeUse.Work;
+
+			return base.DoAssignProperties();
 		}
 
 		#region Properties
@@ -161,8 +168,8 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 		public static readonly BindableProperty ImageProperty =
 			BindableProperty.Create(nameof(Image), typeof(ImageSource), typeof(RegisterIdentityViewModel), default(ImageSource), propertyChanged: (b, oldValue, newValue) =>
 			{
-				RegisterIdentityViewModel viewModel = (RegisterIdentityViewModel)b;
-				viewModel.HasPhoto = (newValue is not null);
+				if (b is RegisterIdentityViewModel ViewModel)
+					ViewModel.HasPhoto = (newValue is not null);
 			});
 
 		/// <summary>
@@ -200,20 +207,22 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 		public static readonly BindableProperty SelectedCountryProperty =
 			BindableProperty.Create(nameof(SelectedCountry), typeof(string), typeof(RegisterIdentityViewModel), default(string), propertyChanged: (b, oldValue, newValue) =>
 			{
-				RegisterIdentityViewModel ViewModel = (RegisterIdentityViewModel)b;
-				ViewModel.RegisterCommand.ChangeCanExecute();
-
-				if (!string.IsNullOrWhiteSpace(ViewModel.SelectedCountry) &&
-					ISO_3166_1.TryGetCode(ViewModel.SelectedCountry, out string CountryCode))
+				if (b is RegisterIdentityViewModel ViewModel)
 				{
-					string format = PersonalNumberSchemes.DisplayStringForCountry(CountryCode);
-					if (!string.IsNullOrWhiteSpace(format))
-						ViewModel.PersonalNumberPlaceholder = string.Format(LocalizationResourceManager.Current["PersonalNumberPlaceholder"], format);
+					ViewModel.RegisterCommand.ChangeCanExecute();
+
+					if (!string.IsNullOrWhiteSpace(ViewModel.SelectedCountry) &&
+						ISO_3166_1.TryGetCode(ViewModel.SelectedCountry, out string CountryCode))
+					{
+						string format = PersonalNumberSchemes.DisplayStringForCountry(CountryCode);
+						if (!string.IsNullOrWhiteSpace(format))
+							ViewModel.PersonalNumberPlaceholder = string.Format(LocalizationResourceManager.Current["PersonalNumberPlaceholder"], format);
+						else
+							ViewModel.PersonalNumberPlaceholder = LocalizationResourceManager.Current["PersonalNumber"];
+					}
 					else
 						ViewModel.PersonalNumberPlaceholder = LocalizationResourceManager.Current["PersonalNumber"];
 				}
-				else
-					ViewModel.PersonalNumberPlaceholder = LocalizationResourceManager.Current["PersonalNumber"];
 			});
 
 		/// <summary>
@@ -592,7 +601,7 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 		/// The <see cref="OrgDepartment"/>
 		/// </summary>
 		public static readonly BindableProperty OrgDepartmentProperty =
-			BindableProperty.Create(nameof(OrgDepartment), typeof(string), typeof(RegisterIdentityViewModel), default(string));
+			BindableProperty.Create(nameof(OrgDepartment), typeof(string), typeof(RegisterIdentityViewModel), default(string), propertyChanged: OnPropertyChanged);
 
 		/// <summary>
 		/// The organization department
@@ -607,7 +616,7 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 		/// The <see cref="OrgRole"/>
 		/// </summary>
 		public static readonly BindableProperty OrgRoleProperty =
-			BindableProperty.Create(nameof(OrgRole), typeof(string), typeof(RegisterIdentityViewModel), default(string));
+			BindableProperty.Create(nameof(OrgRole), typeof(string), typeof(RegisterIdentityViewModel), default(string), propertyChanged: OnPropertyChanged);
 
 		/// <summary>
 		/// The organization role
@@ -683,8 +692,8 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 
 		private static void OnPropertyChanged(BindableObject b, object oldValue, object newValue)
 		{
-			RegisterIdentityViewModel viewModel = (RegisterIdentityViewModel)b;
-			viewModel.RegisterCommand.ChangeCanExecute();
+			if (b is RegisterIdentityViewModel ViewModel)
+				ViewModel.RegisterCommand.ChangeCanExecute();
 		}
 
 		private void SetConnectionStateAndText(XmppState state)
@@ -1084,7 +1093,7 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 
 		private async Task Register()
 		{
-			if (!(await this.ValidateInput(true)))
+			if (!(await this.ValidateInputUI()))
 				return;
 
 			string CountryCode = ISO_3166_1.ToCode(this.SelectedCountry);
@@ -1150,8 +1159,7 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 
 		private bool CanRegister()
 		{
-			// Ok to 'wait' on, since we're not actually waiting on anything.
-			return this.ValidateInput(false).GetAwaiter().GetResult() && this.XmppService.IsOnline;
+			return this.XmppService.IsOnline && this.ValidateInput().Valid;
 		}
 
 		private RegisterIdentityModel CreateRegisterModel()
@@ -1247,122 +1255,109 @@ namespace IdApp.Pages.Registration.RegisterIdentity
 			return IdentityModel;
 		}
 
-		private async Task<bool> ValidateInput(bool AlertUser)
+		private class InfoValidation
+		{
+			public bool Valid { get; set; }
+			public string Title { get; set; }
+			public string Message { get; set; }
+
+			public static InfoValidation Ok()
+			{
+				return new InfoValidation()
+				{
+					Valid = true,
+					Title = null,
+					Message = null
+				};
+			}
+
+			public static InfoValidation Error(string Title, string Message)
+			{
+				return new InfoValidation()
+				{
+					Valid = false,
+					Title = Title,
+					Message = Message
+				};
+			}
+		}
+
+		private async Task<bool> ValidateInputUI()
+		{
+			InfoValidation Result = this.ValidateInput();
+
+			if (!Result.Valid)
+				await this.UiSerializer.DisplayAlert(Result.Title, Result.Message);
+
+			return Result.Valid;
+		}
+
+		private InfoValidation ValidateInput()
 		{
 			if (string.IsNullOrWhiteSpace(this.FirstName?.Trim()))
 			{
-				if (AlertUser)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-						LocalizationResourceManager.Current["YouNeedToProvideAFirstName"]);
-				}
-
-				return false;
+				return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+					LocalizationResourceManager.Current["YouNeedToProvideAFirstName"]);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.LastNames?.Trim()))
 			{
-				if (AlertUser)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-						LocalizationResourceManager.Current["YouNeedToProvideALastName"]);
-				}
-
-				return false;
+				return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+					LocalizationResourceManager.Current["YouNeedToProvideALastName"]);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.PersonalNumber?.Trim()))
 			{
-				if (AlertUser)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-						LocalizationResourceManager.Current["YouNeedToProvideAPersonalNumber"]);
-				}
-
-				return false;
+				return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+					LocalizationResourceManager.Current["YouNeedToProvideAPersonalNumber"]);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.SelectedCountry))
 			{
-				if (AlertUser)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-						LocalizationResourceManager.Current["YouNeedToProvideACountry"]);
-				}
-
-				return false;
+				return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+					LocalizationResourceManager.Current["YouNeedToProvideACountry"]);
 			}
 
 			if (this.photo is null)
 			{
-				if (AlertUser)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-						LocalizationResourceManager.Current["YouNeedToProvideAPhoto"]);
-				}
-
-				return false;
+				return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+					LocalizationResourceManager.Current["YouNeedToProvideAPhoto"]);
 			}
 
 			if (this.Purpose == PurposeUse.Work)
 			{
 				if (string.IsNullOrWhiteSpace(this.OrgName?.Trim()))
 				{
-					if (AlertUser)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-							LocalizationResourceManager.Current["YouNeedToProvideAnOrgName"]);
-					}
-
-					return false;
+					return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+						LocalizationResourceManager.Current["YouNeedToProvideAnOrgName"]);
 				}
 
 				if (string.IsNullOrWhiteSpace(this.OrgNumber?.Trim()))
 				{
-					if (AlertUser)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-							LocalizationResourceManager.Current["YouNeedToProvideAnOrgNumber"]);
-					}
-
-					return false;
+					return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+						LocalizationResourceManager.Current["YouNeedToProvideAnOrgNumber"]);
 				}
 
 				if (string.IsNullOrWhiteSpace(this.OrgDepartment?.Trim()))
 				{
-					if (AlertUser)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-							LocalizationResourceManager.Current["YouNeedToProvideAnOrgDepartment"]);
-					}
-
-					return false;
+					return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+						LocalizationResourceManager.Current["YouNeedToProvideAnOrgDepartment"]);
 				}
 
 				if (string.IsNullOrWhiteSpace(this.OrgRole?.Trim()))
 				{
-					if (AlertUser)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-							LocalizationResourceManager.Current["YouNeedToProvideAnOrgRole"]);
-					}
-
-					return false;
+					return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+						LocalizationResourceManager.Current["YouNeedToProvideAnOrgRole"]);
 				}
 
 				if (string.IsNullOrWhiteSpace(this.SelectedOrgCountry))
 				{
-					if (AlertUser)
-					{
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
-							LocalizationResourceManager.Current["YouNeedToProvideAnOrgCountry"]);
-					}
-
-					return false;
+					return InfoValidation.Error(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"],
+						LocalizationResourceManager.Current["YouNeedToProvideAnOrgCountry"]);
 				}
 			}
 
-			return true;
+			return InfoValidation.Ok();
 		}
 
 		/// <inheritdoc />

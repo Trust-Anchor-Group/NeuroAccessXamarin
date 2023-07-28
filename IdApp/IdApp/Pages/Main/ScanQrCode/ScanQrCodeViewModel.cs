@@ -11,10 +11,8 @@ namespace IdApp.Pages.Main.ScanQrCode
     /// </summary>
     public class ScanQrCodeViewModel : BaseViewModel
     {
-		private ScanQrCodeNavigationArgs navigationArgs;
-
-		// A Boolean flag indicating if Shell navigation should be used or a simple PopAsync.
 		private bool useShellNavigationService;
+		private ScanQrCodeNavigationArgs navigationArgs;
 
 		/// <summary>
 		/// An event that is fired when the scanning mode changes from automatic scan to manual entry.
@@ -38,7 +36,7 @@ namespace IdApp.Pages.Main.ScanQrCode
         {
             await base.OnInitialize();
 
-			if (this.navigationArgs is null && this.NavigationService.TryPopArgs(out ScanQrCodeNavigationArgs Args))
+			if (this.navigationArgs is null && this.NavigationService.TryGetArgs(out ScanQrCodeNavigationArgs Args))
 			{
 				this.navigationArgs = Args;
 				this.useShellNavigationService = Args is not null;
@@ -71,10 +69,7 @@ namespace IdApp.Pages.Main.ScanQrCode
 			}
 			else
 			{
-				Func<string, Task> Action = this.navigationArgs.Action;
-				TaskCompletionSource<string> QrCodeScanned = this.navigationArgs.QrCodeScanned;
-
-				this.navigationArgs.Action = null;
+				TaskCompletionSource<string> TaskSource = this.navigationArgs.QrCodeScanned;
 				this.navigationArgs.QrCodeScanned = null;
 
 				this.UiSerializer.BeginInvokeOnMainThread(async () =>
@@ -83,25 +78,15 @@ namespace IdApp.Pages.Main.ScanQrCode
 					{
 						Url = Url?.Trim();
 
-						if (Action is not null)
-						{
-							try
-							{
-								await Action(Url);
-							}
-							catch (Exception ex)
-							{
-								this.LogService.LogException(ex);
-							}
-						}
-
 						if (this.useShellNavigationService)
 							await this.NavigationService.GoBackAsync();
 						else
 							await App.Current.MainPage.Navigation.PopAsync();
 
-						if (QrCodeScanned is not null)
-							QrCodeScanned?.TrySetResult(Url);
+						if (TaskSource is not null)
+						{
+							TaskSource?.TrySetResult(Url);
+						}
 					}
 					catch (Exception ex)
 					{
@@ -115,7 +100,9 @@ namespace IdApp.Pages.Main.ScanQrCode
 		protected override async Task OnDispose()
 		{
 			if (this.navigationArgs?.QrCodeScanned is TaskCompletionSource<string> TaskSource)
+			{
 				TaskSource.TrySetResult(string.Empty);
+			}
 
 			await base.OnDispose();
 		}

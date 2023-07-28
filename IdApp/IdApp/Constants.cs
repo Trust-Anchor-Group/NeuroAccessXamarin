@@ -62,17 +62,17 @@ namespace IdApp
 			/// <summary>
 			/// The IoT ID URI Scheme (iotid)
 			/// </summary>
-			public const string UriSchemeIotId = "iotid";
+			public const string IotId = "iotid";
 
-            /// <summary>
-            /// TAG Signature (Quick-Login) URI Scheme (tagsign)
-            /// </summary>
-            public const string UriSchemeTagSign = "tagsign";
+			/// <summary>
+			/// TAG Signature (Quick-Login) URI Scheme (tagsign)
+			/// </summary>
+			public const string TagSign = "tagsign";
 
-            /// <summary>
-            /// Onboarding URI Scheme (obinfo)
-            /// </summary>
-            public const string UriSchemeOnboarding = "obinfo";
+			/// <summary>
+			/// Onboarding URI Scheme (obinfo)
+			/// </summary>
+			public const string Onboarding = "obinfo";
 
             /// <summary>
             /// Gets the predefined scheme from an IoT Code
@@ -92,9 +92,9 @@ namespace IdApp
 
 				return Url switch
 				{
-					UriSchemeIotId or
-                    UriSchemeTagSign or
-                    UriSchemeOnboarding => Url,
+					IotId or
+					TagSign or
+					Onboarding => Url,
 
 					_ => null,
 				};
@@ -108,7 +108,7 @@ namespace IdApp
             public static bool StartsWithIdScheme(string Url)
             {
                 return !string.IsNullOrWhiteSpace(Url) &&
-                       Url.StartsWith(UriSchemeIotId + ":", StringComparison.InvariantCultureIgnoreCase);
+                       Url.StartsWith(IotId + ":", StringComparison.InvariantCultureIgnoreCase);
             }
 
             /// <summary>
@@ -118,7 +118,7 @@ namespace IdApp
             /// <returns>Identity URI</returns>
             public static string CreateIdUri(string id)
             {
-                return UriSchemeIotId + ":" + id;
+                return IotId + ":" + id;
             }
 
             /// <summary>

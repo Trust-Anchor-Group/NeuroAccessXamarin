@@ -142,6 +142,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Events.
+        /// </summary>
+        internal static string AccountEventItem {
+            get {
+                return ResourceManager.GetString("AccountEventItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account name {0} is already taken. Choose another..
         /// </summary>
         internal static string AccountNameAlreadyTaken {
@@ -331,6 +340,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encryption can only be performed, if you have access to the recipients identity. A petition for this identity has therefore been sent to the indended recipient. If the recipient accepts the petition, you will receive the identity and be able to send the payment with an encrypted message when you try again. You can also choose to send an unencrypted message with the payment..
+        /// </summary>
+        internal static string APetitionHasBeenSentForEncryption {
+            get {
+                return ResourceManager.GetString("APetitionHasBeenSentForEncryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A petition has been sent to the parts of the contract. If any of the parts accepts the petition, the contract information will be displayed on the screen..
         /// </summary>
         internal static string APetitionHasBeenSentToTheContract {
@@ -444,6 +462,15 @@ namespace IdApp.Resx {
         internal static string Assessor {
             get {
                 return ResourceManager.GetString("Assessor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -1582,6 +1609,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encrypted Payment.
+        /// </summary>
+        internal static string EncryptedPayment {
+            get {
+                return ResourceManager.GetString("EncryptedPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encrypt message.
         /// </summary>
         internal static string EncryptMessage {
@@ -1947,6 +1983,15 @@ namespace IdApp.Resx {
         internal static string GenerateQrCode {
             get {
                 return ResourceManager.GetString("GenerateQrCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting available options was cancelled..
+        /// </summary>
+        internal static string GettingOptionsCancelled {
+            get {
+                return ResourceManager.GetString("GettingOptionsCancelled", resourceCulture);
             }
         }
         
@@ -2995,6 +3040,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization Information.
+        /// </summary>
+        internal static string OrganizationInformation {
+            get {
+                return ResourceManager.GetString("OrganizationInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Area.
         /// </summary>
         internal static string OrgArea {
@@ -3337,6 +3391,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending Payments.
+        /// </summary>
+        internal static string PendingPaymentItem {
+            get {
+                return ResourceManager.GetString("PendingPaymentItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No personal eventing service found..
         /// </summary>
         internal static string PepServiceNotFound {
@@ -3378,6 +3441,15 @@ namespace IdApp.Resx {
         internal static string PermitScreenCapture {
             get {
                 return ResourceManager.GetString("PermitScreenCapture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Information.
+        /// </summary>
+        internal static string PersonalInformation {
+            get {
+                return ResourceManager.GetString("PersonalInformation", resourceCulture);
             }
         }
         
@@ -4975,6 +5047,15 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description by Service Provider.
+        /// </summary>
+        internal static string ServerDescription {
+            get {
+                return ResourceManager.GetString("ServerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The server does not seem to support File Uploading..
         /// </summary>
         internal static string ServerDoesNotSupportFileUpload {
@@ -5533,7 +5614,7 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can choose to create an account on this provider. Enter the name of the account you wish to create, and press the Create New button. You can also choose to scan an invitation or transfer code, to use an account that has already been prepared for you, on another service provider. Click the Scan Invitation button to scan an invitation code..
+        ///   Looks up a localized string similar to You can choose to create an account on this provider. Enter the name of the account you wish to create, and press the Create New button. You can also choose to scan an invitation code, to select another service provider for your accout. If you scan a transfer code, you can use an account that has already been prepared for you. Click the Scan Invitation button to scan an invitation or transfer code..
         /// </summary>
         internal static string ToConnectToDomainYouNeedAnAccount2 {
             get {
@@ -5898,6 +5979,15 @@ namespace IdApp.Resx {
         internal static string UnableToGetListOfMyDevices {
             get {
                 return ResourceManager.GetString("UnableToGetListOfMyDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to get available options..
+        /// </summary>
+        internal static string UnableToGetOptions {
+            get {
+                return ResourceManager.GetString("UnableToGetOptions", resourceCulture);
             }
         }
         

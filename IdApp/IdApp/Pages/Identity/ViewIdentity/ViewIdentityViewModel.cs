@@ -58,7 +58,7 @@ namespace IdApp.Pages.Identity.ViewIdentity
 		{
 			await base.OnInitialize();
 
-			if (this.NavigationService.TryPopArgs(out ViewIdentityNavigationArgs args))
+			if (this.NavigationService.TryGetArgs(out ViewIdentityNavigationArgs args))
 			{
 				this.LegalIdentity = args.Identity ?? this.TagProfile.LegalIdentity;
 				this.requestorIdentity = args.RequestorIdentity;
@@ -314,7 +314,7 @@ namespace IdApp.Pages.Identity.ViewIdentity
 				{
 					if (Label == this.LegalId)
 					{
-						await Clipboard.SetTextAsync(Constants.UriSchemes.UriSchemeIotId + ":" + this.LegalId);
+						await Clipboard.SetTextAsync(Constants.UriSchemes.IotId + ":" + this.LegalId);
 						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["SuccessTitle"], LocalizationResourceManager.Current["IdCopiedSuccessfully"]);
 					}
 					else

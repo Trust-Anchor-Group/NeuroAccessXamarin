@@ -27,7 +27,7 @@
 		</Check>
 	</Entry>
 	<Entry country="IN" displayString="NNNN NNNN NNNN">
-		<Pattern variable="Aadhaar"><![CDATA[Aadhaar like "(?'N1'\\d{4})\s*(?'N2'\\d{4})\s*(?'N3'\\d{4})"]]></Pattern>
+		<Pattern variable="Aadhaar"><![CDATA[Aadhaar like "(?'N1'\\d{4})\\s*(?'N2'\\d{4})\\s*(?'N3'\\d{4})"]]></Pattern>
 		<Check>
 			<![CDATA[
 			d:=[[0,1,2,3,4,5,6,7,8,9],
@@ -65,7 +65,7 @@
 			CheckVerhoeff(N1_STR+N2_STR+N3_STR)
 			]]>
 		</Check>
-		<Normalize><![CDATA[N1_STR+N2_STR+N3_STR]]></Normalize>
+		<Normalize><![CDATA[N1_STR+" "+N2_STR+" "+N3_STR]]></Normalize>
 	</Entry>
 	<Entry country="MD" displayString="NNNNNNNNNNNNN">
 		<Pattern variable="IDNP"><![CDATA[IDNP like "\\d{13}"]]></Pattern>

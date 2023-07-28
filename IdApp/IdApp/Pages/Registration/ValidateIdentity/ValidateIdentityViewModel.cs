@@ -9,9 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Waher.Events;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.Contracts;
 using Xamarin.CommunityToolkit.Helpers;
@@ -66,7 +68,17 @@ namespace IdApp.Pages.Registration.ValidateIdentity
 		/// <inheritdoc />
 		public override async Task DoAssignProperties()
 		{
-			this.peerReviewServices ??= await this.XmppService.GetServiceProvidersForPeerReviewAsync();
+			try
+			{
+				this.peerReviewServices ??= await this.XmppService.GetServiceProvidersForPeerReviewAsync().ConfigureAwait(false);
+			}
+			catch (Exception ex)
+			{
+				this.LogService.LogException(ex);
+			}
+
+			this.ContinueCommand.ChangeCanExecute();
+			this.RequestReviewCommand.ChangeCanExecute();
 
 			await base.DoAssignProperties();
 		}
@@ -871,12 +883,10 @@ namespace IdApp.Pages.Registration.ValidateIdentity
 					LocalizationResourceManager.Current["SelectServiceProviderPeerReview"]);
 
 				_ = App.Current.MainPage.Navigation.PushAsync(new ServiceProvidersPage(e));
+				ServiceProviderWithLegalId ServiceProvider = (ServiceProviderWithLegalId)await e.ServiceProvider.Task;
 
-				ServiceProviderWithLegalId ServiceProvider = (ServiceProviderWithLegalId)await e.WaitForServiceProviderSelection();
 				if (ServiceProvider is not null)
 				{
-					await App.Current.MainPage.Navigation.PopAsync();
-
 					if (string.IsNullOrEmpty(ServiceProvider.LegalId))
 						await this.ScanQrCodeForPeerReview();
 					else

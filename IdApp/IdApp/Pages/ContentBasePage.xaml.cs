@@ -19,6 +19,10 @@ namespace IdApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ContentBasePage : ContentPage
 	{
+		// Navigation service uses Shell and its routing system, which are only available after the application reached the main page.
+		// Before that (during on-boarding and the loading page), we need to use the usual Xamarin Forms navigation.
+		private bool CanUseNavigationService => App.IsOnboarded;
+
 		/// <summary>
 		/// Creates an instance of the <see cref="ContentBasePage"/> class.
 		/// </summary>
@@ -178,23 +182,6 @@ namespace IdApp.Pages
 		}
 
 		/// <summary>
-		/// TODO: remove this, as it shouldn't be needed. It's here because ScrollView's typically don't refresh when their child content changes size.
-		/// It's a helper method for forcing a layout re-render of the specified components. It will do so asynchronously, by executing a BeginInvoke.
-		/// </summary>
-		/// <param name="layouts">The layout components to re-render.</param>
-		protected void ForceReRender(params Layout[] layouts)
-		{
-			// Important to BeginInvoke here to get the UI to update properly.
-			this.ViewModel.UiSerializer.BeginInvokeOnMainThread(() =>
-			{
-				foreach (Layout layout in layouts)
-				{
-					layout.ForceLayout();
-				}
-			});
-		}
-
-		/// <summary>
 		/// Overrides the back button behavior to handle navigation internally instead.
 		/// </summary>
 		/// <returns>Whether or not the back navigation was handled</returns>
@@ -210,13 +197,29 @@ namespace IdApp.Pages
 				else
 					return base.OnBackButtonPressed();
 			}
-			else
+			else if (this.CanUseNavigationService)
 			{
-				if (this.ViewModel is not null)
-					this.ViewModel.NavigationService.GoBackAsync();
-
+				this.ViewModel?.NavigationService.GoBackAsync();
 				return true;
 			}
+			else
+			{
+				return base.OnBackButtonPressed();
+			}
+		}
+
+		/// <summary>
+		/// A method which is called when the user presses the back button in the application toolbar at the top of a page.
+		/// <para>
+		/// If you want to cancel or handle the navigation yourself, you can do so in this method and then return <c>true</c>.
+		/// </para>
+		/// </summary>
+		/// <returns>
+		/// Whether or not the back navigation was handled by the override.
+		/// </returns>
+		public virtual bool OnToolbarBackButtonPressed()
+		{
+			return this.OnBackButtonPressed();
 		}
 
 		/// <summary>

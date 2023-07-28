@@ -35,6 +35,11 @@
             and when its internal systems are ready. For example, the loading stage of the app must complete.
             </remarks>
         </member>
+        <member name="P:IdApp.App.SelectedLanguage">
+            <summary>
+            Selected language.
+            </summary>
+        </member>
         <member name="M:IdApp.App.Instantiate``1">
             <summary>
             Instantiates an object of type <typeparamref name="T"/>, after assuring default instances have been created first.
@@ -237,6 +242,21 @@
             The view to move focus to.
             </summary>
         </member>
+        <member name="P:IdApp.Behaviors.SetFocusOnCompletedBehavior.SetFocusToAlternative">
+            <summary>
+            Alternative view to move focus to.
+            </summary>
+        </member>
+        <member name="F:IdApp.Behaviors.SetFocusOnCompletedBehavior.UseAlternativeProperty">
+            <summary>
+            Makes <see cref="P:IdApp.Behaviors.SetFocusOnCompletedBehavior.UseAlternative"/> bindable.
+            </summary>
+        </member>
+        <member name="P:IdApp.Behaviors.SetFocusOnCompletedBehavior.UseAlternative">
+            <summary>
+            If alternative control should be used.
+            </summary>
+        </member>
         <member name="M:IdApp.Behaviors.SetFocusOnCompletedBehavior.OnAttachedTo(Xamarin.Forms.Entry)">
             <inheritdoc/>
         </member>
@@ -347,17 +367,17 @@
             IoT Schemes
             </summary>
         </member>
-        <member name="F:IdApp.Constants.UriSchemes.UriSchemeIotId">
+        <member name="F:IdApp.Constants.UriSchemes.IotId">
             <summary>
             The IoT ID URI Scheme (iotid)
             </summary>
         </member>
-        <member name="F:IdApp.Constants.UriSchemes.UriSchemeTagSign">
+        <member name="F:IdApp.Constants.UriSchemes.TagSign">
             <summary>
             TAG Signature (Quick-Login) URI Scheme (tagsign)
             </summary>
         </member>
-        <member name="F:IdApp.Constants.UriSchemes.UriSchemeOnboarding">
+        <member name="F:IdApp.Constants.UriSchemes.Onboarding">
             <summary>
             Onboarding URI Scheme (obinfo)
             </summary>
@@ -1882,18 +1902,22 @@
             Asynchronous OnAppearing-method.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.ContentBasePage.ForceReRender(Xamarin.Forms.Layout[])">
-            <summary>
-            TODO: remove this, as it shouldn't be needed. It's here because ScrollView's typically don't refresh when their child content changes size.
-            It's a helper method for forcing a layout re-render of the specified components. It will do so asynchronously, by executing a BeginInvoke.
-            </summary>
-            <param name="layouts">The layout components to re-render.</param>
-        </member>
         <member name="M:IdApp.Pages.ContentBasePage.OnBackButtonPressed">
             <summary>
             Overrides the back button behavior to handle navigation internally instead.
             </summary>
             <returns>Whether or not the back navigation was handled</returns>
+        </member>
+        <member name="M:IdApp.Pages.ContentBasePage.OnToolbarBackButtonPressed">
+            <summary>
+            A method which is called when the user presses the back button in the application toolbar at the top of a page.
+            <para>
+            If you want to cancel or handle the navigation yourself, you can do so in this method and then return <c>true</c>.
+            </para>
+            </summary>
+            <returns>
+            Whether or not the back navigation was handled by the override.
+            </returns>
         </member>
         <member name="M:IdApp.Pages.ContentBasePage.OnParentSet">
             <summary>
@@ -1905,12 +1929,12 @@
             A convenience base class for <see cref="T:Xamarin.Forms.ContentView"/>s which provides typed access to the viewmodel it is bound to.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.ContentBaseView.ViewModel">
+        <member name="P:IdApp.Pages.ContentBaseView.ContentViewModel">
             <summary>
             Typed convenience property for accessing the <see cref="P:Xamarin.Forms.BindableObject.BindingContext"/> property as a view model.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.ContentBaseView.GetViewModel``1">
+        <member name="M:IdApp.Pages.ContentBaseView.GetContentViewModel``1">
             <summary>
             Returns the viewmodel, type cast to the proper type.
             </summary>
@@ -4054,40 +4078,48 @@
             Content-Type of associated media.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.IItemGroup">
+        <member name="T:IdApp.Pages.IUniqueItem">
             <summary>
             Grouped item interface.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.IItemGroup.UniqueName">
+        <member name="P:IdApp.Pages.IUniqueItem.UniqueName">
             <summary>
             Unique name used to compare items.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.IItemGroupCollection">
+        <member name="P:IdApp.Pages.IUniqueItem.LocalisedName">
             <summary>
-            Grouped item collection interface.
+            Get the groups's localised name
             </summary>
         </member>
-        <member name="P:IdApp.Pages.IItemGroupCollection.UniqueName">
-            <summary>
-            Unique name used to compare items.
-            </summary>
-        </member>
-        <member name="T:IdApp.Pages.ItemGroupCollection`1">
+        <member name="T:IdApp.Pages.ObservableItemGroup`1">
             <summary>
             Encapsulates a grouped item collection.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.ItemGroupCollection`1.UniqueName">
+        <member name="P:IdApp.Pages.ObservableItemGroup`1.UniqueName">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Pages.ItemGroupCollection`1.#ctor(System.String,System.Collections.ObjectModel.ObservableCollection{`0})">
+        <member name="P:IdApp.Pages.ObservableItemGroup`1.LocalisedName">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.ObservableItemGroup`1.#ctor(System.String,System.Collections.Generic.List{`0})">
             <summary>
             Encapsulates a grouped item collection.
             </summary>
             <param name="Name">Group's unique name.</param>
             <param name="Items">Group's item collection.</param>
+        </member>
+        <member name="M:IdApp.Pages.ObservableItemGroup`1.ToString">
+            <summary>
+            Get the groups's name (potentially used for display)
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.ObservableItemGroup`1.UpdateGroupsItems(IdApp.Pages.ObservableItemGroup{IdApp.Pages.IUniqueItem},IdApp.Pages.ObservableItemGroup{IdApp.Pages.IUniqueItem})">
+            <summary>
+            Update the current collection items using a new collection
+            </summary>
         </member>
         <member name="T:IdApp.Pages.Main.Calculator.CalculatorNavigationArgs">
             <summary>
@@ -4826,21 +4858,15 @@
             Creates an instance of the <see cref="T:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs"/> class.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs.#ctor(System.String,System.Func{System.String,System.Threading.Tasks.Task})">
+        <member name="M:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs.#ctor(System.String)">
             <summary>
             Creates an instance of the <see cref="T:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs"/> class.
             </summary>
             <param name="CommandName">The command name (localized) to display.</param>
-            <param name="Action">The asynchronous action to invoke right after a QR Code has been scanned, but before the Scan Page closes.</param>
         </member>
         <member name="P:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs.CommandName">
             <summary>
             The command name (localized) to display.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs.Action">
-            <summary>
-            The asynchronous action to invoke right after a QR Code has been scanned, but before the Scan Page closes.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Main.ScanQrCode.ScanQrCodeNavigationArgs.QrCodeScanned">
@@ -5320,6 +5346,46 @@
             The localized intro text to display to the user for explaining what 'choose account' is for.
             </summary>
         </member>
+        <member name="F:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedName">
+            <summary>
+            The localized intro text to display to the user for explaining what 'choose account' is for.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedDescriptionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedDescription"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.LocalizedDescription">
+            <summary>
+            The localized intro text to display to the user for explaining what 'choose account' is for.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedNameProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedName">
+            <summary>
+            The localized intro text to display to the user for explaining what 'choose account' is for.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedDescriptionProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedDescription"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.HasLocalizedDescription">
+            <summary>
+            The localized intro text to display to the user for explaining what 'choose account' is for.
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.AccountNameProperty">
             <summary>
             See <see cref="P:IdApp.Pages.Registration.ChooseAccount.ChooseAccountViewModel.AccountName"/>
@@ -5642,6 +5708,9 @@
             <inheritdoc />
         </member>
         <member name="M:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.OnDispose">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.DoAssignProperties">
             <inheritdoc />
         </member>
         <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityViewModel.IsTest">
@@ -6020,57 +6089,9 @@
             Copies values from the existing TAG Profile's Legal identity.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector">
-            <summary>
-            A data template selector for displaying various types of registration steps.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateContactInfo">
-            <summary>
-            The template for validating contact information.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ChooseAccount">
-            <summary>
-            The choose account template.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.RegisterIdentity">
-            <summary>
-            The register identity template.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateIdentity">
-            <summary>
-            The validate identity template.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.DefinePin">
-            <summary>
-            The define pin template.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.OnSelectTemplate(System.Object,Xamarin.Forms.BindableObject)">
-            <summary>
-            Chooses the best matching data template based on the type of registration step.
-            </summary>
-            <param name="item">The step to display.</param>
-            <param name="container"></param>
-            <returns>Selected template</returns>
-        </member>
         <member name="T:IdApp.Pages.Registration.RegistrationStepView">
             <summary>
-            A base class view for all registration steps views. Inherit from this to get access to the <see cref="P:IdApp.Pages.Registration.RegistrationStepView.StepCompletedCommand"/>.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.RegistrationStepView.StepCompletedCommandProperty">
-            <summary>
-            See <see cref="P:IdApp.Pages.Registration.RegistrationStepView.StepCompletedCommand"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepView.StepCompletedCommand">
-            <summary>
-            The command to bind to for signaling to listeners that this step has completed.
+            A base class view for all registration steps views.
             </summary>
         </member>
         <member name="T:IdApp.Pages.Registration.RegistrationStepViewModel">
@@ -6143,25 +6164,6 @@
             Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Registration.RegistrationPage"/> class.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationPage.Create">
-            <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Registration.RegistrationPage"/> class.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationPage.OnAppearingAsync">
-            <summary>
-            Overridden to sync the view with the view model when the page appears on screen.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationPage.OnDisappearingAsync">
-            <inheritdoc />
-        </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationPage.UpdateUiStep">
-            This is a hack. The issue is that the Carousel view doesn't reflect the CurrentStep binding correctly in the UI.
-            The viewmodel is correct. The position property on the CarouselView is correct. But during restarts
-            it still doesn't show the correct view template for that step. Instead it shows the last view template.
-            So here we scroll back and forth one step to get it to be in sync with the viewmodel.
-        </member>
         <member name="T:IdApp.Pages.Registration.Registration.RegistrationViewModel">
             <summary>
             The view model to bind to for displaying a registration page or view to the user.
@@ -6172,7 +6174,7 @@
             Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Registration.RegistrationViewModel"/> class.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.Create">
+        <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.SetPagesContainer(System.Collections.Generic.List{IdApp.Pages.Registration.RegistrationStepView})">
             <summary>
             Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Registration.RegistrationViewModel"/> class.
             </summary>
@@ -6183,6 +6185,24 @@
         <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.OnDispose">
             <inheritdoc />
         </member>
+        <member name="F:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentStateProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentState"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentState">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Registration.RegistrationViewModel.CustomStateProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CustomState"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CustomState">
+            <summary>
+            </summary>
+        </member>
         <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.RegistrationSteps">
             <summary>
             The list of steps needed to register a digital identity.
@@ -6191,11 +6211,6 @@
         <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.GoToPrevCommand">
             <summary>
             The command to bind to for moving backwards to the previous step in the registration process.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentStepChangedCommand">
-            <summary>
-            An opportunity to make some initialisation on the page change.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.Registration.RegistrationViewModel.CanGoBackProperty">
@@ -6226,18 +6241,6 @@
         <member name="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentStepTitle">
             <summary>
             The title of the current step. Displayed in the UI.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.MuteStepSync">
-            <summary>
-            Temporarily mutes the synchronization of the <see cref="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentStep"/> property.
-            This is a hack to workaround a bug on Android.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.UnMuteStepSync">
-            <summary>
-            Un-mutes the synchronization of the <see cref="P:IdApp.Pages.Registration.Registration.RegistrationViewModel.CurrentStep"/> property. See <see cref="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.MuteStepSync"/>.
-            This is a hack to workaround a bug on Android.
             </summary>
         </member>
         <member name="M:IdApp.Pages.Registration.Registration.RegistrationViewModel.RegistrationStep_Completed(System.Object,System.EventArgs)">
@@ -7073,16 +7076,13 @@
             <summary>
             Creates an instance of the <see cref="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel"/> class.
             </summary>
-            <param name="e">Navigation arguments.</param>
+            <param name="NavigationArgs">Navigation arguments.</param>
         </member>
         <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnInitialize">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnAppearing">
-            <inheritdoc/>
-        </member>
         <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.OnDispose">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="F:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersViewModel.TitleProperty">
             <summary>
@@ -7157,16 +7157,10 @@
             Descriptive text to show the user.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.Selected">
+        <member name="P:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.ServiceProvider">
             <summary>
-            Task completion source, waiting for a response from the user.
+            Task completion source; can be used to wait for a result.
             </summary>
-        </member>
-        <member name="M:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersNavigationArgs.WaitForServiceProviderSelection">
-            <summary>
-            Waits for the service provider to be selected; null is returned if the user goes back.
-            </summary>
-            <returns>Selected service provider, or null if user cancels, by going back.</returns>
         </member>
         <member name="T:IdApp.Pages.Wallet.ServiceProviders.ServiceProvidersPage">
             <summary>
@@ -7386,6 +7380,9 @@
         <member name="M:IdApp.Popups.Pin.PinPopup.PinPopupPage.OnAppearing">
             <inheritdoc/>
         </member>
+        <member name="M:IdApp.Popups.Pin.PinPopup.PinPopupPage.OnBackButtonPressed">
+            <inheritdoc/>
+        </member>
         <member name="T:IdApp.Popups.VerifyCode.VerifyCodePage">
             <summary>
             Prompts the user for its PIN
@@ -7466,6 +7463,11 @@
         <member name="P:IdApp.Resx.AppResources.AccountEventDescription">
             <summary>
               Looks up a localized string similar to Below you can see information about a single account event..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.AccountEventItem">
+            <summary>
+              Looks up a localized string similar to Account Events.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.AccountNameAlreadyTaken">
@@ -7573,6 +7575,11 @@
               Looks up a localized string similar to A peer you requested to review your application, has rejected to approve it..
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.APetitionHasBeenSentForEncryption">
+            <summary>
+              Looks up a localized string similar to Encryption can only be performed, if you have access to the recipients identity. A petition for this identity has therefore been sent to the indended recipient. If the recipient accepts the petition, you will receive the identity and be able to send the payment with an encrypted message when you try again. You can also choose to send an unencrypted message with the payment..
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.APetitionHasBeenSentToTheContract">
             <summary>
               Looks up a localized string similar to A petition has been sent to the parts of the contract. If any of the parts accepts the petition, the contract information will be displayed on the screen..
@@ -7636,6 +7643,11 @@
         <member name="P:IdApp.Resx.AppResources.Assessor">
             <summary>
               Looks up a localized string similar to Assessor.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.Back">
+            <summary>
+              Looks up a localized string similar to Back.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.Balance">
@@ -8268,6 +8280,11 @@
               Looks up a localized string similar to No eDaler service found on broker..
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.EncryptedPayment">
+            <summary>
+              Looks up a localized string similar to Encrypted Payment.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.EncryptMessage">
             <summary>
               Looks up a localized string similar to Encrypt message.
@@ -8471,6 +8488,11 @@
         <member name="P:IdApp.Resx.AppResources.GenerateQrCode">
             <summary>
               Looks up a localized string similar to Generate QR Code.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.GettingOptionsCancelled">
+            <summary>
+              Looks up a localized string similar to Getting available options was cancelled..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.HashFunction">
@@ -9053,6 +9075,11 @@
               Looks up a localized string similar to Organization Address (row 2).
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.OrganizationInformation">
+            <summary>
+              Looks up a localized string similar to Organization Information.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.OrgArea">
             <summary>
               Looks up a localized string similar to Organization Area.
@@ -9243,6 +9270,11 @@
               Looks up a localized string similar to Below you can see information about a payment that has been generated, but has not been fully processed yet..
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.PendingPaymentItem">
+            <summary>
+              Looks up a localized string similar to Pending Payments.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.PepServiceNotFound">
             <summary>
               Looks up a localized string similar to No personal eventing service found..
@@ -9266,6 +9298,11 @@
         <member name="P:IdApp.Resx.AppResources.PermitScreenCapture">
             <summary>
               Looks up a localized string similar to Permit Screen Capture.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PersonalInformation">
+            <summary>
+              Looks up a localized string similar to Personal Information.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.PersonalLegalInformation">
@@ -10153,6 +10190,11 @@
               Looks up a localized string similar to Serial Number.
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.ServerDescription">
+            <summary>
+              Looks up a localized string similar to Description by Service Provider.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.ServerDoesNotSupportFileUpload">
             <summary>
               Looks up a localized string similar to The server does not seem to support File Uploading..
@@ -10465,7 +10507,7 @@
         </member>
         <member name="P:IdApp.Resx.AppResources.ToConnectToDomainYouNeedAnAccount2">
             <summary>
-              Looks up a localized string similar to You can choose to create an account on this provider. Enter the name of the account you wish to create, and press the Create New button. You can also choose to scan an invitation or transfer code, to use an account that has already been prepared for you, on another service provider. Click the Scan Invitation button to scan an invitation code..
+              Looks up a localized string similar to You can choose to create an account on this provider. Enter the name of the account you wish to create, and press the Create New button. You can also choose to scan an invitation code, to select another service provider for your accout. If you scan a transfer code, you can use an account that has already been prepared for you. Click the Scan Invitation button to scan an invitation or transfer code..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.ToDevice">
@@ -10666,6 +10708,11 @@
         <member name="P:IdApp.Resx.AppResources.UnableToGetListOfMyDevices">
             <summary>
               Looks up a localized string similar to Unable to get list of my devices..
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.UnableToGetOptions">
+            <summary>
+              Looks up a localized string similar to Unable to get available options..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.UnableToGetPresent">
@@ -12038,23 +12085,22 @@
             Allows for easy mocking when unit testing.
             </summary>
         </member>
-        <member name="M:IdApp.Services.Navigation.INavigationService.GoToAsync(System.String)">
-            <summary>
-            Navigates the AppShell to the specified route.
-            </summary>
-            <param name="route">The route whose matching page to navigate to.</param>
-        </member>
-        <member name="M:IdApp.Services.Navigation.INavigationService.GoToAsync``1(System.String,``0)">
+        <member name="M:IdApp.Services.Navigation.INavigationService.GoToAsync(System.String,IdApp.Services.Navigation.BackMethod,System.String)">
             <summary>
             Navigates the AppShell to the specified route, with page arguments to match.
             </summary>
-            <param name="route">The route whose matching page to navigate to.</param>
-            <param name="args">The specific args to pass to the page.</param>
+            <param name="Route">The route whose matching page to navigate to.</param>
+            <param name="BackMethod">How to handle the back button.</param>
+            <param name="UniqueId">Views unique ID.</param>
         </member>
-        <member name="M:IdApp.Services.Navigation.INavigationService.GoBackAsync">
+        <member name="M:IdApp.Services.Navigation.INavigationService.GoToAsync``1(System.String,``0,IdApp.Services.Navigation.BackMethod,System.String)">
             <summary>
-            Returns to the previous page/route.
+            Navigates the AppShell to the specified route, with page arguments to match.
             </summary>
+            <param name="Route">The route whose matching page to navigate to.</param>
+            <param name="Args">The specific args to pass to the page.</param>
+            <param name="BackMethod">How to handle the back button.</param>
+            <param name="UniqueId">Views unique ID.</param>
         </member>
         <member name="M:IdApp.Services.Navigation.INavigationService.GoBackAsync(System.Boolean)">
             <summary>
@@ -12062,23 +12108,37 @@
             </summary>
             <param name="Animate">If animation should be used.</param>
         </member>
-        <member name="M:IdApp.Services.Navigation.INavigationService.TryPopArgs``1(``0@,System.String)">
+        <member name="M:IdApp.Services.Navigation.INavigationService.TryGetArgs``1(``0@,System.String)">
             <summary>
-            Tries to pop/read page arguments from the (one-level) deep navigation stack.
+            Returns the page's arguments from the (one-level) deep navigation stack.
             </summary>
-            <typeparam name="TArgs">The type of arguments to pass. Must be a subclass of <see cref="T:IdApp.Services.Navigation.NavigationArgs"/>.</typeparam>
-            <param name="args">The actual args.</param>
-            <param name="UniqueId">Views unique ID.</param>
-        </member>
-        <member name="M:IdApp.Services.Navigation.INavigationService.GetPopArgs``1(System.String)">
-            <summary>
-            Returns the pages arguments from the (one-level) deep navigation stack.
-            </summary>
-            <param name="UniqueId">Views unique ID.</param>
+            <param name="Args">View's navigation arguments.</param>
+            <param name="UniqueId">View's unique ID.</param>
         </member>
         <member name="P:IdApp.Services.Navigation.INavigationService.CurrentPage">
             <summary>
             Current page
+            </summary>
+        </member>
+        <member name="T:IdApp.Services.Navigation.BackMethod">
+            <summary>
+            Navigation Back Method
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Navigation.BackMethod.Inherited">
+            <summary>
+            Takes in consideration the parent's navigation arguments
+            By fedault it will be considered a <see cref="F:IdApp.Services.Navigation.BackMethod.Pop"/>
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Navigation.BackMethod.Pop">
+            <summary>
+            Goes back just one navigation level - the route ".."
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Navigation.BackMethod.ToThisPage">
+            <summary>
+            Pop until this page is reached
             </summary>
         </member>
         <member name="T:IdApp.Services.Navigation.NavigationArgs">
@@ -12086,38 +12146,23 @@
             An base class holding page specific navigation parameters.
             </summary>
         </member>
-        <member name="M:IdApp.Services.Navigation.NavigationArgs.#ctor">
+        <member name="M:IdApp.Services.Navigation.NavigationArgs.SetBackArguments(IdApp.Services.Navigation.BackMethod,IdApp.Services.Navigation.NavigationArgs,System.String)">
             <summary>
-            Creates a new instance of the <see cref="T:IdApp.Services.Navigation.NavigationArgs"/> class.
+            Sets the reference to the main parent's <see cref="T:IdApp.Services.Navigation.NavigationArgs"/>.
             </summary>
         </member>
-        <member name="P:IdApp.Services.Navigation.NavigationArgs.ReturnRoute">
+        <member name="M:IdApp.Services.Navigation.NavigationArgs.GetBackRoute">
             <summary>
-            The route to use when going back, if any.
+            Get the route used for the <see cref="M:IdApp.Services.Navigation.INavigationService.GoBackAsync(System.Boolean)"/> method.
             </summary>
         </member>
-        <member name="P:IdApp.Services.Navigation.NavigationArgs.ReturnCounter">
-            <summary>
-            Set it to 1 to start a counter of the number of times to pop when going back.
-            It will be incremented on every push using the <see cref="M:IdApp.Services.Navigation.INavigationService.GoToAsync(System.String)"/> method.
-            If this parameter exist, it supercedes the <see cref="P:IdApp.Services.Navigation.NavigationArgs.ReturnRoute"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Navigation.NavigationArgs.CancelReturnCounter">
-            <summary>
-            Set it to true to start a new <see cref="P:IdApp.Services.Navigation.NavigationArgs.ReturnCounter"/> session.
-            If the ReturnCounter is zero, it will stop the further counting.
-            </summary>
-        </member>
-        <member name="P:IdApp.Services.Navigation.NavigationArgs.UniqueId">
+        <member name="M:IdApp.Services.Navigation.NavigationArgs.GetUniqueId">
             <summary>
             An untique view identificator used to search the args of similar view types.
             </summary>
         </member>
-        <member name="P:IdApp.Services.Navigation.NavigationArgs.ViewInitialized">
-            <summary>
-            If view has been initialized by the arguments.
-            </summary>
+        <member name="P:IdApp.Services.Navigation.NavigationService.CurrentPage">
+            <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Navigation.NavigationService.Load(System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -12125,10 +12170,17 @@
         <member name="M:IdApp.Services.Navigation.NavigationService.Unload">
             <inheritdoc/>
         </member>
-        <member name="P:IdApp.Services.Navigation.NavigationService.CurrentPage">
-            <summary>
-            Current page
-            </summary>
+        <member name="M:IdApp.Services.Navigation.NavigationService.GoToAsync(System.String,IdApp.Services.Navigation.BackMethod,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Services.Navigation.NavigationService.GoToAsync``1(System.String,``0,IdApp.Services.Navigation.BackMethod,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Services.Navigation.NavigationService.GoBackAsync(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Services.Navigation.NavigationService.TryGetArgs``1(``0@,System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:IdApp.Services.Network.INetworkService">
             <summary>
@@ -13785,7 +13837,7 @@
             <param name="Url">URL to open.</param>
             <returns>If URL was handled.</returns>
         </member>
-        <member name="M:IdApp.Services.UI.QR.QrCode.ScanQrCode(System.String,System.Func{System.String,System.Threading.Tasks.Task},System.Boolean)">
+        <member name="M:IdApp.Services.UI.QR.QrCode.ScanQrCode(System.String,System.Boolean)">
             <summary>
             Navigates to the Scan QR Code Page, waits for scan to complete, and returns the result.
             This is seemingly simple, but performs several operations, namely:
@@ -13800,17 +13852,8 @@
             <description>Navigate back to the calling page.</description>
             </item>
             </list>
-            In order to handle processing in the correct order, you may need to use the <c>action</c> parameter. It is provided
-            to do additional processing <em>before</em> the <see cref="T:IdApp.Pages.Main.ScanQrCode.ScanQrCodePage"/> is navigated away from.
             </summary>
             <param name="CommandName">The localized name of the command to display when scanning.</param>
-            <param name="Action">
-            The asynchronous action to invoke right after a QR Code has been scanned, but before the Scan Page closes.
-            <para>
-            <paramref name="Action"/> should not navigate and (!) should not post navigation using BeginInvokeOnMainThread or
-            similar methods. Otherwise, trying to navigate back from the QR code page can actually navigate from the wrong page.
-            </para>
-            </param>
             <param name="UseShellNavigationService">A Boolean flag indicating if Shell navigation should be used or a simple <c>PushAsync</c>.</param>
             <returns>Decoded string</returns>
         </member>
@@ -14213,6 +14256,12 @@
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
         </member>
+        <member name="M:IdApp.Services.Xmpp.IXmppService.GetIdApplicationAttributes">
+            <summary>
+            Gets important attributes for a successful ID Application.
+            </summary>
+            <returns>ID Application attributes.</returns>
+        </member>
         <member name="M:IdApp.Services.Xmpp.IXmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>
             Adds a legal identity.
@@ -14529,6 +14578,12 @@
             <param name="FileName">Name of file.</param>
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
+        </member>
+        <member name="M:IdApp.Services.Xmpp.XmppService.GetIdApplicationAttributes">
+            <summary>
+            Gets important attributes for a successful ID Application.
+            </summary>
+            <returns>ID Application attributes.</returns>
         </member>
         <member name="M:IdApp.Services.Xmpp.XmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>
