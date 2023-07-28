@@ -7470,11 +7470,6 @@
               Looks up a localized string similar to Below you can see information about a single account event..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.AccountEventItem">
-            <summary>
-              Looks up a localized string similar to Account Events.
-            </summary>
-        </member>
         <member name="P:IdApp.Resx.AppResources.AccountNameAlreadyTaken">
             <summary>
               Looks up a localized string similar to Account name {0} is already taken. Choose another..
@@ -7580,11 +7575,6 @@
               Looks up a localized string similar to A peer you requested to review your application, has rejected to approve it..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.APetitionHasBeenSentForEncryption">
-            <summary>
-              Looks up a localized string similar to Encryption can only be performed, if you have access to the recipients identity. A petition for this identity has therefore been sent to the indended recipient. If the recipient accepts the petition, you will receive the identity and be able to send the payment with an encrypted message when you try again. You can also choose to send an unencrypted message with the payment..
-            </summary>
-        </member>
         <member name="P:IdApp.Resx.AppResources.APetitionHasBeenSentToTheContract">
             <summary>
               Looks up a localized string similar to A petition has been sent to the parts of the contract. If any of the parts accepts the petition, the contract information will be displayed on the screen..
@@ -7648,11 +7638,6 @@
         <member name="P:IdApp.Resx.AppResources.Assessor">
             <summary>
               Looks up a localized string similar to Assessor.
-            </summary>
-        </member>
-        <member name="P:IdApp.Resx.AppResources.Back">
-            <summary>
-              Looks up a localized string similar to Back.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.Balance">
@@ -8285,11 +8270,6 @@
               Looks up a localized string similar to No eDaler service found on broker..
             </summary>
         </member>
-        <member name="P:IdApp.Resx.AppResources.EncryptedPayment">
-            <summary>
-              Looks up a localized string similar to Encrypted Payment.
-            </summary>
-        </member>
         <member name="P:IdApp.Resx.AppResources.EncryptMessage">
             <summary>
               Looks up a localized string similar to Encrypt message.
@@ -8493,11 +8473,6 @@
         <member name="P:IdApp.Resx.AppResources.GenerateQrCode">
             <summary>
               Looks up a localized string similar to Generate QR Code.
-            </summary>
-        </member>
-        <member name="P:IdApp.Resx.AppResources.GettingOptionsCancelled">
-            <summary>
-              Looks up a localized string similar to Getting available options was cancelled..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.HashFunction">
@@ -9273,11 +9248,6 @@
         <member name="P:IdApp.Resx.AppResources.PendingPaymentDescription">
             <summary>
               Looks up a localized string similar to Below you can see information about a payment that has been generated, but has not been fully processed yet..
-            </summary>
-        </member>
-        <member name="P:IdApp.Resx.AppResources.PendingPaymentItem">
-            <summary>
-              Looks up a localized string similar to Pending Payments.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.PepServiceNotFound">
@@ -10713,11 +10683,6 @@
         <member name="P:IdApp.Resx.AppResources.UnableToGetListOfMyDevices">
             <summary>
               Looks up a localized string similar to Unable to get list of my devices..
-            </summary>
-        </member>
-        <member name="P:IdApp.Resx.AppResources.UnableToGetOptions">
-            <summary>
-              Looks up a localized string similar to Unable to get available options..
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.UnableToGetPresent">

@@ -2319,4 +2319,13 @@
   <data name="YouNeedToProvideAnOrgRole" xml:space="preserve">
     <value>Sinun on annettava rooli</value>
   </data>
+  <data name="ServerDescription" xml:space="preserve">
+    <value>Kuvaus palveluntarjoajan mukaan</value>
+  </data>
+  <data name="OrganizationInformation" xml:space="preserve">
+    <value>Organisaation tiedot</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>Henkilökohtaiset tiedot</value>
+  </data>
 </root>

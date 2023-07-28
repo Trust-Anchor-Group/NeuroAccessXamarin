@@ -2319,4 +2319,13 @@
   <data name="YouNeedToProvideAnOrgRole" xml:space="preserve">
     <value>Vous devez fournir un rôle</value>
   </data>
+  <data name="ServerDescription" xml:space="preserve">
+    <value>Description par fournisseur de services</value>
+  </data>
+  <data name="OrganizationInformation" xml:space="preserve">
+    <value>Renseignements sur l’organisation</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>Renseignements personnels</value>
+  </data>
 </root>
