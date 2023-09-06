@@ -2328,4 +2328,7 @@
   <data name="PersonalInformation" xml:space="preserve">
     <value>Personal Information</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

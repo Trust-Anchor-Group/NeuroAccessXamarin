@@ -7640,6 +7640,11 @@
               Looks up a localized string similar to Assessor.
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.Back">
+            <summary>
+              Looks up a localized string similar to Back.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.Balance">
             <summary>
               Looks up a localized string similar to Balance:.

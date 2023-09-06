@@ -64,15 +64,15 @@ namespace IdApp
 			/// </summary>
 			public const string IotId = "iotid";
 
-			/// <summary>
-			/// TAG Signature (Quick-Login) URI Scheme (tagsign)
-			/// </summary>
-			public const string TagSign = "tagsign";
+            /// <summary>
+            /// TAG Signature (Quick-Login) URI Scheme (tagsign)
+            /// </summary>
+            public const string TagSign = "tagsign";
 
-			/// <summary>
-			/// Onboarding URI Scheme (obinfo)
-			/// </summary>
-			public const string Onboarding = "obinfo";
+            /// <summary>
+            /// Onboarding URI Scheme (obinfo)
+            /// </summary>
+            public const string Onboarding = "obinfo";
 
             /// <summary>
             /// Gets the predefined scheme from an IoT Code
@@ -93,8 +93,8 @@ namespace IdApp
 				return Url switch
 				{
 					IotId or
-					TagSign or
-					Onboarding => Url,
+                    TagSign or
+                    Onboarding => Url,
 
 					_ => null,
 				};
