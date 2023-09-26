@@ -1,7 +1,7 @@
 ﻿using IdApp.Extensions;
-using IdApp.Pages.Contracts.PetitionSignature;
 using IdApp.Pages.Identity.PetitionIdentity;
 using IdApp.Pages.Identity.ViewIdentity;
+using IdApp.Pages.Petitions.PetitionSignature;
 using System;
 using System.Collections.Generic;
 using System.IO;
