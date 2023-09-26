@@ -12,7 +12,7 @@ using Waher.Networking.XMPP.Contracts;
 using Waher.Persistence;
 using Xamarin.Forms;
 
-namespace IdApp.Pages.Identity.PetitionIdentity
+namespace IdApp.Pages.Petitions.PetitionIdentity
 {
 	/// <summary>
 	/// The view model to bind to when displaying petitioning of an identity in a view or page.

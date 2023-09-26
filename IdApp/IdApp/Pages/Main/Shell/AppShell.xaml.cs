@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using IdApp.Pages.Identity.PetitionIdentity;
 using IdApp.Pages.Identity.TransferIdentity;
 using IdApp.Pages.Identity.ViewIdentity;
 using IdApp.Pages.Main.Calculator;
 using IdApp.Pages.Main.ScanQrCode;
 using IdApp.Pages.Main.Security;
+using IdApp.Pages.Petitions.PetitionIdentity;
 using IdApp.Pages.Petitions.PetitionSignature;
-using IdApp.Services;
 using IdApp.Services.Contracts;
 using IdApp.Services.EventLog;
 using IdApp.Services.Navigation;
