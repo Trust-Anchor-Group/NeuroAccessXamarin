@@ -85,7 +85,7 @@ namespace IdApp.Services.Tag
 		/// <summary>
 		/// The XMPP server's max size for file uploads.
 		/// </summary>
-		long? HttpFileUploadMaxSize { get; }
+		long HttpFileUploadMaxSize { get; }
 
 		/// <summary>
 		/// The XMPP server's log Jid.
@@ -311,7 +311,7 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		/// <param name="httpFileUploadJid">The http file upload id.</param>
 		/// <param name="maxSize">The max size allowed.</param>
-		void SetFileUploadParameters(string httpFileUploadJid, long? maxSize);
+		void SetFileUploadParameters(string httpFileUploadJid, long maxSize);
 
 		/// <summary>
 		/// Used during XMPP service discovery. Sets the log id.

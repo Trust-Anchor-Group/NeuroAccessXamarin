@@ -102,9 +102,8 @@ namespace IdApp.Services.Tag
 		private string legalJid;
 		private string httpFileUploadJid;
 		private string logJid;
-		private string mucJid;
 		private string pinHash;
-		private long? httpFileUploadMaxSize;
+		private long httpFileUploadMaxSize;
 		private bool isTest;
 		private PurposeUse purpose;
 		private DateTime? testOtpTimestamp;
@@ -224,8 +223,7 @@ namespace IdApp.Services.Tag
 		{
 			return string.IsNullOrWhiteSpace(this.legalJid) ||
 				   string.IsNullOrWhiteSpace(this.httpFileUploadJid) ||
-				   string.IsNullOrWhiteSpace(this.logJid) ||
-				   string.IsNullOrWhiteSpace(this.mucJid);
+				   string.IsNullOrWhiteSpace(this.logJid);
 		}
 
 		/// <inheritdoc/>
@@ -403,7 +401,7 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public long? HttpFileUploadMaxSize
+		public long HttpFileUploadMaxSize
 		{
 			get => this.httpFileUploadMaxSize;
 			private set
@@ -444,7 +442,10 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public bool FileUploadIsSupported => !string.IsNullOrWhiteSpace(this.HttpFileUploadJid) && this.HttpFileUploadMaxSize.HasValue;
+		public bool FileUploadIsSupported
+		{
+			get => !string.IsNullOrWhiteSpace(this.HttpFileUploadJid) && this.HttpFileUploadMaxSize > 0;
+		}
 
 		/// <inheritdoc/>
 		public string Pin
@@ -801,7 +802,7 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public void SetFileUploadParameters(string httpFileUploadJid, long? maxSize)
+		public void SetFileUploadParameters(string httpFileUploadJid, long maxSize)
 		{
 			this.HttpFileUploadJid = httpFileUploadJid;
 			this.HttpFileUploadMaxSize = maxSize;
@@ -853,9 +854,8 @@ namespace IdApp.Services.Tag
 			this.legalJid = string.Empty;
 			this.httpFileUploadJid = string.Empty;
 			this.logJid = string.Empty;
-			this.mucJid = string.Empty;
 			this.pinHash = string.Empty;
-			this.httpFileUploadMaxSize = null;
+			this.httpFileUploadMaxSize = 0;
 			this.isTest = false;
 			this.TestOtpTimestamp = null;
 			this.step = RegistrationStep.ValidateContactInfo;

@@ -170,7 +170,7 @@ namespace IdApp.Services.Xmpp
 						}
 					}
 
-					if (!string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) && this.TagProfile.HttpFileUploadMaxSize.HasValue)
+					if (!string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) && this.TagProfile.HttpFileUploadMaxSize > 0)
 					{
 						Thread?.NewState("Upload");
 						this.fileUploadClient = new HttpFileUploadClient(this.xmppClient, this.TagProfile.HttpFileUploadJid, this.TagProfile.HttpFileUploadMaxSize);
@@ -480,7 +480,7 @@ namespace IdApp.Services.Xmpp
 							}
 						}
 
-						if (this.fileUploadClient is null && !string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) && this.TagProfile.HttpFileUploadMaxSize.HasValue)
+						if (this.fileUploadClient is null && !string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) && this.TagProfile.HttpFileUploadMaxSize > 0)
 							this.fileUploadClient = new HttpFileUploadClient(this.xmppClient, this.TagProfile.HttpFileUploadJid, this.TagProfile.HttpFileUploadMaxSize);
 					}
 
@@ -829,7 +829,7 @@ namespace IdApp.Services.Xmpp
 			if (string.IsNullOrWhiteSpace(this.TagProfile.LegalJid))
 				return false;
 
-			if (string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) || !this.TagProfile.HttpFileUploadMaxSize.HasValue)
+			if (string.IsNullOrWhiteSpace(this.TagProfile.HttpFileUploadJid) || (this.TagProfile.HttpFileUploadMaxSize <= 0))
 				return false;
 
 			if (string.IsNullOrWhiteSpace(this.TagProfile.LogJid))
@@ -849,7 +849,7 @@ namespace IdApp.Services.Xmpp
 
 				if (itemResponse.HasFeature(HttpFileUploadClient.Namespace))
 				{
-					long? maxSize = HttpFileUploadClient.FindMaxFileSize(Client, itemResponse);
+					long maxSize = HttpFileUploadClient.FindMaxFileSize(Client, itemResponse) ?? 0;
 					this.TagProfile.SetFileUploadParameters(Item.JID, maxSize);
 				}
 

@@ -13016,7 +13016,7 @@
             </summary>
             <param name="legalJid">The legal id.</param>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.SetFileUploadParameters(System.String,System.Nullable{System.Int64})">
+        <member name="M:IdApp.Services.Tag.ITagProfile.SetFileUploadParameters(System.String,System.Int64)">
             <summary>
             Used during XMPP service discovery. Sets the file upload parameters.
             </summary>
@@ -13370,7 +13370,7 @@
         <member name="M:IdApp.Services.Tag.TagProfile.SetLegalJid(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.SetFileUploadParameters(System.String,System.Nullable{System.Int64})">
+        <member name="M:IdApp.Services.Tag.TagProfile.SetFileUploadParameters(System.String,System.Int64)">
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetLogJid(System.String)">
