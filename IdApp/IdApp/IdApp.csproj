@@ -48,7 +48,7 @@
 
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-    <PackageReference Include="SkiaSharp" Version="2.88.5" />
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
     <PackageReference Include="Waher.Content" Version="2.6.5" />
     <PackageReference Include="Waher.Content.Images" Version="2.1.4" />
     <PackageReference Include="Waher.Content.QR" Version="2.1.0" />
